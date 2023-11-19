@@ -279,6 +279,8 @@ body {
     padding: 10px;
 }
 
+/* Styling for Bacon Sandwiches section */
+
 #baconsandwiches-content {
     text-align: center;
 }
@@ -301,7 +303,28 @@ body {
     padding: 10px;
 }
 
+.additional-items-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    border: 2px solid black; /* Border styling */
+    border-radius: 8px; /* Optional: Rounded corners */
+    padding: 10px; /* Optional: Padding inside the container */
+}
 
+.additional-item {
+    text-align: center;
+    margin: 10px;
+}
+
+.additional-details {
+    border-radius: 8px;
+    border: 2px solid black; /* Border styling for individual items */
+    padding: 10px; /* Optional: Padding inside each item */
+}
+
+/* Styling for Add Ons section */
 
 #drinks-content {
     text-align: center;
