@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="style.css">
+    <style>
+        
+    </style>
     <title>Angels Burger</title>
 </head>
 <body>
@@ -13,26 +16,33 @@
         <div class="navbar">
             <div class="logo"><a href="#">Angel's Burger</a></div>
             <ul class="links">
-                <li><a href="Home">HOME</a></li>
-                <li><a href="Order">ORDER</a></li>
-                <li><a href="History">ORDER HISTORY</a></li>
+                <li><a href="#" onclick="loadPage('home-content')">HOME</a></li>
+                <li><a href="#" onclick="loadPage('order-content')">ORDER</a></li>
+                <li><a href="#" onclick="loadPage('history-content')">ORDER HISTORY</a></li>
+
                 <li class="dropdown">
                     <a href="#">MENU</a>
                     <ul class="dropdown-menu">
+<<<<<<< HEAD
+                        <li class="menu-items"><a href="#" data-content-id="hamburgers-content" style="color: black;">HAMBURGERS</a></li>
+                        <li class="menu-items"><a href="#" data-content-id="hotdogs-content" style="color: black;">HOTDOG SANDWICHES</a></li>
+                        <li class="menu-items"><a href="#" data-content-id="hamsandwiches-content" style="color: black;">HAM SANDWICHES</a></li>
+                        <li class="menu-items"><a href="#" data-content-id="baconsandwiches-content" style="color: black;">BACON SANDWICHES</a></li>
+                        <li class="menu-items"><a href="#" data-content-id="drinks-content" style="color: black;">DRINKS</a></li>
+                    </ul>
+                </li>
+</ul>
+=======
                         <li class="menu-items"><a href="#hamburgers" style="color: black;">HAMBURGERS</a></li>
                         <li class="menu-items"><a href="#hotdogs" style="color: black;">HOTDOG SANDWICHES</a></li>
-                        <li class="menu-items"><a href="#hamsandwiches" style="color: black;">HAM SANDWICHES</a></li>
-                        <li class="menu-items"><a href="#baconsandwiches" style="color: black;">BACON SANDWICHES</a></li>
+                        <li class="menu-items"><a href="#ham" style="color: black;">HAM SANDWICHES</a></li>
+                        <li class="menu-items"><a href="#bacon" style="color: black;">BACON SANDWICHES</a></li>
                         <li class="menu-items"><a href="#drinks" style="color: black;">DRINKS</a></li>
-                      </ul>
-                      
-
                     </ul>
                 </li>
             </ul>
 
-            
-
+>>>>>>> 38fd6c7608a3d5d9d1c7d5806ec92bf97cf5d837
             <div class="search-bar">
                 <input type="text" placeholder="Search...">
                 <button type="button"><i class="fas fa-search"></i></button>
@@ -40,15 +50,157 @@
         </div>
     </header>
 
+<<<<<<< HEAD
+    <section class="content-section" id="home-content">
+        <!-- Initial content when the page loads -->
+        <h1>WELCOME!</h1>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit...</p>
+    </section>
+    
+    <section class="content-section" id="order-content">
+        <!-- Content for the "ORDER" page -->
+        <h1>ORDER PAGE</h1>
+        <p>This is the content for the ORDER page...</p>
+    </section>
+    
+    <section class="content-section" id="history-content">
+        <!-- Content for the "ORDER HISTORY" page -->
+        <h1>ORDER HISTORY PAGE</h1>
+        <p>This is the content for the ORDER HISTORY page...</p>
+    </section>
+    
+    <!-- Footer Section -->
+    <!-- Add your footer content here -->
+    
+    <script>
+        function loadPage(pageId) {
+            // Get the content sections
+            var contentSections = document.getElementsByClassName('content-section');
+    
+            // Hide all content sections
+            for (var i = 0; i < contentSections.length; i++) {
+                contentSections[i].style.display = 'none';
+            }
+    
+            // Show the selected content section
+            var selectedSection = document.getElementById(pageId);
+            if (selectedSection) {
+                selectedSection.style.display = 'block';
+            }
+        }
+    </script>
+
     <main>
-        <section id="hero">
-            <h1>WELCOME!</h1>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias sit molestias, corrupti quidem aspernatur odio obcaecati fugit eveniet iste nobis enim vitae ab rerum facere vel delectus iusto deleniti maiores.</p>
+        <main>
+            <section id="hamburgers-content" class="content-section">
+                <h2>Hamburgers</h2>
+                <p>Content for Hamburgers category goes here.</p>
+            </section>
+        
+            <section id="hotdogs-content" class="content-section">
+                <h2>Hotdog Sandwiches</h2>
+                <p>Content for Hotdog Sandwiches category goes here.</p>
+            </section>
+        
+            <section id="hamsandwiches-content" class="content-section">
+                <h2>Ham Sandwiches</h2>
+                <p>Content for Ham Sandwiches category goes here.</p>
+            </section>
+        
+            <section id="baconsandwiches-content" class="content-section">
+                <h2>Bacon Sandwiches</h2>
+                <p>Content for Bacon Sandwiches category goes here.</p>
+            </section>
+        
+            <section id="drinks-content" class="content-section">
+                <h2>Drinks</h2>
+                <p>Content for Drinks category goes here.</p>
+            </section>
+        
+        
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    function loadPage(contentId) {
+                        // Get the content sections
+                        var contentSections = document.getElementsByClassName('content-section');
+        
+                        // Hide all content sections
+                        for (var i = 0; i < contentSections.length; i++) {
+                            contentSections[i].style.display = 'none';
+                        }
+        
+                        // Show the selected content section
+                        var selectedSection = document.getElementById(contentId);
+                        if (selectedSection) {
+                            selectedSection.style.display = 'block';
+                        }
+                    }
+        
+                    // Add click event listeners to your menu items
+                    var menuItems = document.querySelectorAll('.menu-items a');
+                    menuItems.forEach(function (menuItem) {
+                        menuItem.addEventListener('click', function (event) {
+                            event.preventDefault();
+                            var contentId = this.getAttribute('data-content-id');
+                            loadPage(contentId);
+                        });
+                    });
+                });
+            </script>
+    </main>
+=======
+    <main>
+        <section id="hamburgers" class="menu-content">
+            <h2>Hamburgers</h2>
+            <p>Content for Hamburgers category goes here.</p>
+        </section>
+
+        <section id="hotdogs" class="menu-content">
+            <h2>Hotdog Sandwiches</h2>
+            <p>Content for Hotdog Sandwiches category goes here.</p>
+        </section>
+
+        <section id="ham" class="menu-content">
+            <h2>Ham Sandwiches</h2>
+            <p>Content for Ham Sandwiches category goes here.</p>
+        </section>
+
+        <section id="bacon" class="menu-content">
+            <h2>Bacon Sandwiches</h2>
+            <p>Content for Bacon Sandwiches category goes here.</p>
+        </section>
+
+        <section id="drinks" class="menu-content">
+            <h2>Drinks</h2>
+            <p>Content for Drink category goes here.</p>
         </section>
     </main>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get all menu items
+            var menuItems = document.querySelectorAll('.menu-items');
+>>>>>>> 38fd6c7608a3d5d9d1c7d5806ec92bf97cf5d837
 
+            // Get all menu content sections
+            var menuContent = document.querySelectorAll('.menu-content');
 
-    
+            // Show the first menu content section by default
+            menuContent[0].style.display = 'block';
+
+            // Add click event listener to each menu item
+            menuItems.forEach(function (item, index) {
+                item.addEventListener('click', function () {
+                    // Hide all menu content sections
+                    menuContent.forEach(function (content) {
+                        content.style.display = 'none';
+                    });
+
+                    // Show the corresponding menu content section based on the clicked item
+                    menuContent[index].style.display = 'block';
+                });
+            });
+        });
+    </script>
 </body>
 </html>
