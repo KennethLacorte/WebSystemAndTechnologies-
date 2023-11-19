@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="style.css">
+    <style>
+        
+    </style>
     <title>Angels Burger</title>
 </head>
 <body>
@@ -21,17 +24,12 @@
                     <ul class="dropdown-menu">
                         <li class="menu-items"><a href="#hamburgers" style="color: black;">HAMBURGERS</a></li>
                         <li class="menu-items"><a href="#hotdogs" style="color: black;">HOTDOG SANDWICHES</a></li>
-                        <li class="menu-items"><a href="#hamsandwiches" style="color: black;">HAM SANDWICHES</a></li>
-                        <li class="menu-items"><a href="#baconsandwiches" style="color: black;">BACON SANDWICHES</a></li>
+                        <li class="menu-items"><a href="#ham" style="color: black;">HAM SANDWICHES</a></li>
+                        <li class="menu-items"><a href="#bacon" style="color: black;">BACON SANDWICHES</a></li>
                         <li class="menu-items"><a href="#drinks" style="color: black;">DRINKS</a></li>
-                      </ul>
-                      
-
                     </ul>
                 </li>
             </ul>
-
-            
 
             <div class="search-bar">
                 <input type="text" placeholder="Search...">
@@ -41,14 +39,56 @@
     </header>
 
     <main>
-        <section id="hero">
-            <h1>WELCOME!</h1>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias sit molestias, corrupti quidem aspernatur odio obcaecati fugit eveniet iste nobis enim vitae ab rerum facere vel delectus iusto deleniti maiores.</p>
+        <section id="hamburgers" class="menu-content">
+            <h2>Hamburgers</h2>
+            <p>Content for Hamburgers category goes here.</p>
+        </section>
+
+        <section id="hotdogs" class="menu-content">
+            <h2>Hotdog Sandwiches</h2>
+            <p>Content for Hotdog Sandwiches category goes here.</p>
+        </section>
+
+        <section id="ham" class="menu-content">
+            <h2>Ham Sandwiches</h2>
+            <p>Content for Ham Sandwiches category goes here.</p>
+        </section>
+
+        <section id="bacon" class="menu-content">
+            <h2>Bacon Sandwiches</h2>
+            <p>Content for Bacon Sandwiches category goes here.</p>
+        </section>
+
+        <section id="drinks" class="menu-content">
+            <h2>Drinks</h2>
+            <p>Content for Drink category goes here.</p>
         </section>
     </main>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get all menu items
+            var menuItems = document.querySelectorAll('.menu-items');
 
+            // Get all menu content sections
+            var menuContent = document.querySelectorAll('.menu-content');
 
-    
+            // Show the first menu content section by default
+            menuContent[0].style.display = 'block';
+
+            // Add click event listener to each menu item
+            menuItems.forEach(function (item, index) {
+                item.addEventListener('click', function () {
+                    // Hide all menu content sections
+                    menuContent.forEach(function (content) {
+                        content.style.display = 'none';
+                    });
+
+                    // Show the corresponding menu content section based on the clicked item
+                    menuContent[index].style.display = 'block';
+                });
+            });
+        });
+    </script>
 </body>
 </html>
