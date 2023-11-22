@@ -1,3 +1,22 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "angelsburger";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check the connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// SQL query to fetch data from the database
+$sql = "SELECT prodName, prodImg, price FROM tbl_order";
+$result = $conn->query($sql);
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,10 +69,40 @@
     </section>
     
     <section class="content-section" id="order-content">
-        <!-- Content for the "ORDER" page -->
         <h1>ORDER PAGE</h1>
-        <p>This is the content for the ORDER page...</p>
+        <table class="content-table">
+            <thead>
+                <tr>
+                    <th colspan="4" class="table-title">Hamburger</th>
+                </tr>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Product Image</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody class="text-center">
+                <?php
+                // Fetch data from the database and display it in the table
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<tr>";
+                        echo "<td>{$row['prodName']}</td>";
+                        echo "<td><img src='data:image/jpeg;base64," . base64_encode($row['prodImg']) . "' alt='{$row['prodName']}' style='width: 50px; height: 50px;'></td>";
+                        echo "<td>{$row['price']}</td>";
+                        echo "<td><input type='number' class='quantity-input' value='1' min='1' data-product='{$row['prodName']}'></td>";
+                        echo "</tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='4'>No products found</td></tr>";
+                }
+                $conn->close();
+                ?>
+            </tbody>
+        </table>
     </section>
+
     
     <section class="content-section" id="history-content">
         <!-- Content for the "ORDER HISTORY" page -->
