@@ -28,6 +28,8 @@ $result = $conn->query($sql);
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="add-order.css">
+
     <style>
 
     </style>
@@ -36,229 +38,34 @@ $result = $conn->query($sql);
 
 <body>
     <header>
-        <div class="navbar">
-            <div class="logo"><a href="#">Angel's Burger</a></div>
-            <ul class="links">
-                <li><a href="#" onclick="loadPage('home-content')">HOME</a></li>
-                <li><a href="#" onclick="loadPage('addorder-content')">ADD ORDER</a></li>
-                <li><a href="#" onclick="loadPage('order-content')">ORDERS</a></li>
+    <div class="navbar">
+    <div class="logo"><a href="#">Angel's Burger</a></div>
+    <ul class="links">
+         <li><a href="#" data-content-id="home-content">HOME</a></li>
+        <li><a href="#" data-content-id="addorder-content">ADD ORDER</a></li>
+        <li><a href="#" data-content-id="order-content">ORDERS</a></li>
 
-                <li class="dropdown">
-                    <a data-toggle="dropdown" href="#." class="dropdown-toggle">MENU</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="hello.html">About Us</a></li>
-                        <li class="menu-items"><a href="#" data-content-id="hamburgers-content"
-                                style="color: black;">HAMBURGERS</a></li>
-                        <li class="menu-items"><a href="#" data-content-id="hotdogs-content"
-                                style="color: black;">HOTDOG SANDWICHES</a></li>
-                        <li class="menu-items"><a href="#" data-content-id="hamsandwiches-content"
-                                style="color: black;">HAM SANDWICHES</a></li>
-                        <li class="menu-items"><a href="#" data-content-id="baconsandwiches-content"
-                                style="color: black;">BACON SANDWICHES</a></li>
-                        <li class="menu-items"><a href="#" data-content-id="drinks-content"
-                                style="color: black;">DRINKS</a></li>
-                    </ul>
-                </li>
+        <li class="dropdown">
+        <a href="#" onclick="toggleDropdown()" class="dropdown-toggle">MENU</a>
+            <ul class="dropdown-menu">
+            <li class="menu-items"><a href="#" data-content-id="hamburgers-content" style="color: black;">ABOUT US</a></li>
+                <li class="menu-items"><a href="#" data-content-id="hamburgers-content" style="color: black;">HAMBURGERS</a></li>
+                <li class="menu-items"><a href="#" data-content-id="hotdogs-content" style="color: black;">HOTDOG SANDWICHES</a></li>
+                <li class="menu-items"><a href="#" data-content-id="hamsandwiches-content" style="color: black;">HAM SANDWICHES</a></li>
+                <li class="menu-items"><a href="#" data-content-id="baconsandwiches-content" style="color: black;">BACON SANDWICHES</a></li>
+                <li class="menu-items"><a href="#" data-content-id="drinks-content" style="color: black;">DRINKS</a></li>
             </ul>
-
-
-
-
+        </li>
+    </ul>
+  
             <div class="search-bar">
                 <input type="text" placeholder="Search...">
                 <button type="button"><i class="fas fa-search"></i></button>
             </div>
-        </div>
+
+            </div>
+
     </header>
-
-    <section class="content-section" id="home-content">
-        <!-- Initial content when the page loads -->
-        <h1>WELCOME!</h1>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit...</p>
-    </section>
-
-
-    <!-- ADD ORDER content-page -->
-    <section class="content-section" id="addorder-content">
-        <h1>ADD ORDER</h1>
-
-        <style>
-            /* Style for the content-table */
-            .content-table {
-                width: 100%;
-                border-collapse: collapse;
-                margin-top: 20px;
-            }
-
-            /* Style for table header */
-            .content-table th {
-                background-color: #f2f2f2;
-                text-align: center;
-                padding: 8px;
-                border: 1px solid #dddddd;
-            }
-
-            /* Style for table cells */
-            .content-table td {
-                text-align: center;
-                padding: 8px;
-                border: 1px solid #dddddd;
-            }
-
-            /* Style for odd rows */
-            .content-table tr:nth-child(odd) {
-                background-color: #f9f9f9;
-            }
-
-            /* Style for even rows */
-            .content-table tr:nth-child(even) {
-                background-color: #ffffff;
-            }
-
-            /* Style for the add-to-order button */
-            .add-to-order-button {
-                background-color: #4caf50;
-                color: white;
-                padding: 8px 12px;
-                border: none;
-                border-radius: 4px;
-                cursor: pointer;
-            }
-
-            /* Style for the add-to-order button on hover */
-            .add-to-order-button:hover {
-                background-color: #45a049;
-            }
-        </style>
-
-        <!-- Form to add items to the order -->
-        <form id="add-order-form" action="process_add_order.php" method="post">
-            <!-- Display your products in a table -->
-            <table class="content-table">
-                <!-- Your product table header -->
-                <thead>
-                    <tr>
-                        <th colspan="4" class="table-title">Hamburger</th>
-                    </tr>
-                    <tr>
-                        <th>Product Name</th>
-                        <th>Product Image</th>
-                        <th>Price</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-
-                <!-- Display product information in the table body -->
-                <tbody class="text-center">
-                    <?php
-                    // Fetch and display products from the database
-                    while ($row = $result->fetch_assoc()) {
-                        echo "<tr>";
-                        echo "<td>{$row['item_name']}</td>";
-                        echo "<td><img src='data:image/jpeg;base64," . base64_encode($row['item_img']) . "' alt='{$row['item_name']}' style='width: 50px; height: 50px;'></td>";
-                        echo "<td>{$row['item_price']}</td>";
-                        echo "<td><button class='add-to-order-button' data-product-name='{$row['item_name']}' data-product-img='" . base64_encode($row['item_img']) . "' data-product-price='{$row['item_price']}'>Add to Order</button></td>";
-                        echo "</tr>";
-                    }
-                    ?>
-                </tbody>
-            </table>
-        </form>
-
-        <!-- JavaScript to handle adding items to the order -->
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                const addToOrderButtons = document.querySelectorAll('.add-to-order-button');
-
-                button.addEventListener('click', function () {
-                    const productName = button.dataset.productName;
-                    const productImg = button.dataset.productImg; // Corrected attribute name
-                    const productPrice = button.dataset.productPrice;
-
-                    // Call a function to add the item to the order form
-                    addToOrder(productName, productImg, productPrice);
-                });
-            });
-
-            // Function to add items to the order form
-            function addToOrder(productName, productPrice) {
-                const orderItemsContainer = document.getElementById('order-items');
-                const row = document.createElement('tr');
-                row.innerHTML = `<td>${productName}</td><td>${productPrice}</td><td><input type="number" name="quantity[]" value="1" min="1"></td>`;
-                orderItemsContainer.appendChild(row);
-            }
-        });
-        </script>
-    </section>
-
-
-    <section class="content-section" id="order-content">
-        <!-- Content for the "ORDER HISTORY" page -->
-        <h1>ORDER PAGE</h1>
-        <p>This is the content for the ORDER page...</p>
-        <form id="confirm-order-form" action="process_confirm_order.php" method="post">
-            <!-- Display items added to the order in a table -->
-            <table class="content-table">
-                <!-- ... Your order table header ... -->
-
-                <tbody class="text-center" id="order-items">
-                    <!-- Dynamically populated with JavaScript -->
-                </tbody>
-            </table>
-
-            <!-- Customer information fields -->
-            <label for="customer-name">Customer Name:</label>
-            <input type="text" id="customer-name" name="customer_name" required>
-
-            <label for="customer-email">Customer Email:</label>
-            <input type="email" id="customer-email" name="customer_email" required>
-
-            <!-- ... Add more customer information fields as needed ... -->
-
-            <button type="submit">Confirm Order</button>
-        </form>
-    </section>
-    <script>
-        // JavaScript to handle displaying items in the order form
-        document.addEventListener('DOMContentLoaded', function () {
-            // Function to add items to the order form
-            function addToOrder(productName, productPrice, quantity) {
-                const orderItemsContainer = document.getElementById('order-items');
-                const row = document.createElement('tr');
-                row.innerHTML = `<td>${productName}</td><td>${productPrice}</td><td>${quantity}</td>`;
-                orderItemsContainer.appendChild(row);
-            }
-
-            // Example: Add items to the order form
-            addToOrder('Product 1', '$10.00', 2);
-            addToOrder('Product 2', '$15.00', 1);
-            // ...
-
-            // TODO: Add functionality to dynamically add items to the order form
-        });
-    </script>
-
-
-
-    <script>
-        function loadPage(pageId) {
-            // Get the content sections
-            var contentSections = document.getElementsByClassName('content-section');
-
-            // Hide all content sections
-            for (var i = 0; i < contentSections.length; i++) {
-                contentSections[i].style.display = 'none';
-            }
-
-            // Show the selected content section
-            var selectedSection = document.getElementById(pageId);
-            if (selectedSection) {
-                selectedSection.style.display = 'block';
-            }
-        }
-    </script>
-
-
 
     <main>
         <section id="hamburgers-content" class="content-section">
@@ -481,39 +288,194 @@ $result = $conn->query($sql);
             </div>
         </section>
 
+        </main>
+
+    <section class="content-section" id="home-content">
+        <!-- Initial content when the page loads -->
+        <h1>WELCOME!</h1>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit...</p>
+    </section>
+
+
+
+    <!-- ADD ORDER content-page -->
+    <section class="content-section" id="addorder-content">
+        <h3>ADD ORDER</h3>
+        <!-- Form to add items to the order -->
+        <form id="add-order-form" action="process_add_order.php" method="post">
+            <!-- Display your products in a table -->
+            <table class="content-table">
+                <thead>
+                    <tr>
+                        <th colspan="4" class="table-title">Hamburger</th>
+                    </tr>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Product Image</th>
+                        <th>Price</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <!-- Display product information in the table body -->
+                <tbody class="text-center">
+                    <?php
+                    // Fetch and display products from the database
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<tr>";
+                        echo "<td>{$row['item_name']}</td>";
+                        echo "<td><img src='data:image/jpeg;base64," . base64_encode($row['item_img']) . "' alt='{$row['item_name']}' style='width: 50px; height: 50px;'></td>";
+                        echo "<td>{$row['item_price']}</td>";
+                        echo "<td><button class='add-to-order-button' data-product-name='{$row['item_name']}' data-product-img='" . base64_encode($row['item_img']) . "' data-product-price='{$row['item_price']}'>Add to Order</button></td>";
+                        echo "</tr>";
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </form>
+
+
+<!-- JavaScript to handle adding items to the order -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // Additional check for the selection of buttons
+        var addToOrderButtons = $('.add-to-order-button');
+        console.log(addToOrderButtons); // Check if buttons are selected
+
+        addToOrderButtons.on('click', function () {
+            // Your existing click event handler
+            const productName = $(this).data('product-name');
+            const productImg = $(this).data('product-img');
+            const productPrice = $(this).data('product-price');
+
+            addToOrder(productName, productImg, productPrice);
+
+            // Scroll to the 'order-content' section
+            $('html, body').animate({
+                scrollTop: $("#order-content").offset().top + 'px'
+            }, 1000);
+
+            return false; // Prevent default link behavior
+        });
+    });
+
+    function addToOrder(name, img, price) {
+        var contentTable = $("#content-table");
+
+        var newRow = $("<tr>");
+        newRow.append("<td>" + name + "</td>");
+        newRow.append("<td><img src='data:image/jpeg;base64," + img + "' alt='" + name + "' style='width: 50px; height: 50px;'></td>");
+        newRow.append("<td>" + price + "</td>");
+
+        contentTable.append(newRow);
+    }
+</script>
+
+
+    </section>
+
+
+
+   <section class="content-section" id="order-content">
+        <!-- Content for the "ORDER HISTORY" page -->
+        <h1>ORDER PAGE</h1>
+        <p>This is the content for the ORDER page...</p>
+        <form id="confirm-order-form" action="process_confirm_order.php" method="post">
+            <!-- Display items added to the order in a table -->
+            <table class="content-table">
+                <!-- ... Your order table header ... -->
+
+                <tbody class="text-center" id="order-items">
+                    <!-- Dynamically populated with JavaScript -->
+                </tbody>
+            </table>
+
+            <!-- Customer information fields -->
+            <label for="customer-name">Customer Name:</label>
+            <input type="text" id="customer-name" name="customer_name" required>
+
+            <label for="customer-email">Customer Email:</label>
+            <input type="email" id="customer-email" name="customer_email" required>
+
+            <!-- ... Add more customer information fields as needed ... -->
+
+            <button type="submit">Confirm Order</button>
+        </form>
+    </section>
+    <script>
+        // JavaScript to handle displaying items in the order form
+        document.addEventListener('DOMContentLoaded', function () {
+            // Function to add items to the order form
+            function addToOrder(productName, productPrice, quantity) {
+                const orderItemsContainer = document.getElementById('order-items');
+                const row = document.createElement('tr');
+                row.innerHTML = `<td>${productName}</td><td>${productPrice}</td><td>${quantity}</td>`;
+                orderItemsContainer.appendChild(row);
+            }
+
+            // Example: Add items to the order form
+            addToOrder('Product 1', '$10.00', 2);
+            addToOrder('Product 2', '$15.00', 1);
+            // ...
+
+            // TODO: Add functionality to dynamically add items to the order form
+        });
+    </script>
+    
+
+
+    
+
+
+    
+
 
 
 
         <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                function loadPage(contentId) {
-                    // Get the content sections
-                    var contentSections = document.getElementsByClassName('content-section');
+    document.addEventListener('DOMContentLoaded', function () {
+        function loadPage(contentId) {
+            var contentSections = document.querySelectorAll('.content-section');
 
-                    // Hide all content sections
-                    for (var i = 0; i < contentSections.length; i++) {
-                        contentSections[i].style.display = 'none';
-                    }
-
-                    // Show the selected content section
-                    var selectedSection = document.getElementById(contentId);
-                    if (selectedSection) {
-                        selectedSection.style.display = 'block';
-                    }
-                }
-
-                // Add click event listeners to your menu items
-                var menuItems = document.querySelectorAll('.menu-items a');
-                menuItems.forEach(function (menuItem) {
-                    menuItem.addEventListener('click', function (event) {
-                        event.preventDefault();
-                        var contentId = this.getAttribute('data-content-id');
-                        loadPage(contentId);
-                    });
-                });
+            contentSections.forEach(function (section) {
+                section.style.display = 'none';
             });
-        </script>
-    </main>
+
+            var selectedSection = document.getElementById(contentId);
+            if (selectedSection) {
+                selectedSection.style.display = 'block';
+            }
+        }
+
+        function toggleDropdown() {
+            var dropdownMenu = document.querySelector('.dropdown-menu');
+            dropdownMenu.classList.toggle('show');
+        }
+
+        var menuItems = document.querySelectorAll('.navbar li a');
+        menuItems.forEach(function (menuItem) {
+            menuItem.addEventListener('click', function (event) {
+                event.preventDefault();
+                var contentId = this.getAttribute('data-content-id');
+                loadPage(contentId);
+            });
+        });
+
+        var dropdownToggle = document.querySelector('.dropdown-toggle');
+        dropdownToggle.addEventListener('click', function () {
+            toggleDropdown();
+        });
+    });
+</script>
+
+
+
+
+
 
 
 
