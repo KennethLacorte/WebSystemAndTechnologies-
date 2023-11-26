@@ -51,8 +51,10 @@ header {
     margin: 0 auto;
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Adjusted justification */
+    justify-content: space-between;
+    /* Adjusted justification */
 }
+
 .navbar .logo {
     display: flex;
     align-items: center;
@@ -60,8 +62,10 @@ header {
 
 .navbar .logo img {
     height: 90px;
-    width: auto; /* Adjust the width as needed */
-    margin-right: 10px; /* Adjusted margin */
+    width: auto;
+    /* Adjust the width as needed */
+    margin-right: 10px;
+    /* Adjusted margin */
 }
 
 .navbar .logo a {
@@ -92,10 +96,12 @@ header {
     border: none;
     outline: none;
     border-radius: 20px;
-    font-size: 1rem; /* Adjusted font size */
+    font-size: 1rem;
+    /* Adjusted font size */
     font-weight: bold;
     cursor: pointer;
-    transition: scale 0.2s ease; /* Adjusted transition duration */
+    transition: scale 0.2s ease;
+    /* Adjusted transition duration */
 }
 
 .action_btn:hover {
@@ -165,38 +171,9 @@ section {
 
 #home-content {
     display: block;
- 
-}
-.content-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    font-size: 18px;
+
 }
 
-.content-table th, .content-table td {
-    padding: 12px;
-    border: 1px solid #ddd;
-    text-align: left;
-}
-
-.content-table th {
-    background-color: #f2f2f2;
-}
-
-.content-table tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-.content-table tbody tr:hover {
-    background-color: #e0e0e0;
-}
-.table-title {
-    font-size: 24px;
-    margin-bottom: 10px;
-    text-align: center;
-    justify-content: center;
-}
 /* Dropdown menu */
 /* Your existing styles */
 .dropdown {
@@ -234,7 +211,8 @@ body {
 .menu-content {
     display: none;
     background-color: yellow;
-    padding: 20px; /* Adjusted padding */
+    padding: 20px;
+    /* Adjusted padding */
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 
 }
@@ -337,9 +315,12 @@ body {
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
-    border: 2px solid black; /* Border styling */
-    border-radius: 8px; /* Optional: Rounded corners */
-    padding: 10px; /* Optional: Padding inside the container */
+    border: 2px solid black;
+    /* Border styling */
+    border-radius: 8px;
+    /* Optional: Rounded corners */
+    padding: 10px;
+    /* Optional: Padding inside the container */
 }
 
 .additional-item {
@@ -349,8 +330,10 @@ body {
 
 .additional-details {
     border-radius: 8px;
-    border: 2px solid black; /* Border styling for individual items */
-    padding: 10px; /* Optional: Padding inside each item */
+    border: 2px solid black;
+    /* Border styling for individual items */
+    padding: 10px;
+    /* Optional: Padding inside each item */
 }
 
 /* Styling for Add Ons section */
@@ -363,7 +346,8 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    align-items: center; /* Center items vertically */
+    align-items: center;
+    /* Center items vertically */
     margin-top: 20px;
 }
 
@@ -382,8 +366,10 @@ body {
 
 
 
+
 /* Responsive design */
 @media (max-width: 992px) {
+
     .navbar-links,
     .navbar .action_btn {
         display: none;
@@ -417,5 +403,5 @@ body {
         /* Adjusted margin */
     }
 
-    
+
 }

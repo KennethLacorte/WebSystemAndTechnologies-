@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "angelsburger";
+$dbname = "db_burgers";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -12,7 +12,7 @@ if ($conn->connect_error) {
 }
 
 // SQL query to fetch data from the database
-$sql = "SELECT prodName, prodImg, price FROM tbl_order";
+$sql = "SELECT item_name, item_img, item_price FROM tbl_items";
 $result = $conn->query($sql);
 ?>
 
@@ -24,7 +24,7 @@ $result = $conn->query($sql);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" type = "text/css" href="style.css">
     <style>
         
     </style>
@@ -36,8 +36,8 @@ $result = $conn->query($sql);
             <div class="logo"><a href="#">Angel's Burger</a></div>
             <ul class="links">
                 <li><a href="#" onclick="loadPage('home-content')">HOME</a></li>
-                <li><a href="#" onclick="loadPage('order-content')">ORDER</a></li>
-                <li><a href="#" onclick="loadPage('history-content')">ORDER HISTORY</a></li>
+                <li><a href="#" onclick="loadPage('addorder-content')">ADD ORDER</a></li>
+                <li><a href="#" onclick="loadPage('order-content')">ORDERS</a></li>
 
                 <li class="dropdown">
                     <a data-toggle="dropdown" href="#." class="dropdown-toggle">MENU</a>
@@ -68,7 +68,7 @@ $result = $conn->query($sql);
         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit...</p>
     </section>
     
-    <section class="content-section" id="order-content">
+    <section class="content-section" id="addorder-content">
         <h1>ORDER PAGE</h1>
         <table class="content-table">
             <thead>
@@ -79,7 +79,7 @@ $result = $conn->query($sql);
                     <th>Product Name</th>
                     <th>Product Image</th>
                     <th>Price</th>
-                    <th>Quantity</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody class="text-center">
@@ -88,15 +88,16 @@ $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
                         echo "<tr>";
-                        echo "<td>{$row['prodName']}</td>";
-                        echo "<td><img src='data:image/jpeg;base64," . base64_encode($row['prodImg']) . "' alt='{$row['prodName']}' style='width: 50px; height: 50px;'></td>";
-                        echo "<td>{$row['price']}</td>";
-                        echo "<td><input type='number' class='quantity-input' value='1' min='1' data-product='{$row['prodName']}'></td>";
+                        echo "<td>{$row['item_name']}</td>";
+                        echo "<td><img src='data:image/jpeg;base64," . base64_encode($row['item_img']) . "' alt='{$row['item_name']}' style='width: 50px; height: 50px;'></td>";
+                        echo "<td>{$row['item_price']}</td>";
+                        echo "<td><button class='order-button' data-product='{$row['item_name']}'>Add to Order</button></td>";
                         echo "</tr>";
                     }
                 } else {
                     echo "<tr><td colspan='4'>No products found</td></tr>";
                 }
+                
                 $conn->close();
                 ?>
             </tbody>
@@ -104,10 +105,19 @@ $result = $conn->query($sql);
     </section>
 
     
-    <section class="content-section" id="history-content">
+    <section class="content-section" id="order-content">
         <!-- Content for the "ORDER HISTORY" page -->
-        <h1>ORDER HISTORY PAGE</h1>
-        <p>This is the content for the ORDER HISTORY page...</p>
+        <h1>ORDER PAGE</h1>
+        <p>This is the content for the ORDER page...</p>
+        <form id="order-form" action="process_order.php" method="post">
+        <label for="customer-name">Customer Name:</label>
+        <input type="text" id="customer-name" name="customer_name" required>
+
+        <label for="customer-email">Customer Email:</label>
+        <input type="email" id="customer-email" name="customer_email" required>
+
+    
+    </form>
     </section>
     
     <script>
