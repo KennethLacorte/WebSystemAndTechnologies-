@@ -42,6 +42,11 @@
         .add-to-order-button:hover {
                 background-color: #45a049;
         }
+        .add-to-order-button[disabled] {
+            background-color: #dddddd; /* Change to your desired color */
+            color: #888888; /* Change to your desired text color */
+            cursor: not-allowed;
+        }
         /* Style for the search bar container */
 .search-bar-container {
     position: absolute;

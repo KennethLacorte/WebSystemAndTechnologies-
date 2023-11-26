@@ -235,26 +235,40 @@ $result = $conn->query($sql);
 
             <button type="submit">Confirm Order</button>
         </form>
-    </section>
-    <script>
-        // JavaScript to handle displaying items in the order form
-        document.addEventListener('DOMContentLoaded', function () {
-            // Function to add items to the order form
-            function addToOrder(productName, productPrice, quantity) {
-                const orderItemsContainer = document.getElementById('order-items');
-                const row = document.createElement('tr');
-                row.innerHTML = `<td>${productName}</td><td>${productPrice}</td><td>${quantity}</td>`;
-                orderItemsContainer.appendChild(row);
-            }
 
-            // Example: Add items to the order form
-            addToOrder('Product 1', '$10.00', 2);
-            addToOrder('Product 2', '$15.00', 1);
-            // ...
+      <!-- JavaScript to handle adding items to the order -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const addToOrderButtons = document.querySelectorAll('.add-to-order-button');
 
-            // TODO: Add functionality to dynamically add items to the order form
+        addToOrderButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                // Check if the button is not disabled
+                if (!button.disabled) {
+                    const productName = button.dataset.productName;
+                    const productImg = button.dataset.productImg; // Corrected attribute name
+                    const productPrice = button.dataset.productPrice;
+
+                    // Call a function to add the item to the order form
+                    addToOrder(productName, productImg, productPrice);
+
+                    // Disable the button to prevent further clicks
+                    button.disabled = true;
+                }
+            });
         });
-    </script>
+
+        // Function to add items to the order form
+        function addToOrder(productName, productImg, productPrice) {
+            const orderItemsContainer = document.getElementById('order-items');
+            const row = document.createElement('tr');
+            row.innerHTML = `<td>${productName}</td><td>${productPrice}</td><td><input type="number" name="quantity[]" value="1" min="1"></td>`;
+            orderItemsContainer.appendChild(row);
+        }
+    });
+</script>
+
+    </section>
 
 
 
