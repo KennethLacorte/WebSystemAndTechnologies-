@@ -29,6 +29,7 @@ $result = $conn->query($sql);
         crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" type="text/css" href="add-order.css">
+    <link rel="stylesheet" type="text/css" href="order.css">
     <style>
 
     </style>

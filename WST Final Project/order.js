@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Function to add items to the order form
     function addToOrder(productName, productPrice) {
         const row = document.createElement('tr');
-        row.innerHTML = `<td>${productName}</td><td>${productPrice}</td><td><input type="number" name="quantity[]" value="1" min="1"></td><td><button class="remove-item-button">Remove</button></td>`;
+        row.innerHTML = `<td>${productName}</td><td>${productPrice}</td><td style="text-align: center; width: 50px;"><input type="number" name="quantity[]" value="1" min="1" style="width: 10%;"></td><td><button class="remove-item-button">Remove</button></td>`;
         orderItemsContainer.appendChild(row);
 
         // Add event listener to the newly added remove button
