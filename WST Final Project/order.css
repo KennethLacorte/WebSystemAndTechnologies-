@@ -6,3 +6,17 @@
     border-radius: 4px;
     cursor: pointer;
 }
+
+#date-container {
+    float: LEFT;
+    margin-RIGHT: 10px; /* Adjust the margin as needed */
+    font-size: 16px; /* Adjust the font size as needed */
+}
+
+#date-input {
+    float: LEFT;
+    width: 150px; /* Adjust the width as needed */
+    margin-right: 10px; /* Adjust the margin as needed */
+}
+
+

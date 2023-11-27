@@ -144,18 +144,21 @@ $result = $conn->query($sql);
             ?>
         </form>
 
-    <script src="search.js"></script>
+        <script src="search.js"></script>
     </section>
 
 
-   <script src="add-order.js"></script>
+    <script src="add-order.js"></script>
     </section>
 
 
     <section class="content-section" id="order-content">
         <!-- Content for the "ORDER HISTORY" page -->
         <h1>ORDER PAGE</h1>
-        <p>This is the content for the ORDER page...</p>
+    <div id="date-container"></div>
+    <input type="date" id="date-input">
+
+
         <form id="confirm-order-form" action="process_confirm_order.php" method="post">
             <!-- Display items added to the order in a table -->
             <table class="content-table">
@@ -178,12 +181,12 @@ $result = $conn->query($sql);
             <button type="submit">Confirm Order</button>
         </form>
 
-    <script src="order.js"></script>
+        <script src="order.js"></script>
     </section>
 
 
 
- <script src="loadPage.js"></script>
+    <script src="loadPage.js"></script>
 
 
 
