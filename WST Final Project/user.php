@@ -29,22 +29,15 @@ $result = $conn->query($sql);
         crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" type="text/css" href="add-order.css">
-    <link rel="stylesheet" type="text/css" href="sweet-alert.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <style>
 
-
-
-    
+    </style>
     <title>Angels Burger</title>
 </head>
 
 <body>
     <header>
-    <div class="navbar">
+        <div class="navbar">
             <div class="logo"><a href="#">Angel's Burger</a></div>
             <ul class="links">
                 <li><a href="#" onclick="loadPage('home-content')">HOME</a></li>
@@ -53,7 +46,8 @@ $result = $conn->query($sql);
 
                 <li class="dropdown">
                     <a data-toggle="dropdown" href="#." class="dropdown-toggle">MENU</a>
-                    <ul class="dropdown-menu"> 
+                    <ul class="dropdown-menu">
+                        <li><a href="hello.html">About Us</a></li>
                         <li class="menu-items"><a href="#" data-content-id="hamburgers-content"
                                 style="color: black;">HAMBURGERS</a></li>
                         <li class="menu-items"><a href="#" data-content-id="hotdogs-content"
@@ -149,30 +143,164 @@ $result = $conn->query($sql);
             ?>
         </form>
 
+        <script>
+            // JavaScript to handle the search functionality
+            document.addEventListener('DOMContentLoaded', function () {
+                const searchInput = document.getElementById('searchInput');
+                const rows = document.querySelectorAll('.content-table tbody tr');
+                const tableTitles = document.querySelectorAll('.content-table thead');
+
+                searchInput.addEventListener('input', function () {
+                    const searchTerm = searchInput.value.toLowerCase();
+
+                    rows.forEach(row => {
+                        const productName = row.querySelector('td:first-child').textContent.toLowerCase();
+                        const categoryName = row.closest('table').querySelector('.table-title').textContent.toLowerCase();
+
+                        if (productName.includes(searchTerm) || categoryName.includes(searchTerm)) {
+                            row.style.display = '';
+                        } else {
+                            row.style.display = 'none';
+                        }
+                    });
+
+                    // Hide table headers if no matching results
+                    tableTitles.forEach(title => {
+                        const tableBodyRows = title.nextElementSibling.querySelectorAll('tr');
+                        const visibleRows = Array.from(tableBodyRows).some(row => row.style.display !== 'none');
+
+                        title.style.display = visibleRows ? '' : 'none';
+                    });
+                });
+
+                // Prevent form submission on ENTER key press
+                document.getElementById('add-order-form').addEventListener('submit', function (event) {
+                    event.preventDefault();
+                });
+            });
+
+        </script>
     </section>
 
 
+    <!-- JavaScript to handle adding items to the order -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const addToOrderButtons = document.querySelectorAll('.add-to-order-button');
+
+            button.addEventListener('click', function () {
+                const productName = button.dataset.productName;
+                const productImg = button.dataset.productImg; // Corrected attribute name
+                const productPrice = button.dataset.productPrice;
+
+                // Call a function to add the item to the order form
+                addToOrder(productName, productImg, productPrice);
+            });
+        });
+
+        // Function to add items to the order form
+        function addToOrder(productName, productPrice) {
+            const orderItemsContainer = document.getElementById('order-items');
+            const row = document.createElement('tr');
+            row.innerHTML = `<td>${productName}</td><td>${productPrice}</td><td><input type="number" name="quantity[]" value="1" min="1"></td>`;
+            orderItemsContainer.appendChild(row);
+        }
+    </script>
+    </section>
 
 
     <section class="content-section" id="order-content">
         <!-- Content for the "ORDER HISTORY" page -->
         <h1>ORDER PAGE</h1>
         <p>This is the content for the ORDER page...</p>
+        <form id="confirm-order-form" action="process_confirm_order.php" method="post">
+            <!-- Display items added to the order in a table -->
+            <table class="content-table">
+                <!-- ... Your order table header ... -->
 
-        <form id="confirm-order-form">
-        <label for="customer-name">Customer Name:</label>
-        <input type="text" id="customer-name" name="customer-name" required>
-        <br>
-        <label for="customer-email">Customer Email:</label>
-        <input type="email" id="customer-email" name="customer-email" required>
-        <br>
-        <button type="button" id="Submit" class="confirm-order-btn">Confirm Order</button>
-    </form>
-</section>
+                <tbody class="text-center" id="order-items">
+                    <!-- Dynamically populated with JavaScript -->
+                </tbody>
+            </table>
+
+            <!-- Customer information fields -->
+            <label for="customer-name">Customer Name:</label>
+            <input type="text" id="customer-name" name="customer_name" required>
+
+            <label for="customer-email">Customer Email:</label>
+            <input type="email" id="customer-email" name="customer_email" required>
+
+            <!-- ... Add more customer information fields as needed ... -->
+
+            <button type="submit">Confirm Order</button>
+        </form>
+
+      <!-- JavaScript to handle adding items to the order -->
+<!-- JavaScript to handle adding items to the order -->
+<!-- JavaScript to handle adding and removing items from the order -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const addToOrderButtons = document.querySelectorAll('.add-to-order-button');
+        const orderItemsContainer = document.getElementById('order-items');
+        const customerInfoForm = document.getElementById('confirm-order-form');
+
+        // Hide the customer information form initially
+        customerInfoForm.style.display = 'none';
+
+        addToOrderButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                // Check if the button is not disabled
+                if (!button.disabled) {
+                    const productName = button.dataset.productName;
+                    const productPrice = button.dataset.productPrice;
+
+                    // Call a function to add the item to the order form
+                    addToOrder(productName, productPrice);
+
+                    // Disable the button to prevent further clicks
+                    button.disabled = true;
+
+                    // Show customer information fields and submit button
+                    showCustomerInfoForm();
+                }
+            });
+        });
+
+        // Function to add items to the order form
+        function addToOrder(productName, productPrice) {
+            const row = document.createElement('tr');
+            row.innerHTML = `<td>${productName}</td><td>${productPrice}</td><td><input type="number" name="quantity[]" value="1" min="1"></td><td><button class="remove-item-button">Remove</button></td>`;
+            orderItemsContainer.appendChild(row);
+
+            // Add event listener to the newly added remove button
+            const removeButton = row.querySelector('.remove-item-button');
+            removeButton.addEventListener('click', function () {
+                // Remove the item from the order
+                row.remove();
+
+                // Enable the corresponding "Add to Order" button
+                const correspondingAddButton = Array.from(addToOrderButtons).find(btn => btn.dataset.productName === productName);
+                if (correspondingAddButton) {
+                    correspondingAddButton.disabled = false;
+                }
+
+                // Check if there are no items in the order, then hide the customer information form
+                if (orderItemsContainer.children.length === 0) {
+                    customerInfoForm.style.display = 'none';
+                }
+            });
+        }
+
+        // Function to show customer information fields and submit button
+        function showCustomerInfoForm() {
+            customerInfoForm.style.display = 'block';
+        }
+    });
+</script>
 
 
 
-
+    </section>
 
 
 
