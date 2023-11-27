@@ -37,22 +37,37 @@
     
 
 
-       document.addEventListener('DOMContentLoaded', function () {
-    const addToOrderButtons = document.querySelectorAll('.add-to-order-button');
+            document.addEventListener('DOMContentLoaded', function () {
+                const addToOrderButtons = document.querySelectorAll('.add-to-order-button');
+            
+                addToOrderButtons.forEach(button => {
+                    button.addEventListener('click', function () {
+                        const productName = button.dataset.productName;
+                        const productImg = button.dataset.productImg;
+                        const productPrice = button.dataset.productPrice;
+            
+                        addToOrder(productName, productImg, productPrice);
+            
+                        // Disable the clicked button
+                        button.disabled = true;
+            
+                        // Show the customer info form
+                        showCustomerInfoForm();
+                    });
+                });
+            
+                function addToOrder(productName, productImg, productPrice) {
+                    // Implement the logic to add the product to the order
+                    console.log('Adding to order:', productName, productImg, productPrice);
+                }
+            
+                function showCustomerInfoForm() {
+                    // Implement the logic to show the customer info form
+                    console.log('Showing customer info form');
+                }
+            });
+            
 
-    addToOrderButtons.forEach(button => {
-        button.addEventListener('click', function () {
-            const productName = button.dataset.productName;
-            const productImg = button.dataset.productImg;
-            const productPrice = button.dataset.productPrice;
-
-            addToOrder(productName, productImg, productPrice);
-
-            button.disabled = true;
-            showCustomerInfoForm();
-        });
-    });
-});
 
         // Function to add items to the order form
         function addToOrder(productName, productPrice) {
