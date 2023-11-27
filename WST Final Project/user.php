@@ -143,69 +143,11 @@ $result = $conn->query($sql);
             ?>
         </form>
 
-        <script>
-            // JavaScript to handle the search functionality
-            document.addEventListener('DOMContentLoaded', function () {
-                const searchInput = document.getElementById('searchInput');
-                const rows = document.querySelectorAll('.content-table tbody tr');
-                const tableTitles = document.querySelectorAll('.content-table thead');
-
-                searchInput.addEventListener('input', function () {
-                    const searchTerm = searchInput.value.toLowerCase();
-
-                    rows.forEach(row => {
-                        const productName = row.querySelector('td:first-child').textContent.toLowerCase();
-                        const categoryName = row.closest('table').querySelector('.table-title').textContent.toLowerCase();
-
-                        if (productName.includes(searchTerm) || categoryName.includes(searchTerm)) {
-                            row.style.display = '';
-                        } else {
-                            row.style.display = 'none';
-                        }
-                    });
-
-                    // Hide table headers if no matching results
-                    tableTitles.forEach(title => {
-                        const tableBodyRows = title.nextElementSibling.querySelectorAll('tr');
-                        const visibleRows = Array.from(tableBodyRows).some(row => row.style.display !== 'none');
-
-                        title.style.display = visibleRows ? '' : 'none';
-                    });
-                });
-
-                // Prevent form submission on ENTER key press
-                document.getElementById('add-order-form').addEventListener('submit', function (event) {
-                    event.preventDefault();
-                });
-            });
-
-        </script>
+    <script src="search.js"></script>
     </section>
 
 
-    <!-- JavaScript to handle adding items to the order -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const addToOrderButtons = document.querySelectorAll('.add-to-order-button');
-
-            button.addEventListener('click', function () {
-                const productName = button.dataset.productName;
-                const productImg = button.dataset.productImg; // Corrected attribute name
-                const productPrice = button.dataset.productPrice;
-
-                // Call a function to add the item to the order form
-                addToOrder(productName, productImg, productPrice);
-            });
-        });
-
-        // Function to add items to the order form
-        function addToOrder(productName, productPrice) {
-            const orderItemsContainer = document.getElementById('order-items');
-            const row = document.createElement('tr');
-            row.innerHTML = `<td>${productName}</td><td>${productPrice}</td><td><input type="number" name="quantity[]" value="1" min="1"></td>`;
-            orderItemsContainer.appendChild(row);
-        }
-    </script>
+   <script src="add-order.js"></script>
     </section>
 
 
@@ -235,92 +177,12 @@ $result = $conn->query($sql);
             <button type="submit">Confirm Order</button>
         </form>
 
-      <!-- JavaScript to handle adding items to the order -->
-<!-- JavaScript to handle adding items to the order -->
-<!-- JavaScript to handle adding and removing items from the order -->
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const addToOrderButtons = document.querySelectorAll('.add-to-order-button');
-        const orderItemsContainer = document.getElementById('order-items');
-        const customerInfoForm = document.getElementById('confirm-order-form');
-
-        // Hide the customer information form initially
-        customerInfoForm.style.display = 'none';
-
-        addToOrderButtons.forEach(button => {
-            button.addEventListener('click', function () {
-                // Check if the button is not disabled
-                if (!button.disabled) {
-                    const productName = button.dataset.productName;
-                    const productPrice = button.dataset.productPrice;
-
-                    // Call a function to add the item to the order form
-                    addToOrder(productName, productPrice);
-
-                    // Disable the button to prevent further clicks
-                    button.disabled = true;
-
-                    // Show customer information fields and submit button
-                    showCustomerInfoForm();
-                }
-            });
-        });
-
-        // Function to add items to the order form
-        function addToOrder(productName, productPrice) {
-            const row = document.createElement('tr');
-            row.innerHTML = `<td>${productName}</td><td>${productPrice}</td><td><input type="number" name="quantity[]" value="1" min="1"></td><td><button class="remove-item-button">Remove</button></td>`;
-            orderItemsContainer.appendChild(row);
-
-            // Add event listener to the newly added remove button
-            const removeButton = row.querySelector('.remove-item-button');
-            removeButton.addEventListener('click', function () {
-                // Remove the item from the order
-                row.remove();
-
-                // Enable the corresponding "Add to Order" button
-                const correspondingAddButton = Array.from(addToOrderButtons).find(btn => btn.dataset.productName === productName);
-                if (correspondingAddButton) {
-                    correspondingAddButton.disabled = false;
-                }
-
-                // Check if there are no items in the order, then hide the customer information form
-                if (orderItemsContainer.children.length === 0) {
-                    customerInfoForm.style.display = 'none';
-                }
-            });
-        }
-
-        // Function to show customer information fields and submit button
-        function showCustomerInfoForm() {
-            customerInfoForm.style.display = 'block';
-        }
-    });
-</script>
-
-
-
+    <script src="order.js"></script>
     </section>
 
 
 
-    <script>
-        function loadPage(pageId) {
-            // Get the content sections
-            var contentSections = document.getElementsByClassName('content-section');
-
-            // Hide all content sections
-            for (var i = 0; i < contentSections.length; i++) {
-                contentSections[i].style.display = 'none';
-            }
-
-            // Show the selected content section
-            var selectedSection = document.getElementById(pageId);
-            if (selectedSection) {
-                selectedSection.style.display = 'block';
-            }
-        }
-    </script>
+ <script src="loadPage.js"></script>
 
 
 
