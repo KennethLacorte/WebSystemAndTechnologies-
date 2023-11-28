@@ -1,5 +1,5 @@
- // Event listener for button click
- document.getElementById('Submit').addEventListener('click', function () {
+// Event listener for button click
+document.getElementById('submit-btn').addEventListener('click', function () {
     showFloatingForm();
 });
 
