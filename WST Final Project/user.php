@@ -30,9 +30,6 @@ $result = $conn->query($sql);
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" type="text/css" href="add-order.css">
     <link rel="stylesheet" type="text/css" href="order.css">
-    <link rel="stylesheet" type="text/css" href="Home.css">
-    <link rel="stylesheet" href="path/to/sweetalert2.min.css">
-    <script src="path/to/sweetalert2.all.min.js"></script>
     <style>
 
     </style>
@@ -78,28 +75,9 @@ $result = $conn->query($sql);
 
     <section class="content-section" id="home-content">
         <!-- Initial content when the page loads -->
-        <h1><strong>WELCOME!</strong></h1>
-        <h1><strong>ANGELS BURGER!</strong></h1>
-
-
-        <div id="slider-container" class="slider">
-    <img id="slide-1" src="https://www.tasteofhome.com/wp-content/uploads/2018/01/exps28800_UG143377D12_18_1b_RMS.jpg" alt="Slide 1">
-    <img id="slide-2" src="https://th.bing.com/th/id/OIP.NVWx3eq_xIb2WfwrX64XLAHaHa?rs=1&pid=ImgDetMain" alt="Slide 2">
-    <img id="slide-3" src="https://cdn.arstechnica.net/wp-content/uploads/2018/08/IF-Burger.jpg" alt="Slide 3">
-</div>
-<div class="slider-nav">
-    <a href="#slide-1"></a>
-    <a href="#slide-2"></a>
-    <a href="#slide-3"></a>
-</div>
-
-        <p>Explore our best-selling masterpieces - the mouth-watering delights!</p>
+        <h1>WELCOME!</h1>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit...</p>
     </section>
-
-    
-
-
-
 
 
     <!-- ADD ORDER content-page -->
@@ -174,14 +152,13 @@ $result = $conn->query($sql);
     </section>
 
 
+    
+    
     <section class="content-section" id="order-content">
         <!-- Content for the "ORDER HISTORY" page -->
         <h1>ORDER PAGE</h1>
-    <div id="date-container"></div>
-    <input type="date" id="date-input">
-
-
-        <form id="confirm-order-form" action="process_confirm_order.php" method="post">
+        <p>This is the content for the ORDER page...</p>
+        <form id="confirm-order-form" action="confirm_order.php" method="post">
             <!-- Display items added to the order in a table -->
             <table class="content-table">
                 <!-- ... Your order table header ... -->
@@ -191,23 +168,71 @@ $result = $conn->query($sql);
                 </tbody>
             </table>
 
-            <!-- Customer information fields -->
-            <label for="customer-name">Customer Name:</label>
-            <input type="text" id="customer-name" name="customer_name" required>
 
-            <label for="customer-email">Customer Email:</label>
-            <input type="email" id="customer-email" name="customer_email" required>
-
-            <!-- ... Add more customer information fields as needed ... -->
-
-            <button type="submit" id="submit-btn">Confirm Order</button>
+            <button type="submit">Order</button>
         </form>
 
-        <script src="order.js"></script>
-        <script src="sweetalert.js"></script>
-        <script src="path/to/sweetalert2.all.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const addToOrderButtons = document.querySelectorAll('.add-to-order-button');
+        const orderItemsContainer = document.getElementById('order-items');
+        const customerInfoForm = document.getElementById('confirm-order-form');
 
-    </section>
+        // Hide the customer information form initially
+        customerInfoForm.style.display = 'none';
+
+        addToOrderButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                // Check if the button is not disabled
+                if (!button.disabled) {
+                    const productName = button.dataset.productName;
+                    const productPrice = button.dataset.productPrice;
+
+                    // Call a function to add the item to the order form
+                    addToOrder(productName, productPrice);
+
+                    // Disable the button to prevent further clicks
+                    button.disabled = true;
+
+                    // Show customer information fields and submit button
+                    showCustomerInfoForm();
+                }
+            });
+        });
+
+        // Function to add items to the order form
+        function addToOrder(productName, productPrice) {
+            const row = document.createElement('tr');
+            row.innerHTML = `<td>${productName}</td><td>${productPrice}</td><td><input type="number" name="quantity[]" value="1" min="1"></td><td><button class="remove-item-button">Remove</button></td>`;
+            orderItemsContainer.appendChild(row);
+
+            // Add event listener to the newly added remove button
+            const removeButton = row.querySelector('.remove-item-button');
+            removeButton.addEventListener('click', function () {
+                // Remove the item from the order
+                row.remove();
+
+                // Enable the corresponding "Add to Order" button
+                const correspondingAddButton = Array.from(addToOrderButtons).find(btn => btn.dataset.productName === productName);
+                if (correspondingAddButton) {
+                    correspondingAddButton.disabled = false;
+                }
+
+                // Check if there are no items in the order, then hide the customer information form
+                if (orderItemsContainer.children.length === 0) {
+                    customerInfoForm.style.display = 'none';
+                }
+            });
+        }
+
+        // Function to show customer information fields and submit button
+        function showCustomerInfoForm() {
+            customerInfoForm.style.display = 'block';
+        }
+    });
+</script>
+
+
 
 
 
