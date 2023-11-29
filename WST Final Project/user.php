@@ -33,6 +33,8 @@ $result = $conn->query($sql);
     <link rel="stylesheet" type="text/css" href="Home.css">
     <link rel="stylesheet" href="sweetalert2.min.css">
     <script src="sweetalert2.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
     <style>
 
     </style>
@@ -166,34 +168,7 @@ $result = $conn->query($sql);
             ?>
         </form>
 
-        <script src="search.js"></script>
-    </section>
-
-
-    <script src="add-order.js"></script>
-    </section>
-
-
-    <section class="content-section" id="order-content">
-        <!-- Content for the "ORDER HISTORY" page -->
-        <h1>ORDER PAGE</h1>
-        <p>This is the content for the ORDER page...</p>
-        <form id="confirm-order-form" action="confirm_order.php" method="post">
-            <!-- Display items added to the order in a table -->
-            <table class="content-table">
-                <!-- ... Your order table header ... -->
-
-                <tbody class="text-center" id="order-items">
-                    <!-- Dynamically populated with JavaScript -->
-                </tbody>
-            </table>
-            <button type="submit">Confirm Order</button>
-        </form>
-
-      <!-- JavaScript to handle adding items to the order -->
-<!-- JavaScript to handle adding items to the order -->
-<!-- JavaScript to handle adding and removing items from the order -->
-<script>
+        <script>
     document.addEventListener('DOMContentLoaded', function () {
         const addToOrderButtons = document.querySelectorAll('.add-to-order-button');
         const orderItemsContainer = document.getElementById('order-items');
@@ -254,8 +229,88 @@ $result = $conn->query($sql);
 </script>
 
 
-
+        <script src="search.js"></script>
     </section>
+
+
+    <script src="add-order.js"></script>
+    </section>
+
+
+
+
+
+    <section class="content-section" id="order-content">
+    <h1>ORDER PAGE</h1>
+    <p>This is the content for the ORDER page...</p>
+    <form id="confirm-order-form" action="" method="post">
+        <table class="content-table">
+            <!-- Add your order items here if needed -->
+            <tbody class="text-center" id="order-items">
+            </tbody>
+        </table>
+        <button type="button" id="submit-btn" onclick="confirmOrder()">Confirm Order</button>
+    </form>
+
+    <script>
+        document.getElementById('submit-btn').addEventListener('click', function () {
+            showFloatingForm();
+        });
+
+        function showFloatingForm() {
+            // Get the current date
+            const currentDate = new Date().toISOString().split('T')[0];
+
+            // Customize the appearance and behavior of the SweetAlert2 modal
+            Swal.fire({
+                title: "Order Confirmation",
+                html: `
+                    <form id="confirm-order-form">
+                        <label for="customer-name">Customer Name:</label>
+                        <input type="text" id="customer-name" name="customer-name" required>
+                        <br>
+                        <label for="order-date">Order Date:</label>
+                        <input type="date" id="order-date" name="order-date" required value="${currentDate}">
+                        <br>
+                    </form>
+                `,
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, confirm!",
+            }).then(function (result) {
+                if (result.isConfirmed) {
+                    // If the user clicks "Yes, confirm!", generate an order number
+                    const orderNumber = generateOrderNumber();
+
+                    // Display a new SweetAlert with the order number
+                    Swal.fire({
+                        title: "Order Confirmed",
+                        html: `Your order has been confirmed!<br>Order Number: ${orderNumber}`,
+                        icon: "success"
+                    });
+
+                    // Additional actions after confirmation, if needed
+                    console.log('Order confirmed!');
+                } else {
+                    // If the user clicks "Cancel" or closes the SweetAlert, you can handle it here
+                    console.log('Order not confirmed.');
+                }
+            });
+        }
+
+        function generateOrderNumber() {
+            // This is a simple example; you might want to use a more robust method
+            return Math.floor(Math.random() * 1000000) + 1;
+        }
+    </script>
+</section>
+
+
+
+
+
+
 
 
 
