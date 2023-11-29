@@ -31,8 +31,8 @@ $result = $conn->query($sql);
     <link rel="stylesheet" type="text/css" href="add-order.css">
     <link rel="stylesheet" type="text/css" href="order.css">
     <link rel="stylesheet" type="text/css" href="Home.css">
-    <link rel="stylesheet" href="path/to/sweetalert2.min.css">
-    <script src="path/to/sweetalert2.all.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
+    <script src="sweetalert2.all.min.js"></script>
     <style>
 
     </style>
@@ -174,7 +174,6 @@ $result = $conn->query($sql);
     </section>
 
 
-  
     <section class="content-section" id="order-content">
         <!-- Content for the "ORDER HISTORY" page -->
         <h1>ORDER PAGE</h1>
@@ -188,9 +187,7 @@ $result = $conn->query($sql);
                     <!-- Dynamically populated with JavaScript -->
                 </tbody>
             </table>
-
-
-            <button type="submit">Order</button>
+            <button type="submit">Confirm Order</button>
         </form>
 
       <!-- JavaScript to handle adding items to the order -->
@@ -255,6 +252,31 @@ $result = $conn->query($sql);
         }
     });
 </script>
+
+
+
+    </section>
+
+
+
+    <script>
+        function loadPage(pageId) {
+            // Get the content sections
+            var contentSections = document.getElementsByClassName('content-section');
+
+            // Hide all content sections
+            for (var i = 0; i < contentSections.length; i++) {
+                contentSections[i].style.display = 'none';
+            }
+
+            // Show the selected content section
+            var selectedSection = document.getElementById(pageId);
+            if (selectedSection) {
+                selectedSection.style.display = 'block';
+            }
+        }
+    </script>
+
 
 
 
