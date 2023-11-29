@@ -169,63 +169,97 @@ $result = $conn->query($sql);
         </form>
 
         <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const addToOrderButtons = document.querySelectorAll('.add-to-order-button');
-        const orderItemsContainer = document.getElementById('order-items');
-        const customerInfoForm = document.getElementById('confirm-order-form');
+  document.addEventListener('DOMContentLoaded', function () {
+    const addToOrderButtons = document.querySelectorAll('.add-to-order-button');
+    const orderItemsContainer = document.getElementById('order-items');
+    const customerInfoForm = document.getElementById('confirm-order-form');
+    const overallTotalElement = document.getElementById('overall-total');
 
-        // Hide the customer information form initially
-        customerInfoForm.style.display = 'none';
+    // Hide the customer information form initially
+    customerInfoForm.style.display = 'none';
 
-        addToOrderButtons.forEach(button => {
-            button.addEventListener('click', function () {
-                // Check if the button is not disabled
-                if (!button.disabled) {
-                    const productName = button.dataset.productName;
-                    const productPrice = button.dataset.productPrice;
+    // Variable to store the overall total
+    let overallTotal = 0.00;
 
-                    // Call a function to add the item to the order form
-                    addToOrder(productName, productPrice);
+    addToOrderButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            // Check if the button is not disabled
+            if (!button.disabled) {
+                const productName = button.dataset.productName;
+                const productPrice = parseFloat(button.dataset.productPrice); // Parse as float
 
-                    // Disable the button to prevent further clicks
-                    button.disabled = true;
+                // Call a function to add the item to the order form and update the overall total
+                addToOrder(productName, productPrice);
 
-                    // Show customer information fields and submit button
-                    showCustomerInfoForm();
-                }
-            });
+                // Disable the button to prevent further clicks
+                button.disabled = true;
+
+                // Show customer information fields and submit button
+                showCustomerInfoForm();
+            }
+        });
+    });
+
+    // Function to add items to the order form
+    function addToOrder(productName, productPrice) {
+        const row = document.createElement('tr');
+        row.innerHTML = `<td>${productName}</td><td>${productPrice.toFixed(2)}</td><td><input type="number" name="quantity[]" value="1" min="1"></td><td><button class="remove-item-button">Remove</button></td>`;
+        orderItemsContainer.appendChild(row);
+
+        // Calculate the total for the current item and update the overall total
+        const quantityInput = row.querySelector('input[name="quantity[]"]');
+        quantityInput.addEventListener('input', function () {
+            updateItemTotal(row, productPrice);
         });
 
-        // Function to add items to the order form
-        function addToOrder(productName, productPrice) {
-            const row = document.createElement('tr');
-            row.innerHTML = `<td>${productName}</td><td>${productPrice}</td><td><input type="number" name="quantity[]" value="1" min="1"></td><td><button class="remove-item-button">Remove</button></td>`;
-            orderItemsContainer.appendChild(row);
+        updateItemTotal(row, productPrice);
 
-            // Add event listener to the newly added remove button
-            const removeButton = row.querySelector('.remove-item-button');
-            removeButton.addEventListener('click', function () {
-                // Remove the item from the order
-                row.remove();
+        // Add event listener to the newly added remove button
+        const removeButton = row.querySelector('.remove-item-button');
+        removeButton.addEventListener('click', function () {
+            // Remove the item from the order
+            row.remove();
 
-                // Enable the corresponding "Add to Order" button
-                const correspondingAddButton = Array.from(addToOrderButtons).find(btn => btn.dataset.productName === productName);
-                if (correspondingAddButton) {
-                    correspondingAddButton.disabled = false;
-                }
+            // Enable the corresponding "Add to Order" button
+            const correspondingAddButton = Array.from(addToOrderButtons).find(btn => btn.dataset.productName === productName);
+            if (correspondingAddButton) {
+                correspondingAddButton.disabled = false;
+            }
 
-                // Check if there are no items in the order, then hide the customer information form
-                if (orderItemsContainer.children.length === 0) {
-                    customerInfoForm.style.display = 'none';
-                }
-            });
-        }
+            // Check if there are no items in the order, then hide the customer information form
+            if (orderItemsContainer.children.length === 0) {
+                customerInfoForm.style.display = 'none';
+            }
 
-        // Function to show customer information fields and submit button
-        function showCustomerInfoForm() {
-            customerInfoForm.style.display = 'block';
-        }
-    });
+            // Update the overall total after removing an item
+            overallTotal -= parseFloat(row.dataset.itemTotal);
+            overallTotalElement.textContent = overallTotal.toFixed(2);
+        });
+    }
+
+    // Function to update the item total and overall total
+    function updateItemTotal(row, productPrice) {
+        const quantityInput = row.querySelector('input[name="quantity[]"]');
+        const quantity = parseInt(quantityInput.value, 10);
+        const itemTotal = productPrice * quantity;
+
+        // Update the data attribute with the item total
+        row.dataset.itemTotal = itemTotal;
+
+        // Update the total for the current item
+        row.querySelector('td:nth-child(2)').textContent = itemTotal.toFixed(2);
+
+        // Update the overall total
+        overallTotal = Array.from(orderItemsContainer.children).reduce((total, item) => total + parseFloat(item.dataset.itemTotal), 0);
+        overallTotalElement.textContent = overallTotal.toFixed(2);
+    }
+
+    // Function to show customer information fields and submit button
+    function showCustomerInfoForm() {
+        customerInfoForm.style.display = 'block';
+    }
+});
+
 </script>
 
 
@@ -243,10 +277,24 @@ $result = $conn->query($sql);
     <p>This is the content for the ORDER page...</p>
     <form id="confirm-order-form" action="" method="post">
         <table class="content-table">
-            <!-- Add your order items here if needed -->
+        <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
             <tbody class="text-center" id="order-items">
             </tbody>
-        </table>
+            <tfoot>
+                <tr>
+                    <td colspan="2">Total: </td>
+                    <td id="overall-total" colspan="2">0.00</td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </table> <br> <br>
         <button type="button" id="submit-btn" onclick="confirmOrder()">Confirm Order</button>
     </form>
     <script>
