@@ -88,25 +88,6 @@ input[type="date"] {
 	color: #4c4c4c;
 }
 
-.subcontainer {
-	position: absolute;
-	width: 552px;
-	height: 225px;
-	left: 35px;
-	top: 223px;
-	border: 2px #a9a9a9 dashed;
-}
-
-.upload-icon {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	position: absolute;
-	width: 76px;
-	height: 76px;
-	left: 273px;
-	top: 238px;
-}
 
 .home-icon {
 	position: absolute;

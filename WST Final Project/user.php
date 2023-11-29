@@ -30,6 +30,9 @@ $result = $conn->query($sql);
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" type="text/css" href="add-order.css">
     <link rel="stylesheet" type="text/css" href="order.css">
+    <link rel="stylesheet" type="text/css" href="Home.css">
+    <link rel="stylesheet" href="path/to/sweetalert2.min.css">
+    <script src="path/to/sweetalert2.all.min.js"></script>
     <style>
 
     </style>
@@ -75,9 +78,28 @@ $result = $conn->query($sql);
 
     <section class="content-section" id="home-content">
         <!-- Initial content when the page loads -->
-        <h1>WELCOME!</h1>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit...</p>
+        <h1><strong>WELCOME!</strong></h1>
+        <h1><strong>ANGELS BURGER!</strong></h1>
+
+
+        <div id="slider-container" class="slider">
+    <img id="slide-1" src="https://www.tasteofhome.com/wp-content/uploads/2018/01/exps28800_UG143377D12_18_1b_RMS.jpg" alt="Slide 1">
+    <img id="slide-2" src="https://th.bing.com/th/id/OIP.NVWx3eq_xIb2WfwrX64XLAHaHa?rs=1&pid=ImgDetMain" alt="Slide 2">
+    <img id="slide-3" src="https://cdn.arstechnica.net/wp-content/uploads/2018/08/IF-Burger.jpg" alt="Slide 3">
+</div>
+<div class="slider-nav">
+    <a href="#slide-1"></a>
+    <a href="#slide-2"></a>
+    <a href="#slide-3"></a>
+</div>
+
+        <p>Explore our best-selling masterpieces - the mouth-watering delights!</p>
     </section>
+
+    
+
+
+
 
 
     <!-- ADD ORDER content-page -->
@@ -152,8 +174,7 @@ $result = $conn->query($sql);
     </section>
 
 
-    
-    
+  
     <section class="content-section" id="order-content">
         <!-- Content for the "ORDER HISTORY" page -->
         <h1>ORDER PAGE</h1>
@@ -172,6 +193,9 @@ $result = $conn->query($sql);
             <button type="submit">Order</button>
         </form>
 
+      <!-- JavaScript to handle adding items to the order -->
+<!-- JavaScript to handle adding items to the order -->
+<!-- JavaScript to handle adding and removing items from the order -->
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const addToOrderButtons = document.querySelectorAll('.add-to-order-button');
@@ -231,7 +255,6 @@ $result = $conn->query($sql);
         }
     });
 </script>
-
 
 
 
