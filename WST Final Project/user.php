@@ -238,8 +238,6 @@ $result = $conn->query($sql);
 
 
 
-
-
     <section class="content-section" id="order-content">
     <h1>ORDER PAGE</h1>
     <p>This is the content for the ORDER page...</p>
@@ -251,7 +249,6 @@ $result = $conn->query($sql);
         </table>
         <button type="button" id="submit-btn" onclick="confirmOrder()">Confirm Order</button>
     </form>
-
     <script>
         document.getElementById('submit-btn').addEventListener('click', function () {
             showFloatingForm();
@@ -260,7 +257,6 @@ $result = $conn->query($sql);
         function showFloatingForm() {
             // Get the current date
             const currentDate = new Date().toISOString().split('T')[0];
-
             // Customize the appearance and behavior of the SweetAlert2 modal
             Swal.fire({
                 title: "Order Confirmation",
@@ -280,58 +276,48 @@ $result = $conn->query($sql);
                 confirmButtonText: "Yes, confirm!",
             }).then(function (result) {
                 if (result.isConfirmed) {
-                    // If the user clicks "Yes, confirm!", generate an order number
-                    const orderNumber = generateOrderNumber();
+                    const customerName = document.getElementById('customer-name').value;
+                    const orderDate = document.getElementById('order-date').value;
 
-                    // Display a new SweetAlert with the order number
-                    Swal.fire({
-                        title: "Order Confirmed",
-                        html: `Your order has been confirmed!<br>Order Number: ${orderNumber}`,
-                        icon: "success"
-                    });
-
-                    // Additional actions after confirmation, if needed
-                    console.log('Order confirmed!');
+                    // Send data to the server
+                    fetch('confirm_order.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: `customer-name=${customerName}&order-date=${orderDate}`,
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.status === 'success') {
+                                // If the user clicks "Yes, confirm!", generate an order number
+                                const orderNumber = data.orderNumber;
+                                // Display a new SweetAlert with the order number
+                                Swal.fire({
+                                    title: "Order Confirmed",
+                                    html: `Your order has been confirmed!<br>Order Number: ${orderNumber}`,
+                                    icon: "success"
+                                });
+                                // Additional actions after confirmation, if needed
+                                console.log('Order confirmed!');
+                            } else {
+                                console.error('Error confirming order:', data.message);
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error confirming order:', error);
+                        });
                 } else {
-                    // If the user clicks "Cancel" or closes the SweetAlert, you can handle it here
                     console.log('Order not confirmed.');
                 }
             });
         }
 
         function generateOrderNumber() {
-            // This is a simple example; you might want to use a more robust method
             return Math.floor(Math.random() * 1000000) + 1;
         }
     </script>
 </section>
-
-
-
-
-
-
-
-
-
-    <script>
-        function loadPage(pageId) {
-            // Get the content sections
-            var contentSections = document.getElementsByClassName('content-section');
-
-            // Hide all content sections
-            for (var i = 0; i < contentSections.length; i++) {
-                contentSections[i].style.display = 'none';
-            }
-
-            // Show the selected content section
-            var selectedSection = document.getElementById(pageId);
-            if (selectedSection) {
-                selectedSection.style.display = 'block';
-            }
-        }
-    </script>
-
 
 
 
