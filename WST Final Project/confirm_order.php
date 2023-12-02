@@ -13,7 +13,6 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Get customer data from the POST request
 $data = json_decode(file_get_contents("php://input"), true);
 
 // Insert data into tbl_customers
@@ -26,8 +25,9 @@ if ($conn->query($sql) === TRUE) {
 
     // Insert data into tbl_orders
     $orderNumber = $data['orderNumber'];
+    $totalPrice = $data['totalPrice'];  // Fix the key name to totalPrice
 
-    $sqlOrder = "INSERT INTO tbl_orders (order_number, customer_id) VALUES ('$orderNumber', '$customerId')";
+    $sqlOrder = "INSERT INTO tbl_orders (order_number, customer_id, totals) VALUES ('$orderNumber', '$customerId', '$totalPrice')";
     if ($conn->query($sqlOrder) === TRUE) {
         $response = ["status" => "success", "message" => "Order confirmed and data inserted successfully"];
         echo json_encode($response);

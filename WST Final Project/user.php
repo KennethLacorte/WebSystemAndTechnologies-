@@ -34,7 +34,6 @@ $result = $conn->query($sql);
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="path/to/bootstrap.min.css">
 
 
 
@@ -54,10 +53,10 @@ $result = $conn->query($sql);
                 <li><a href="#" onclick="loadPage('order-content')" style="color: white;">ORDERS</a></li>
 
                 <li class="dropdown" data-bs-theme="dark">
-                <button class="btn btn-info btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-    MENU
-  </button>                  
-                        <ul class="dropdown-menu" >
+                    <button class="btn btn-info btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        MENU
+                    </button>
+                    <ul class="dropdown-menu">
                         <li class="menu-items"><a href="#" data-content-id="hamburgers-content" style="color: white;">ABOUT US</a></li>
                         <li class="menu-items"><a href="#" data-content-id="hamburgers-content" style="color: white;">HAMBURGERS</a></li>
                         <li class="menu-items"><a href="#" data-content-id="hotdogs-content" style="color: white;">HOTDOG SANDWICHES</a></li>
@@ -84,26 +83,26 @@ $result = $conn->query($sql);
 
 
         <div id="carouselExampleRide" class="carousel slide d-flex align-items-center" data-bs-ride="carousel" data-bs-interval="2000" style="max-width: 60%; height: 70vh; left: 300px;">
-  <div class="carousel-inner col-3">
-    <div class="carousel-item active">
-      <img src="hamburger1.jpg" class="d-block w-75 mx-auto" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="hamburger1.jpg" class="d-block w-75 mx-auto" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="angelsbg.jpg" class="d-block w-75 mx-auto" alt="...">
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true" style="background-color: black;"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true" style="background-color: black;"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
+            <div class="carousel-inner col-3">
+                <div class="carousel-item active">
+                    <img src="hamburger1.jpg" class="d-block w-75 mx-auto" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="hamburger1.jpg" class="d-block w-75 mx-auto" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="angelsbg.jpg" class="d-block w-75 mx-auto" alt="...">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true" style="background-color: black;"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true" style="background-color: black;"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
 
 
 
@@ -111,7 +110,7 @@ $result = $conn->query($sql);
 
 
 
-<script src = "crud.js"></script>
+    <script src="crud.js"></script>
     <section class="content-section" id="addorder-content">
         <h1>ADD ORDER</h1>
 
@@ -268,141 +267,186 @@ $result = $conn->query($sql);
         </script>
 
         <script src="search.js"></script>
-            <script src="add-order.js"></script>
+        <script src="add-order.js"></script>
 
     </section>
 
 
 
     <section class="content-section" id="order-content">
-    <h1>ORDER PAGE</h1>
-    <p>This is the content for the ORDER page...</p>
+        <h1>ORDER PAGE</h1>
+        <p>This is the content for the ORDER page...</p>
 
-    <form id="confirm-order-form" action="" method="post">
-        <label for="customer-name">Customer Name:</label>
-        <input type="text" id="customer-name" name="customerName" required>
-        <label for="order-date">Order Date:</label>
-        <input type="date" id="order-date" name="orderDate" required>
-        <label for="order-number">Order Number:</label>
-        <input type="text" id="order-number" name="orderNumber" readonly>
+        <form id="confirm-order-form" action="" method="post">
+            <label for="customer-name">Customer Name:</label>
+            <input type="text" id="customer-name" name="customerName" required>
+            <label for="order-date">Order Date:</label>
+            <input type="date" id="order-date" name="orderDate" required>
+            <label for="order-number">Order Number:</label>
+            <input type="text" id="order-number" name="orderNumber" readonly>
 
-        <table class="content-table">
-            <thead>
-                <tr>
-                    <th>Product Name</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody class="text-center" id="order-items">
-                <!-- Add your order items here if needed -->
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="3">Total: </td>
-                    <td id="overall-total" colspan="1">0.00</td>
-                    <td></td>
-                </tr>
-            </tfoot>
-        </table>
-        <br><br>
-        <button type="button" id="submit-btn" onclick="confirmOrder()">Confirm Order</button>
-    </form>
+            <table class="content-table">
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody class="text-center" id="order-items">
+                    <!-- Add your order items here if needed -->
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3">Total: </td>
+                        <td id="overall-total" colspan="1">0.00</td>
+                        <td></td>
+                    </tr>
+                </tfoot>
+            </table>
+            <br><br>
+            <button type="button" id="submit-btn" onclick="confirmOrder()">Confirm Order</button>
+        </form>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <script>
-    class OrderConfirmation {
-        constructor() {
-            // Set the current date when an instance is created
-            this.setCurrentDate();
-        }
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        <!-- ... existing code ... -->
 
-        setCurrentDate() {
-            var currentDate = new Date().toISOString().split('T')[0];
-            this.orderDate = currentDate;
-            document.getElementById('order-date').value = currentDate;
-        }
+        <!-- ... existing code ... -->
 
-        async confirmOrder() {
-            // Get customer name from the form
-            var customerName = document.getElementById('customer-name').value;
+        <script>
+            class OrderConfirmation {
+                constructor() {
+                    // Set the current date when an instance is created
+                    this.setCurrentDate();
+                }
 
-            // Validate customer name (you may add more validation as needed)
-            if (customerName.trim() === '') {
-                // Display SweetAlert for validation error
-                this.showValidationError('Please enter customer name.');
-                return;
-            }
+                setCurrentDate() {
+                    var currentDate = new Date().toISOString().split('T')[0];
+                    this.orderDate = currentDate;
+                    document.getElementById('order-date').value = currentDate;
+                }
 
-            // Generate an auto-generated order number
-            var orderNumber = this.generateOrderNumber();
+                async confirmOrder() {
+                    // Get customer name from the form
+                    var customerName = document.getElementById('customer-name').value;
 
-            // Display SweetAlert with customer details and order confirmation
-            const result = await Swal.fire({
-                title: 'Order Confirmation',
-                html: `
-                    <p><strong>Customer Name:</strong> ${customerName}</p>
-                    <p><strong>Order Date:</strong> ${this.orderDate}</p>
-                    <p><strong>Order Number:</strong> ${orderNumber}</p>
-                    <p>Order confirmed! Thank you for your purchase.</p>
-                `,
-                icon: 'success',
-                confirmButtonText: 'OK'
-            });
+                    // Validate customer name (you may add more validation as needed)
+                    if (customerName.trim() === '') {
+                        // Display SweetAlert for validation error
+                        this.showValidationError('Please enter customer name.');
+                        return;
+                    }
 
-            if (result.isConfirmed) {
-                // Reset the form after confirmation
-                document.getElementById('confirm-order-form').reset();
+                    // Generate an auto-generated order number
+                    var orderNumber = this.generateOrderNumber();
 
-                // Perform additional actions here, such as making an AJAX request to confirm the order on the server
-                // Example:
-                const response = await fetch('confirm_order.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        customerName,
-                        orderDate: this.orderDate,
-                        orderNumber,
-                        // Add other data if needed
-                    }),
-                });
+                    // Display SweetAlert with customer details and order confirmation
+                    const result = await Swal.fire({
+                        title: 'Order Confirmation',
+                        html: `
+            <p><strong>Customer Name:</strong> ${customerName}</p>
+            <p><strong>Order Date:</strong> ${this.orderDate}</p>
+            <p><strong>Order Number:</strong> ${orderNumber}</p>
+            <p><strong>Total Price:</strong> $${this.calculateTotalPrice()}</p>
+            <p>Order confirmed! Thank you for your purchase.</p>
+        `,
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    });
 
-                // Handle the response as needed
-                if (response.ok) {
-                    const data = await response.json();
-                    console.log('Server response:', data);
-                    // You can add more handling based on the server response
-                } else {
-                    console.error('Error confirming order on the server');
-                    // You can display an error message to the user if needed
+                    if (result.isConfirmed) {
+                        // Reset the form after confirmation
+                        document.getElementById('confirm-order-form').reset();
+
+                        // Perform additional actions here, such as making an AJAX request to confirm the order on the server
+                        // Example:
+                        const response = await fetch('confirm_order.php', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                customerName,
+                                orderDate: this.orderDate,
+                                orderNumber,
+                                totalPrice: this.calculateTotalPrice(),
+                                // Add other data if needed
+                            }),
+                        });
+
+                        // Handle the response as needed
+                        if (response.ok) {
+                            const data = await response.json();
+                            console.log('Server response:', data);
+                            // You can add more handling based on the server response
+                        } else {
+                            console.error('Error confirming order on the server');
+                            // You can display an error message to the user if needed
+                        }
+                    }
+                }
+                x
+
+                generateOrderNumber() {
+                    return Math.floor(Math.random() * 1000000) + 1;
+                }
+
+                calculateTotalPrice() {
+                    let total = 0;
+                    const orderItems = document.querySelectorAll('#order-items tr');
+
+                    orderItems.forEach((item) => {
+                        const price = parseFloat(item.querySelector('td:nth-child(2)').innerText);
+                        const quantity = parseInt(item.querySelector('td:nth-child(3) input').value, 10);
+                        total += price * quantity;
+                    });
+
+                    return total.toFixed(2);
+                }
+
+
+                showValidationError(message) {
+                    Swal.fire({
+                        title: 'Validation Error',
+                        text: message,
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    });
+                }
+
+                updateItemTotal(row, productPrice) {
+                    const quantityInput = row.querySelector('input[name="quantity[]"]');
+                    const quantity = parseInt(quantityInput.value, 10);
+                    const itemTotal = productPrice * quantity;
+
+                    // Update the data attribute with the item total
+                    row.dataset.itemTotal = itemTotal;
+
+                    // Update the total for the current item
+                    row.querySelector('td:nth-child(2)').textContent = itemTotal.toFixed(2);
+
+                    // Update the overall total
+                    overallTotal = Array.from(orderItemsContainer.children).reduce((total, item) => total + parseFloat(item.dataset.itemTotal), 0);
+                    overallTotalElement.textContent = overallTotal.toFixed(2);
+                }
+
+                showCustomerInfoForm() {
+                    // Assuming you have a customerInfoForm variable, you can toggle its display
+                    const customerInfoForm = document.getElementById('customer-info-form');
+                    customerInfoForm.style.display = 'block';
                 }
             }
-        }
 
-        generateOrderNumber() {
-            return Math.floor(Math.random() * 1000000) + 1;
-        }
+            // Create an instance of the OrderConfirmation class
+            const orderConfirmation = new OrderConfirmation();
 
-        showValidationError(message) {
-            Swal.fire({
-                title: 'Validation Error',
-                text: message,
-                icon: 'error',
-                confirmButtonText: 'OK'
-            });
-        }
-    }
+            // Attach the confirmOrder method to the button click event
+            document.getElementById('submit-btn').addEventListener('click', () => orderConfirmation.confirmOrder());
+        </script>
 
-    // Create an instance of the OrderConfirmation class
-    const orderConfirmation = new OrderConfirmation();
 
-    // Attach the confirmOrder method to the button click event
-    document.getElementById('submit-btn').addEventListener('click', () => orderConfirmation.confirmOrder());
-</script>
     </section>
 
 
