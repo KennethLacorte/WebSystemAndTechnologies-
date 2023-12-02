@@ -29,9 +29,12 @@ $result = $conn->query($sql);
     <link rel="stylesheet" type="text/css" href="add-order.css">
     <link rel="stylesheet" type="text/css" href="order.css">
     <link rel="stylesheet" type="text/css" href="Home.css">
+    <link rel="stylesheet" type="text/css" href="order-content.css">
     <link rel="stylesheet" href="sweetalert2.min.css">
     <script src="sweetalert2.all.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
 
     <style>
 
@@ -96,7 +99,7 @@ $result = $conn->query($sql);
 
 
 
-
+<script src = "crud.js"></script>
     <section class="content-section" id="addorder-content">
         <h1>ADD ORDER</h1>
 
@@ -107,7 +110,7 @@ $result = $conn->query($sql);
         ?>
 
         <!-- Form to add items to the order -->
-        <form id="add-order-form" action="process_add_order.php" method="post">
+        <form id="add-order-form" action="" method="post">
             <div class="search-bar">
                 <input type="text" id="searchInput" placeholder="Search...">
             </div>
@@ -257,101 +260,114 @@ $result = $conn->query($sql);
     </section>
 
     <script src="add-order.js"></script>
-
     <section class="content-section" id="order-content">
-        <h1>ORDER PAGE</h1>
-        <p>This is the content for the ORDER page...</p>
-        <form id="confirm-order-form" action="" method="post">
-            <table class="content-table">
-                <thead>
-                    <tr>
-                        <th>Product Name</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody class="text-center" id="order-items">
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="2">Total: </td>
-                        <td id="overall-total" colspan="2">0.00</td>
-                        <td></td>
-                    </tr>
-                </tfoot>
-            </table> <br> <br>
-            <button type="button" id="submit-btn" onclick="confirmOrder()">Confirm Order</button>
-        </form>
-        <script>
-            document.getElementById('submit-btn').addEventListener('click', function() {
-                showFloatingForm();
+    <h1>ORDER PAGE</h1>
+    <p>This is the content for the ORDER page...</p>
+
+    <form id="confirm-order-form" action="" method="post">
+        <label for="customer-name">Customer Name:</label>
+        <input type="text" id="customer-name" name="customerName" required>
+
+        <!-- Use readonly attribute to make the date field read-only -->
+        <label for="order-date">Order Date:</label>
+        <input type="date" id="order-date" name="orderDate" required readonly>
+
+        <table class="content-table">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody class="text-center" id="order-items">
+                <!-- Add your order items here if needed -->
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2">Total: </td>
+                    <td id="overall-total" colspan="2">0.00</td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </table>
+        <br><br>
+        <button type="button" id="submit-btn" onclick="confirmOrder()">Confirm Order</button>
+    </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+        // Function to set the current date in the order date field
+        function setCurrentDate() {
+            var currentDate = new Date().toISOString().split('T')[0];
+            document.getElementById('order-date').value = currentDate;
+        }
+
+        // Call the function to set the current date when the page loads
+        setCurrentDate();
+
+    async function confirmOrder() {
+        // Get customer name and order date from the form
+        var customerName = document.getElementById('customer-name').value;
+        var orderDate = document.getElementById('order-date').value;
+
+        // Validate customer name (you may add more validation as needed)
+        if (customerName.trim() === '') {
+            alert('Please enter customer name.');
+            return;
+        }
+
+        // Generate a random order number with 2 to 4 digits
+        var orderNumber = generateOrderNumber();
+
+        try {
+            // Use AJAX to send data to the PHP script
+            const response = await fetch('confirm_order.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `customerName=${customerName}&orderDate=${orderDate}&orderNumber=${orderNumber}`,
             });
 
-            function showFloatingForm() {
-                // Get the current date
-                const currentDate = new Date().toISOString().split('T')[0];
-                // Customize the appearance and behavior of the SweetAlert2 modal
+            if (!response.ok) {
+                throw new Error('Error confirming order');
+            }
+
+            const data = await response.json();
+
+            if (data.status === 'success') {
+                // Display SweetAlert with customer details and order confirmation
                 Swal.fire({
-                    title: "Order Confirmation",
+                    title: 'Order Confirmation',
                     html: `
-                    <form id="confirm-order-form">
-                        <label for="customer-name">Customer Name:</label>
-                        <input type="text" id="customer-name" name="customer-name" required>
-                        <br>
-                        <label for="order-date">Order Date:</label>
-                        <input type="date" id="order-date" name="order-date" required value="${currentDate}">
-                        <br>
-                    </form>
-                `,
-                    showCancelButton: true,
-                    confirmButtonColor: "#3085d6",
-                    cancelButtonColor: "#d33",
-                    confirmButtonText: "Yes, confirm!",
-                }).then(function(result) {
-                    if (result.isConfirmed) {
-                        const customerName = document.getElementById('customer-name').value;
-                        const orderDate = document.getElementById('order-date').value;
-
-                        // Send data to the server
-                        fetch('confirm_order.php', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/x-www-form-urlencoded',
-                                },
-                                body: `customer-name=${customerName}&order-date=${orderDate}`,
-                            })
-                            .then(response => response.json())
-                            .then(data => {
-                                if (data.status === 'success') {
-                                    // If the user clicks "Yes, confirm!", generate an order number
-                                    const orderNumber = data.orderNumber;
-                                    // Display a new SweetAlert with the order number
-                                    Swal.fire({
-                                        title: "Order Confirmed",
-                                        html: `Your order has been confirmed!<br>Order Number: ${orderNumber}`,
-                                        icon: "success"
-                                    });
-                                    // Additional actions after confirmation, if needed
-                                    console.log('Order confirmed!');
-                                } else {
-                                    console.error('Error confirming order:', data.message);
-                                }
-                            })
-                            .catch(error => {
-                                console.error('Error confirming order:', error);
-                            });
-                    } else {
-                        console.log('Order not confirmed.');
-                    }
+                        <p><strong>Customer Name:</strong> ${customerName}</p>
+                        <p><strong>Order Date:</strong> ${orderDate}</p>
+                        <p><strong>Order Number:</strong> ${orderNumber}</p>
+                        <p>Order confirmed! Thank you for your purchase.</p>
+                    `,
+                    icon: 'success',
+                    confirmButtonText: 'OK'
                 });
+            } else {
+                console.error('Error confirming order:', data.message);
+                alert('An error occurred while processing your order.');
             }
+        } catch (error) {
+            console.error('Error confirming order:', error);
+            alert('An error occurred while processing your order.');
+        }
+    }
 
-            function generateOrderNumber() {
-                return Math.floor(Math.random() * 1000000) + 1;
-            }
-        </script>
-    </section>
+        function generateOrderNumber() {
+            // Generate a random number with 2 to 4 digits
+            var orderNumber = Math.floor(Math.random() * (999 - 10 + 1) + 10);
+            return 'ORD' + orderNumber;
+        }
+    </script>
+</section>
+
 
 
 
