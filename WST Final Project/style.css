@@ -33,7 +33,7 @@ a {
 }
 
 a:hover {
-    color: yellow;
+    color: white;
 }
 
 /* Header */
@@ -78,9 +78,11 @@ header {
 }
 
 .navbar .links {
+    margin-top: 20px;
     text-align: center; 
     display: flex;
-    gap: 2rem;
+    gap: 1rem;
+    color: #fff;
     justify-content: center;
 }
 

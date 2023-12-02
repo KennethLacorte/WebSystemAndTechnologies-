@@ -34,6 +34,8 @@ $result = $conn->query($sql);
     <script src="sweetalert2.all.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
 
 
     <style>
@@ -47,19 +49,22 @@ $result = $conn->query($sql);
         <div class="navbar">
             <div class="logo"><a href="#">Angel's Burger</a></div>
             <ul class="links">
-                <li><a href="#" onclick="loadPage('home-content')">HOME</a></li>
-                <li><a href="#" onclick="loadPage('addorder-content')">ADD ORDER</a></li>
-                <li><a href="#" onclick="loadPage('order-content')">ORDERS</a></li>
+                <li><a href="#" onclick="loadPage('home-content')" style="color: white;">HOME</a></li>
+                <li><a href="#" onclick="loadPage('addorder-content')" style="color: white;">ADD ORDER</a></li>
+                <li><a href="#" onclick="loadPage('order-content')" style="color: white;">ORDERS</a></li>
 
-                <li class="dropdown">
-                    <a data-toggle="dropdown" href="#." class="dropdown-toggle">MENU</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="hello.html">About Us</a></li>
-                        <li class="menu-items"><a href="#" data-content-id="hamburgers-content" style="color: black;">HAMBURGERS</a></li>
-                        <li class="menu-items"><a href="#" data-content-id="hotdogs-content" style="color: black;">HOTDOG SANDWICHES</a></li>
-                        <li class="menu-items"><a href="#" data-content-id="hamsandwiches-content" style="color: black;">HAM SANDWICHES</a></li>
-                        <li class="menu-items"><a href="#" data-content-id="baconsandwiches-content" style="color: black;">BACON SANDWICHES</a></li>
-                        <li class="menu-items"><a href="#" data-content-id="drinks-content" style="color: black;">DRINKS</a></li>
+                <li class="dropdown" data-bs-theme="dark">
+                <button class="btn btn-info btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    MENU
+  </button>                  
+                        <ul class="dropdown-menu">
+                        <li class="menu-items"><a href="#" data-content-id="hamburgers-content" style="color: white;">ABOUT US</a></li>
+                        <li class="menu-items"><a href="#" data-content-id="hamburgers-content" style="color: white;">HAMBURGERS</a></li>
+                        <li class="menu-items"><a href="#" data-content-id="hotdogs-content" style="color: white;">HOTDOG SANDWICHES</a></li>
+                        <li class="menu-items"><a href="#" data-content-id="hamsandwiches-content" style="color: white;">HAM SANDWICHES</a></li>
+                        <li class="menu-items"><a href="#" data-content-id="baconsandwiches-content" style="color: white;">BACON SANDWICHES</a></li>
+                        <li class="menu-items"><a href="#" data-content-id="drinks-content" style="color: white;">DRINKS</a></li>
+
                     </ul>
                 </li>
             </ul>
@@ -75,23 +80,32 @@ $result = $conn->query($sql);
     </header>
 
     <section class="content-section" id="home-content">
-        <!-- Initial content when the page loads -->
-        <h1><strong>WELCOME!</strong></h1>
         <h1><strong>ANGELS BURGER!</strong></h1>
 
 
-        <div id="slider-container" class="slider">
-            <img id="slide-1" src="https://www.tasteofhome.com/wp-content/uploads/2018/01/exps28800_UG143377D12_18_1b_RMS.jpg" alt="Slide 1">
-            <img id="slide-2" src="https://th.bing.com/th/id/OIP.NVWx3eq_xIb2WfwrX64XLAHaHa?rs=1&pid=ImgDetMain" alt="Slide 2">
-            <img id="slide-3" src="https://cdn.arstechnica.net/wp-content/uploads/2018/08/IF-Burger.jpg" alt="Slide 3">
-        </div>
-        <div class="slider-nav">
-            <a href="#slide-1"></a>
-            <a href="#slide-2"></a>
-            <a href="#slide-3"></a>
-        </div>
+        <div id="carouselExampleRide" class="carousel slide d-flex align-items-center" data-bs-ride="carousel" style="max-width: 60%; height: 70vh; left: 300px;">
+  <div class="carousel-inner col-3">
+    <div class="carousel-item active">
+      <img src="hamburger1.jpg" class="d-block w-75 mx-auto" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="hamburger1.jpg" class="d-block w-75 mx-auto" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="angelsbg.jpg" class="d-block w-75 mx-auto" alt="...">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true" style="background-color: black;"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true" style="background-color: black;"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
 
-        <p>Explore our best-selling masterpieces - the mouth-watering delights!</p>
+
     </section>
 
 
@@ -257,9 +271,12 @@ $result = $conn->query($sql);
         </script>
 
         <script src="search.js"></script>
+            <script src="add-order.js"></script>
+
     </section>
 
-    <script src="add-order.js"></script>
+
+
     <section class="content-section" id="order-content">
     <h1>ORDER PAGE</h1>
     <p>This is the content for the ORDER page...</p>
@@ -270,7 +287,7 @@ $result = $conn->query($sql);
 
         <!-- Use readonly attribute to make the date field read-only -->
         <label for="order-date">Order Date:</label>
-        <input type="date" id="order-date" name="orderDate" required readonly>
+        <input type="date" id="order-date" name="orderDate" required>
 
         <table class="content-table">
             <thead>
@@ -296,77 +313,102 @@ $result = $conn->query($sql);
         <button type="button" id="submit-btn" onclick="confirmOrder()">Confirm Order</button>
     </form>
 
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
-        // Function to set the current date in the order date field
-        function setCurrentDate() {
+    class OrderConfirmation {
+        constructor() {
+            // Set the current date when an instance is created
+            this.setCurrentDate();
+        }
+
+        setCurrentDate() {
             var currentDate = new Date().toISOString().split('T')[0];
+            this.orderDate = currentDate;
             document.getElementById('order-date').value = currentDate;
         }
 
-        // Call the function to set the current date when the page loads
-        setCurrentDate();
+        async confirmOrder() {
+            // Get customer name from the form
+            var customerName = document.getElementById('customer-name').value;
 
-    async function confirmOrder() {
-        // Get customer name and order date from the form
-        var customerName = document.getElementById('customer-name').value;
-        var orderDate = document.getElementById('order-date').value;
+            // Validate customer name (you may add more validation as needed)
+            if (customerName.trim() === '') {
+                // Display SweetAlert for validation error
+                this.showValidationError('Please enter customer name.');
+                return;
+            }
 
-        // Validate customer name (you may add more validation as needed)
-        if (customerName.trim() === '') {
-            alert('Please enter customer name.');
-            return;
-        }
+            // Generate an auto-generated order number
+            var orderNumber = this.generateOrderNumber();
 
-        // Generate a random order number with 2 to 4 digits
-        var orderNumber = generateOrderNumber();
-
-        try {
-            // Use AJAX to send data to the PHP script
-            const response = await fetch('confirm_order.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: `customerName=${customerName}&orderDate=${orderDate}&orderNumber=${orderNumber}`,
+            // Display SweetAlert with customer details and order confirmation
+            const result = await Swal.fire({
+                title: 'Order Confirmation',
+                html: `
+                    <p><strong>Customer Name:</strong> ${customerName}</p>
+                    <p><strong>Order Date:</strong> ${this.orderDate}</p>
+                    <p><strong>Order Number:</strong> ${orderNumber}</p>
+                    <p>Order confirmed! Thank you for your purchase.</p>
+                `,
+                icon: 'success',
+                confirmButtonText: 'OK'
             });
 
-            if (!response.ok) {
-                throw new Error('Error confirming order');
-            }
+            if (result.isConfirmed) {
+                // Reset the form after confirmation
+                document.getElementById('confirm-order-form').reset();
 
-            const data = await response.json();
-
-            if (data.status === 'success') {
-                // Display SweetAlert with customer details and order confirmation
-                Swal.fire({
-                    title: 'Order Confirmation',
-                    html: `
-                        <p><strong>Customer Name:</strong> ${customerName}</p>
-                        <p><strong>Order Date:</strong> ${orderDate}</p>
-                        <p><strong>Order Number:</strong> ${orderNumber}</p>
-                        <p>Order confirmed! Thank you for your purchase.</p>
-                    `,
-                    icon: 'success',
-                    confirmButtonText: 'OK'
+                // Perform additional actions here, such as making an AJAX request to confirm the order on the server
+                // Example:
+                const response = await fetch('confirm_order.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        customerName,
+                        orderDate: this.orderDate,
+                        orderNumber,
+                        // Add other data if needed
+                    }),
                 });
-            } else {
-                console.error('Error confirming order:', data.message);
-                alert('An error occurred while processing your order.');
+
+                // Handle the response as needed
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log('Server response:', data);
+                    // You can add more handling based on the server response
+                } else {
+                    console.error('Error confirming order on the server');
+                    // You can display an error message to the user if needed
+                }
             }
-        } catch (error) {
-            console.error('Error confirming order:', error);
-            alert('An error occurred while processing your order.');
+        }
+
+        generateOrderNumber() {
+            return Math.floor(Math.random() * 1000000) + 1;
+        }
+
+        showValidationError(message) {
+            Swal.fire({
+                title: 'Validation Error',
+                text: message,
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
         }
     }
 
-        function generateOrderNumber() {
-            // Generate a random number with 2 to 4 digits
-            var orderNumber = Math.floor(Math.random() * (999 - 10 + 1) + 10);
-            return 'ORD' + orderNumber;
-        }
-    </script>
-</section>
+    // Create an instance of the OrderConfirmation class
+    const orderConfirmation = new OrderConfirmation();
+
+    // Attach the confirmOrder method to the button click event
+    document.getElementById('submit-btn').addEventListener('click', () => orderConfirmation.confirmOrder());
+</script>
+    </section>
+
+
 
 
 
@@ -632,7 +674,8 @@ $result = $conn->query($sql);
 
 
 
-
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 
 
 </body>

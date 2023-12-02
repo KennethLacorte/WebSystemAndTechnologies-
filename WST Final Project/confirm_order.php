@@ -1,81 +1,75 @@
 <?php
-// Database connection details
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "db_burgers";
+// confirm_order.php
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+// Ensure you handle errors, sanitize inputs, and use prepared statements to prevent SQL injection.
 
-// Check connection
-if ($conn->connect_error) {
-    die(json_encode(array('status' => 'error', 'message' => 'Connection failed: ' . $conn->connect_error)));
-}
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Assuming you have a MySQL database
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "db_burgers";
 
-// Retrieve data from the AJAX request
-$customerName = $_POST['customerName'];
-$orderDate = $_POST['orderDate'];
-$orderNumber = $_POST['orderNumber'];
-$products = isset($_POST['products']) ? $_POST['products'] : [];
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
 
-try {
-    // Insert data into tbl_customers
-    $sqlInsertCustomer = "INSERT INTO tbl_customers (customer_name, order_date, order_number) VALUES ('$customerName', '$orderDate', '$orderNumber')";
-    if ($conn->query($sqlInsertCustomer) !== TRUE) {
-        throw new Exception('Error inserting into tbl_customers: ' . $conn->error);
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
     }
 
-    // If the insertion is successful, retrieve the customer ID
-    $customerId = $conn->insert_id;
+    // Get the data from the front-end
+    $data = json_decode(file_get_contents("php://input"), true);
 
-    // Generate a unique order number using customer ID and a random number
-    $orderNumber = generateOrderNumber($customerId);
+    $customerName = $data['customerName'];
+    $orderDate = $data['orderDate'];
+    $orderNumber = $data['orderNumber'];
+    $totals = $data['totals']; // Assuming you receive the totals from the front-end
 
-    // Insert data into tbl_orders
-    $sqlInsertOrder = "INSERT INTO tbl_orders (customer_id, order_number) VALUES ('$customerId', '$orderNumber')";
-    if ($conn->query($sqlInsertOrder) !== TRUE) {
-        throw new Exception('Error inserting into tbl_orders: ' . $conn->error);
-    }
+    // Insert data into the tbl_customers table
+    $insertCustomerSql = "INSERT INTO tbl_customers (customer_name, order_date) VALUES (?, ?)";
+    $stmt = $conn->prepare($insertCustomerSql);
+    $stmt->bind_param("ss", $customerName, $orderDate);
 
-    // If the insertion into tbl_orders is also successful, retrieve the order ID
-    $orderId = $conn->insert_id;
+    if ($stmt->execute()) {
+        $customerId = $conn->insert_id; // Get the last inserted customer ID
 
-    // Insert or update data into tblorderitems (assuming $products is an array containing item_id and quantity)
-    foreach ($products as $product) {
-        $productId = $product['item_id'];
-        $quantity = $product['quantity'];
+        // Insert data into the tbl_orders table
+        $insertOrderSql = "INSERT INTO tbl_orders (customer_id, order_number, totals) VALUES (?, ?, ?)";
+        $stmt = $conn->prepare($insertOrderSql);
+        $stmt->bind_param("ids", $customerId, $orderNumber, $totals);
 
-        // Check if the item already exists in tblorderitems
-        $sqlCheckItem = "SELECT * FROM tblorderitems WHERE order_id = '$orderId' AND item_id = '$productId'";
-        $result = $conn->query($sqlCheckItem);
+        if ($stmt->execute()) {
+            // Fetch additional information using INNER JOIN
+            $selectSql = "SELECT tbl_customers.customer_name, tbl_orders.order_number, tbl_customers.order_date, tbl_orders.totals
+                            FROM tbl_customers
+                            INNER JOIN tbl_orders ON tbl_customers.customer_id = tbl_orders.customer_id
+                            WHERE tbl_orders.order_number = ?";
+            
+            $stmt = $conn->prepare($selectSql);
+            $stmt->bind_param("s", $orderNumber);
+            $stmt->execute();
+            $result = $stmt->get_result();
 
-        if ($result->num_rows > 0) {
-            // If the item already exists, update the quantity
-            $sqlUpdateQuantity = "UPDATE tblorderitems SET quantity = quantity + '$quantity' WHERE order_id = '$orderId' AND item_id = '$productId'";
-            if ($conn->query($sqlUpdateQuantity) !== TRUE) {
-                throw new Exception('Error updating quantity in tblorderitems: ' . $conn->error);
+            if ($result->num_rows > 0) {
+                $orderDetails = $result->fetch_assoc();
+                // Return a success response with order details
+                echo json_encode(['success' => true, 'orderDetails' => $orderDetails]);
+            } else {
+                echo json_encode(['success' => false, 'error' => 'Error fetching order details']);
             }
         } else {
-            // If the item does not exist, insert the new item
-            $sqlInsertOrderItem = "INSERT INTO tblorderitems (order_id, item_id, quantity) VALUES ('$orderId', '$productId', '$quantity')";
-            if ($conn->query($sqlInsertOrderItem) !== TRUE) {
-                throw new Exception('Error inserting into tblorderitems: ' . $conn->error);
-            }
+            echo json_encode(['success' => false, 'error' => 'Error inserting into tbl_orders: ' . $stmt->error]);
         }
+    } else {
+        echo json_encode(['success' => false, 'error' => 'Error inserting into tbl_customers: ' . $stmt->error]);
     }
 
-    // If everything is successful, you can perform additional actions if needed
-    echo json_encode(array('status' => 'success', 'message' => 'Order placed successfully.'));
-} catch (Exception $e) {
-    echo json_encode(array('status' => 'error', 'message' => $e->getMessage()));
-}
-
-// Close the database connection
-$conn->close();
-
-function generateOrderNumber($customerId) {
-    // Combine customer ID with a random number
-    return $customerId . rand(1000, 9999); // Adjust as needed
+    // Close the database connection
+    $conn->close();
+} else {
+    // Handle invalid request method
+    http_response_code(405); // Method Not Allowed
+    echo json_encode(['error' => 'Invalid request method']);
 }
 ?>
