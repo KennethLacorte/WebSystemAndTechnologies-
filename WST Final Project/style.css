@@ -54,6 +54,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     /* Adjusted justification */
 }
 
@@ -74,7 +75,6 @@ header {
     color: white;
     font-size: 1.5rem;
     font-weight: bold;
-    text-decoration: none;
 }
 
 .navbar .links {
@@ -84,7 +84,13 @@ header {
     gap: 1rem;
     color: #fff;
     justify-content: center;
+    text-decoration: none;
 }
+
+.navbar a {
+    text-decoration: none;
+}
+
 
 .navbar .toggle_btn {
     color: white;

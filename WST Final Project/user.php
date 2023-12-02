@@ -30,11 +30,11 @@ $result = $conn->query($sql);
     <link rel="stylesheet" type="text/css" href="order.css">
     <link rel="stylesheet" type="text/css" href="Home.css">
     <link rel="stylesheet" type="text/css" href="order-content.css">
-    <link rel="stylesheet" href="sweetalert2.min.css">
     <script src="sweetalert2.all.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="path/to/bootstrap.min.css">
 
 
 
@@ -57,7 +57,7 @@ $result = $conn->query($sql);
                 <button class="btn btn-info btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
     MENU
   </button>                  
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu" >
                         <li class="menu-items"><a href="#" data-content-id="hamburgers-content" style="color: white;">ABOUT US</a></li>
                         <li class="menu-items"><a href="#" data-content-id="hamburgers-content" style="color: white;">HAMBURGERS</a></li>
                         <li class="menu-items"><a href="#" data-content-id="hotdogs-content" style="color: white;">HOTDOG SANDWICHES</a></li>
@@ -83,7 +83,7 @@ $result = $conn->query($sql);
         <h1><strong>ANGELS BURGER!</strong></h1>
 
 
-        <div id="carouselExampleRide" class="carousel slide d-flex align-items-center" data-bs-ride="carousel" style="max-width: 60%; height: 70vh; left: 300px;">
+        <div id="carouselExampleRide" class="carousel slide d-flex align-items-center" data-bs-ride="carousel" data-bs-interval="2000" style="max-width: 60%; height: 70vh; left: 300px;">
   <div class="carousel-inner col-3">
     <div class="carousel-item active">
       <img src="hamburger1.jpg" class="d-block w-75 mx-auto" alt="...">
@@ -106,10 +106,8 @@ $result = $conn->query($sql);
 </div>
 
 
+
     </section>
-
-
-
 
 
 
@@ -144,7 +142,7 @@ $result = $conn->query($sql);
                     <thead>
                         <tr>
                             <!-- Set the table title dynamically -->
-                            <th colspan="4" class="table-title">
+                            <th colspan="4" class="tabl          e-title">
                                 <?php echo $category_name; ?>
                             </th>
                         </tr>
@@ -156,7 +154,6 @@ $result = $conn->query($sql);
                         </tr>
                     </thead>
 
-                    <!-- Display product information in the table body -->
                     <tbody class="text-center">
                         <?php
                         // Fetch and display products from the database
@@ -212,7 +209,7 @@ $result = $conn->query($sql);
                 // Function to add items to the order form
                 function addToOrder(productName, productPrice) {
                     const row = document.createElement('tr');
-                    row.innerHTML = `<td>${productName}</td><td>${productPrice.toFixed(2)}</td><td><input type="number" name="quantity[]" value="1" min="1"></td><td><button class="remove-item-button">Remove</button></td>`;
+                    row.innerHTML = `<td>${productName}</td><td>${productPrice.toFixed(2)}</td><td><input type="number" name="quantity[]" value="1" min="1"></td><td><button class="remove-item-button" >Remove</button></td>`;
                     orderItemsContainer.appendChild(row);
 
                     // Calculate the total for the current item and update the overall total
@@ -284,10 +281,10 @@ $result = $conn->query($sql);
     <form id="confirm-order-form" action="" method="post">
         <label for="customer-name">Customer Name:</label>
         <input type="text" id="customer-name" name="customerName" required>
-
-        <!-- Use readonly attribute to make the date field read-only -->
         <label for="order-date">Order Date:</label>
         <input type="date" id="order-date" name="orderDate" required>
+        <label for="order-number">Order Number:</label>
+        <input type="text" id="order-number" name="orderNumber" readonly>
 
         <table class="content-table">
             <thead>
@@ -303,8 +300,8 @@ $result = $conn->query($sql);
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="2">Total: </td>
-                    <td id="overall-total" colspan="2">0.00</td>
+                    <td colspan="3">Total: </td>
+                    <td id="overall-total" colspan="1">0.00</td>
                     <td></td>
                 </tr>
             </tfoot>
