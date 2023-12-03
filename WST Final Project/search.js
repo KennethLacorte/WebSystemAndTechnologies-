@@ -29,8 +29,11 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Prevent form submission on ENTER key press
-    document.getElementById('add-order-form').addEventListener('submit', function (event) {
-        event.preventDefault();
+    document.getElementById('add-order-form').addEventListener('keydown', function (event) {
+        if (event.key === 'Enter' && document.
+        activeElement !== searchInput) {
+            event.preventDefault();
+        }
     });
 });
 
