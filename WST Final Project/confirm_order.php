@@ -25,10 +25,27 @@ if ($conn->query($sql) === TRUE) {
 
     // Insert data into tbl_orders
     $orderNumber = $data['orderNumber'];
-    $totalPrice = $data['totalPrice'];  // Fix the key name to totalPrice
+    $totalPrice = $data['totalPrice'];
 
     $sqlOrder = "INSERT INTO tbl_orders (order_number, customer_id, totals) VALUES ('$orderNumber', '$customerId', '$totalPrice')";
     if ($conn->query($sqlOrder) === TRUE) {
+        $orderId = $conn->insert_id;
+
+        // Insert data into tbl_order_items
+        $orderItems = $data['orderItems'];
+
+        foreach ($orderItems as $item) {
+            $itemId = $item['itemId'];
+            $quantity = $item['quantity'];
+
+            $sqlOrderItem = "INSERT INTO tbl_order_items (order_id, item_id, quantity) VALUES ('$orderId', '$itemId', '$quantity')";
+            if ($conn->query($sqlOrderItem) !== TRUE) {
+                $response = ["status" => "error", "message" => "Error inserting order item data: " . $conn->error];
+                echo json_encode($response);
+                exit;
+            }
+        }
+
         $response = ["status" => "success", "message" => "Order confirmed and data inserted successfully"];
         echo json_encode($response);
     } else {

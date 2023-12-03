@@ -45,45 +45,48 @@ $result = $conn->query($sql);
 
 <body>
     <header>
-    <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#"><h3>Angels Burger</h3></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav-pills mb-3" id="pills-tab" role="tablist"">
-        <li class="nav-item ps-3 role="presentation">
-          <a  class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true" href="#" onclick="loadPage('home-content')" style="color: white;">HOME</a>
-        </li>
-        <li class="nav-item ps-3">   
-          <a  class="nav-link " id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true" href="#" onclick="loadPage('addorder-content')" style="color: white;">ADD ORDER</a></li>
-        </li>
-        <li class="nav-item ps-3">
-          <a  class="nav-link " id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true" href="#" onclick="loadPage('order-content')" style="color: white;">ORDERS</a>
-        </li>
-        
-        <li class="dropdown ps-3" data-bs-theme="dark">
-          <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-              MENU
-          </button>
-          <ul class="dropdown-menu">
-            <li class="menu-items"><a href="#" data-content-id="hamburgers-content" >ABOUT US</a></li>
-            <li class="menu-items"><a href="#" data-content-id="hamburgers-content" >HAMBURGERS</a></li>
-            <li class="menu-items"><a href="#" data-content-id="hotdogs-content" >HOTDOG SANDWICHES</a></li>
-            <li class="menu-items"><a href="#" data-content-id="hamsandwiches-content" >HAM SANDWICHES</a></li>
-            <li class="menu-items"><a href="#" data-content-id="baconsandwiches-content" >BACON SANDWICHES</a></li>
-            <li class="menu-items"><a href="#" data-content-id="drinks-content" >DRINKS</a></li>
-          </ul>
-        </li>
-      </ul>
-      <form class="d-flex "  role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-    </div>
-  </div>
-</nav>
+        <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <h3>Angels Burger</h3>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav-pills mb-3" id="pills-tab" role="tablist"">
+        <li class=" nav-item ps-3 role="presentation">
+                        <a class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true" href="#" onclick="loadPage('home-content')" style="color: white;">HOME</a>
+                        </li>
+                        <li class="nav-item ps-3">
+                            <a class="nav-link " id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true" href="#" onclick="loadPage('addorder-content')" style="color: white;">ADD ORDER</a>
+                        </li>
+                        </li>
+                        <li class="nav-item ps-3">
+                            <a class="nav-link " id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true" href="#" onclick="loadPage('order-content')" style="color: white;">ORDERS</a>
+                        </li>
+
+                        <li class="dropdown ps-3" data-bs-theme="dark">
+                            <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                MENU
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li class="menu-items"><a href="#" data-content-id="hamburgers-content">ABOUT US</a></li>
+                                <li class="menu-items"><a href="#" data-content-id="hamburgers-content">HAMBURGERS</a></li>
+                                <li class="menu-items"><a href="#" data-content-id="hotdogs-content">HOTDOG SANDWICHES</a></li>
+                                <li class="menu-items"><a href="#" data-content-id="hamsandwiches-content">HAM SANDWICHES</a></li>
+                                <li class="menu-items"><a href="#" data-content-id="baconsandwiches-content">BACON SANDWICHES</a></li>
+                                <li class="menu-items"><a href="#" data-content-id="drinks-content">DRINKS</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="d-flex " role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
 
     </header>
 
@@ -92,50 +95,50 @@ $result = $conn->query($sql);
 
 
         <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
-  </div>
-  <div class="carousel-inner">
-    <div class="carousel-item active" data-bs-interval="10000">
-      <img src="angelsbg.jpg" class="d-block" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>First slide label</h5>
-        <p>Some representative placeholder content for the first slide.</p>
-      </div>
-    </div>
-    <div class="carousel-item" data-bs-interval="2000">
-      <img src="angelsbg.jpg" class="d-block" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Second slide label</h5>
-        <p>Some representative placeholder content for the second slide.</p>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img src="angelsbg.jpg" class="d-block" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Third slide label</h5>
-        <p>Some representative placeholder content for the third slide.</p>
-      </div>
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active" data-bs-interval="10000">
+                    <img src="angelsbg.jpg" class="d-block" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>First slide label</h5>
+                        <p>Some representative placeholder content for the first slide.</p>
+                    </div>
+                </div>
+                <div class="carousel-item" data-bs-interval="2000">
+                    <img src="angelsbg.jpg" class="d-block" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Second slide label</h5>
+                        <p>Some representative placeholder content for the second slide.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="angelsbg.jpg" class="d-block" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Third slide label</h5>
+                        <p>Some representative placeholder content for the third slide.</p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
 
     </section>
 
 
     <script src="crud.js"></script>
-   <!-- ADD ORDER content-page -->
-   <section class="content-section" id="addorder-content">
+    <!-- ADD ORDER content-page -->
+    <section class="content-section" id="addorder-content">
         <h1>ADD ORDER</h1>
 
         <!-- Fetch all categories -->
@@ -159,7 +162,7 @@ $result = $conn->query($sql);
                 // Fetch products for the current category
                 $product_query = "SELECT item_name, item_img, item_price FROM tbl_items WHERE category_id = $category_id";
                 $product_result = $conn->query($product_query);
-                ?>
+            ?>
 
                 <table class="content-table">
                     <thead>
@@ -193,13 +196,13 @@ $result = $conn->query($sql);
                     </tbody>
                 </table>
 
-                <?php
+            <?php
             }
             ?>
         </form>
 
         <script>
-            document.addEventListener('DOMContentLoaded', function () {
+            document.addEventListener('DOMContentLoaded', function() {
                 const addToOrderButtons = document.querySelectorAll('.add-to-order-button');
                 const orderItemsContainer = document.getElementById('order-items');
                 const customerInfoForm = document.getElementById('confirm-order-form');
@@ -209,7 +212,7 @@ $result = $conn->query($sql);
                 let overallTotal = 0.00;
 
                 addToOrderButtons.forEach(button => {
-                    button.addEventListener('click', function () {
+                    button.addEventListener('click', function() {
                         if (!button.disabled) {
                             const productName = button.dataset.productName;
                             const productPrice = parseFloat(button.dataset.productPrice);
@@ -230,14 +233,14 @@ $result = $conn->query($sql);
                     orderItemsContainer.appendChild(row);
 
                     const quantityInput = row.querySelector('input[name="quantity[]"]');
-                    quantityInput.addEventListener('input', function () {
+                    quantityInput.addEventListener('input', function() {
                         updateItemTotal(row, originalPrice);
                     });
 
                     updateItemTotal(row, originalPrice);
 
                     const removeButton = row.querySelector('.remove-item-button');
-                    removeButton.addEventListener('click', function () {
+                    removeButton.addEventListener('click', function() {
                         row.remove();
 
                         const correspondingAddButton = Array.from(addToOrderButtons).find(btn => btn.dataset.productName === productName);
@@ -272,10 +275,10 @@ $result = $conn->query($sql);
             });
         </script>
 
-<script src="add-order.js"></script>
-<script src="search.js"></script>
+        <script src="add-order.js"></script>
+        <script src="search.js"></script>
     </section>
-    
+
 
     <section class="content-section" id="order-content">
         <h1>ORDER PAGE</h1>
@@ -346,6 +349,9 @@ $result = $conn->query($sql);
                     // Generate an auto-generated order number
                     var orderNumber = this.generateOrderNumber();
 
+                    // Calculate the total price and update the item totals
+                    const totalPrice = this.calculateTotalPrice();
+
                     // Display SweetAlert with customer details and order confirmation
                     const result = await Swal.fire({
                         title: 'Order Confirmation',
@@ -353,7 +359,7 @@ $result = $conn->query($sql);
             <p><strong>Customer Name:</strong> ${customerName}</p>
             <p><strong>Order Date:</strong> ${this.orderDate}</p>
             <p><strong>Order Number:</strong> ${orderNumber}</p>
-            <p><strong>Total Price:</strong> $${this.calculateTotalPrice()}</p>
+            <p><strong>Total Price:</strong> $${totalPrice}</p>
             <p>Order confirmed! Thank you for your purchase.</p>
         `,
                         icon: 'success',
@@ -375,7 +381,7 @@ $result = $conn->query($sql);
                                 customerName,
                                 orderDate: this.orderDate,
                                 orderNumber,
-                                totalPrice: this.calculateTotalPrice(),
+                                totalPrice,
                                 // Add other data if needed
                             }),
                         });
@@ -391,7 +397,8 @@ $result = $conn->query($sql);
                         }
                     }
                 }
-     
+
+
 
                 generateOrderNumber() {
                     return Math.floor(Math.random() * 1000000) + 1;
