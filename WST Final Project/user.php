@@ -25,6 +25,8 @@ $result = $conn->query($sql);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="icon" href="icon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="icon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" type="text/css" href="add-order.css">
     <link rel="stylesheet" type="text/css" href="order.css">
@@ -40,7 +42,7 @@ $result = $conn->query($sql);
     <style>
 
     </style>
-    <title>Angels Burger</title>
+    <title>Angel's Burger</title>
 </head>
 
 <body>
@@ -321,140 +323,157 @@ $result = $conn->query($sql);
         <!-- ... existing code ... -->
 
         <!-- ... existing code ... -->
-
         <script>
-            class OrderConfirmation {
-                constructor() {
-                    // Set the current date when an instance is created
-                    this.setCurrentDate();
-                }
-
-                setCurrentDate() {
-                    var currentDate = new Date().toISOString().split('T')[0];
-                    this.orderDate = currentDate;
-                    document.getElementById('order-date').value = currentDate;
-                }
-
-                async confirmOrder() {
-                    // Get customer name from the form
-                    var customerName = document.getElementById('customer-name').value;
-
-                    // Validate customer name (you may add more validation as needed)
-                    if (customerName.trim() === '') {
-                        // Display SweetAlert for validation error
-                        this.showValidationError('Please enter customer name.');
-                        return;
+            document.addEventListener('DOMContentLoaded', function() {
+                class OrderConfirmation {
+                    constructor() {
+                        // Set the current date when an instance is created
+                        this.setCurrentDate();
                     }
 
-                    // Generate an auto-generated order number
-                    var orderNumber = this.generateOrderNumber();
+                    setCurrentDate() {
+                        var currentDate = new Date().toISOString().split('T')[0];
+                        this.orderDate = currentDate;
+                        document.getElementById('order-date').value = currentDate;
+                    }
 
-                    // Calculate the total price and update the item totals
-                    const totalPrice = this.calculateTotalPrice();
-
-                    // Display SweetAlert with customer details and order confirmation
-                    const result = await Swal.fire({
-                        title: 'Order Confirmation',
-                        html: `
-            <p><strong>Customer Name:</strong> ${customerName}</p>
-            <p><strong>Order Date:</strong> ${this.orderDate}</p>
-            <p><strong>Order Number:</strong> ${orderNumber}</p>
-            <p><strong>Total Price:</strong> $${totalPrice}</p>
-            <p>Order confirmed! Thank you for your purchase.</p>
-        `,
-                        icon: 'success',
-                        confirmButtonText: 'OK'
-                    });
-
-                    if (result.isConfirmed) {
-                        // Reset the form after confirmation
-                        document.getElementById('confirm-order-form').reset();
-
-                        // Perform additional actions here, such as making an AJAX request to confirm the order on the server
-                        // Example:
-                        const response = await fetch('confirm_order.php', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify({
-                                customerName,
-                                orderDate: this.orderDate,
-                                orderNumber,
-                                totalPrice,
-                                // Add other data if needed
-                            }),
+                    async confirmOrder() {
+                        // Show confirmation dialog
+                        const confirmResult = await Swal.fire({
+                            title: 'Confirm Your Order',
+                            text: 'Are you sure you want to confirm your order?',
+                            icon: 'question',
+                            showCancelButton: true,
+                            confirmButtonText: 'Yes',
+                            cancelButtonText: 'No'
                         });
 
-                        // Handle the response as needed
-                        if (response.ok) {
-                            const data = await response.json();
-                            console.log('Server response:', data);
-                            // You can add more handling based on the server response
-                        } else {
-                            console.error('Error confirming order on the server');
-                            // You can display an error message to the user if needed
+                        if (confirmResult.isConfirmed) {
+                            // Proceed with the order confirmation
+                            await this.proceedWithOrderConfirmation();
                         }
+                    }
+
+                    async proceedWithOrderConfirmation() {
+                        // Get customer name from the form
+                        var customerName = document.getElementById('customer-name').value;
+
+                        // Validate customer name (you may add more validation as needed)
+                        if (customerName.trim() === '') {
+                            // Display SweetAlert for validation error
+                            this.showValidationError('Please enter customer name.');
+                            return;
+                        }
+
+                        // Generate an auto-generated order number
+                        var orderNumber = this.generateOrderNumber();
+
+                        // Calculate the total price and update the item totals
+                        const totalPrice = this.calculateTotalPrice();
+
+                        // Display SweetAlert with customer details and order confirmation
+                        const result = await Swal.fire({
+                            title: 'Order Confirmation',
+                            html: `
+                        <p><strong>Customer Name:</strong> ${customerName}</p>
+                        <p><strong>Order Date:</strong> ${this.orderDate}</p>
+                        <p><strong>Order Number:</strong> ${orderNumber}</p>
+                        <p><strong>Total Price:</strong> $${totalPrice}</p>
+                        <p>Order confirmed! Thank you for your purchase.</p>
+                    `,
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                        });
+
+                        if (result.isConfirmed) {
+                            // Reset the form after confirmation
+                            document.getElementById('confirm-order-form').reset();
+
+                            // Perform additional actions here, such as making an AJAX request to confirm the order on the server
+                            // Example:
+                            const response = await fetch('confirm_order.php', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({
+                                    customerName,
+                                    orderDate: this.orderDate,
+                                    orderNumber,
+                                    totalPrice,
+                                    // Add other data if needed
+                                }),
+                            });
+
+                            // Handle the response as needed
+                            if (response.ok) {
+                                const data = await response.json();
+                                console.log('Server response:', data);
+                                // You can add more handling based on the server response
+                            } else {
+                                console.error('Error confirming order on the server');
+                                // You can display an error message to the user if needed
+                            }
+                        }
+                    }
+
+                    generateOrderNumber() {
+                        return Math.floor(Math.random() * 1000000) + 1;
+                    }
+
+                    calculateTotalPrice() {
+                        let total = 0;
+                        const orderItems = document.querySelectorAll('#order-items tr');
+
+                        orderItems.forEach((item) => {
+                            const price = parseFloat(item.querySelector('td:nth-child(2)').innerText);
+                            const quantity = parseInt(item.querySelector('td:nth-child(3) input').value, 10);
+                            total += price * quantity;
+                        });
+
+                        return total.toFixed(2);
+                    }
+
+                    showValidationError(message) {
+                        Swal.fire({
+                            title: 'Validation Error',
+                            text: message,
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+
+                    updateItemTotal(row, productPrice) {
+                        const quantityInput = row.querySelector('input[name="quantity[]"]');
+                        const quantity = parseInt(quantityInput.value, 10);
+                        const itemTotal = productPrice * quantity;
+
+                        // Update the data attribute with the item total
+                        row.dataset.itemTotal = itemTotal;
+
+                        // Update the total for the current item
+                        row.querySelector('td:nth-child(2)').textContent = itemTotal.toFixed(2);
+
+                        // Update the overall total
+                        const overallTotalElement = document.getElementById('overall-total');
+                        const orderItemsContainer = document.getElementById('order-items');
+                        const overallTotal = Array.from(orderItemsContainer.children).reduce((total, item) => total + parseFloat(item.dataset.itemTotal), 0);
+                        overallTotalElement.textContent = overallTotal.toFixed(2);
+                    }
+
+                    showCustomerInfoForm() {
+                        // Assuming you have a customerInfoForm variable, you can toggle its display
+                        const customerInfoForm = document.getElementById('customer-info-form');
+                        customerInfoForm.style.display = 'block';
                     }
                 }
 
+                // Create an instance of the OrderConfirmation class
+                const orderConfirmation = new OrderConfirmation();
 
-
-                generateOrderNumber() {
-                    return Math.floor(Math.random() * 1000000) + 1;
-                }
-
-                calculateTotalPrice() {
-                    let total = 0;
-                    const orderItems = document.querySelectorAll('#order-items tr');
-
-                    orderItems.forEach((item) => {
-                        const price = parseFloat(item.querySelector('td:nth-child(2)').innerText);
-                        const quantity = parseInt(item.querySelector('td:nth-child(3) input').value, 10);
-                        total += price * quantity;
-                    });
-
-                    return total.toFixed(2);
-                }
-
-
-                showValidationError(message) {
-                    Swal.fire({
-                        title: 'Validation Error',
-                        text: message,
-                        icon: 'error',
-                        confirmButtonText: 'OK'
-                    });
-                }
-
-                updateItemTotal(row, productPrice) {
-                    const quantityInput = row.querySelector('input[name="quantity[]"]');
-                    const quantity = parseInt(quantityInput.value, 10);
-                    const itemTotal = productPrice * quantity;
-
-                    // Update the data attribute with the item total
-                    row.dataset.itemTotal = itemTotal;
-
-                    // Update the total for the current item
-                    row.querySelector('td:nth-child(2)').textContent = itemTotal.toFixed(2);
-
-                    // Update the overall total
-                    overallTotal = Array.from(orderItemsContainer.children).reduce((total, item) => total + parseFloat(item.dataset.itemTotal), 0);
-                    overallTotalElement.textContent = overallTotal.toFixed(2);
-                }
-
-                showCustomerInfoForm() {
-                    // Assuming you have a customerInfoForm variable, you can toggle its display
-                    const customerInfoForm = document.getElementById('customer-info-form');
-                    customerInfoForm.style.display = 'block';
-                }
-            }
-
-            // Create an instance of the OrderConfirmation class
-            const orderConfirmation = new OrderConfirmation();
-
-            // Attach the confirmOrder method to the button click event
-            document.getElementById('submit-btn').addEventListener('click', () => orderConfirmation.confirmOrder());
+                // Attach the confirmOrder method to the button click event
+                document.getElementById('submit-btn').addEventListener('click', () => orderConfirmation.confirmOrder());
+            });
         </script>
 
 
