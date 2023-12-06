@@ -236,152 +236,25 @@ body {
 
 }
 
-
-#hamburgers-content {
-    text-align: center;
+.product-name-heading {
+    /* Add your styles for Product Name heading */
+    color: blue; /* For example */
 }
 
-.hamburger-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    margin-top: 20px;
+.price-heading {
+    /* Add your styles for Price heading */
+    color: green; /* For example */
 }
 
-.hamburger-item {
-    text-align: center;
-    margin: 10px;
+.quantity-heading {
+    /* Add your styles for Quantity heading */
+    color: red; /* For example */
 }
 
-.hamburger-details {
-    border-radius: 8px;
-    border: 2px solid black;
-    padding: 10px;
+.action-heading {
+    /* Add your styles for Action heading */
+    color: orange; /* For example */
 }
-
-
-#hotdogs-content {
-    text-align: center;
-}
-
-.hotdogs-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    margin-top: 20px;
-}
-
-.hotdogs-item {
-    text-align: center;
-    margin: 10px;
-}
-
-.hotdogs-details {
-    border-radius: 8px;
-    border: 2px solid black;
-    padding: 10px;
-}
-
-
-#hamsandwiches-content {
-    text-align: center;
-}
-
-.hams-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    margin-top: 20px;
-}
-
-.hams-item {
-    text-align: center;
-    margin: 10px;
-}
-
-.hams-details {
-    border-radius: 8px;
-    border: 2px solid black;
-    padding: 10px;
-}
-
-/* Styling for Bacon Sandwiches section */
-
-#baconsandwiches-content {
-    text-align: center;
-}
-
-.bacon-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    margin-top: 20px;
-}
-
-.bacon-item {
-    text-align: center;
-    margin: 10px;
-}
-
-.bacon-details {
-    border-radius: 8px;
-    border: 2px solid black;
-    padding: 10px;
-}
-
-.additional-items-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
-    border: 2px solid black;
-    /* Border styling */
-    border-radius: 8px;
-    /* Optional: Rounded corners */
-    padding: 10px;
-    /* Optional: Padding inside the container */
-}
-
-.additional-item {
-    text-align: center;
-    margin: 10px;
-}
-
-.additional-details {
-    border-radius: 8px;
-    border: 2px solid black;
-    /* Border styling for individual items */
-    padding: 10px;
-    /* Optional: Padding inside each item */
-}
-
-/* Styling for Add Ons section */
-
-#drinks-content {
-    text-align: center;
-}
-
-.drinks-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
-    /* Center items vertically */
-    margin-top: 20px;
-}
-
-.drinks-item {
-    text-align: center;
-    margin: 10px;
-}
-
-.drinks-details {
-    border-radius: 8px;
-    border: 2px solid black;
-    padding: 10px;
-}
-
-
 
 
 

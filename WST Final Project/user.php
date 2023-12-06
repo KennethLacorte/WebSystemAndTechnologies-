@@ -171,15 +171,15 @@ $result = $conn->query($sql);
 
 
 
-    <p>This is the content for the ADD ORDER page...</p>
     <section class="ADDORDER" id="addorder-content">
-        <?php
+    <?php
         $category_query = "SELECT category_id, category_name FROM tbl_category";
         $category_result = $conn->query($category_query);
         ?>
-        <br>
-        <br>
-        <h1 class="all-heading" style="color: white;">Add Order</h1>
+<br>
+<br>
+<br>
+        <!-- Form to add items to the order -->
         <form id="add-order-form" action="process_add_order.php" method="post">
             <div class="search-bar">
                 <input type="text" id="searchInput" placeholder="Search...">
@@ -192,7 +192,7 @@ $result = $conn->query($sql);
                 $category_name = $category_row['category_name'];
 
                 // Fetch products for the current category
-                $product_query = "SELECT item_name, item_img, item_price FROM tbl_items WHERE category_id = $category_id";
+                $product_query = "SELECT item_id, item_name, item_img, item_price FROM tbl_items WHERE category_id = $category_id";
                 $product_result = $conn->query($product_query);
             ?>
 
@@ -200,11 +200,12 @@ $result = $conn->query($sql);
                     <thead>
                         <tr>
                             <!-- Set the table title dynamically -->
-                            <th colspan="4" class="table-title">
+                            <th colspan="5" class="table-title">
                                 <?php echo $category_name; ?>
                             </th>
                         </tr>
                         <tr>
+                            <th>Product ID</th>
                             <th>Product Name</th>
                             <th>Product Image</th>
                             <th>Price</th>
@@ -218,10 +219,11 @@ $result = $conn->query($sql);
                         // Fetch and display products from the database
                         while ($row = $product_result->fetch_assoc()) {
                             echo "<tr>";
+                            echo "<td>{$row['item_id']}</td>"; // Add the Product ID column
                             echo "<td>{$row['item_name']}</td>";
                             echo "<td><img src='data:image/jpeg;base64," . base64_encode($row['item_img']) . "' alt='{$row['item_name']}' style='width: 50px; height: 50px;'></td>";
                             echo "<td>{$row['item_price']}</td>";
-                            echo "<td><button class='add-to-order-button' data-product-name='{$row['item_name']}' data-product-img='" . base64_encode($row['item_img']) . "' data-product-price='{$row['item_price']}'>Add to Order</button></td>";
+                            echo "<td><button class='add-to-order-button' data-product-id='{$row['item_id']}' data-product-name='{$row['item_name']}' data-product-img='" . base64_encode($row['item_img']) . "' data-product-price='{$row['item_price']}'>Add to Order</button></td>";
                             echo "</tr>";
                         }
                         ?>
@@ -239,6 +241,7 @@ $result = $conn->query($sql);
 
 
 
+
     <section class="ORDERS" id="order-content">
         <p>This is the content for the ORDER page...</p>
         <h2 class="all-heading" style="color: black;">Order</h2>
@@ -252,25 +255,24 @@ $result = $conn->query($sql);
             <input type="text" id="order-number" name="orderNumber" readonly>
 
             <table class="content-table">
-                <thead>
-                    <tr>
-                        <th>Product Name</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody class="text-center" id="order-items">
-                    <!-- Add your order items here if needed -->
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="3">Total: </td>
-                        <td id="overall-total" colspan="1">0.00</td>
-                        <td></td>
-                    </tr>
-                </tfoot>
-            </table>
+                    <thead>
+                        <tr>
+                            <th class="product-name-heading">Product Name</th>
+                            <th class="price-heading">Price</th>
+                            <th class="quantity-heading" >Quantity </th>
+                            <th class="action-heading">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center" id="order-items">
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="2  ">Total Price: <span id="overall-total" colspan="0">0.00</span></td>
+                            
+                            <td></td>
+                        </tr>
+                    </tfoot>
+                </table>
             <br><br>
             <button type="button" id="submit-btn" onclick="confirmOrder()">Confirm Order</button>
         </form>
