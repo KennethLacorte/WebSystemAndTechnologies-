@@ -1,0 +1,77 @@
+       /* Common style for content-table */
+        .content-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        /* Common style for table header */
+        .content-table th {
+            background-color: #f2f2f2;
+            text-align: center;
+            padding: 8px;
+            border: 1px solid #dddddd;
+            width: 25%; /* Equal width for each column */
+        }
+
+        /* Common style for table cells */
+        .content-table td {
+            text-align: center;
+            padding: 8px;
+            border: 1px solid #dddddd;
+            width: 25%; /* Equal width for each column */
+        }
+
+        /* Style for odd rows */
+        .content-table tr:nth-child(odd) {
+            background-color: #f9f9f9;
+        }
+
+        /* Style for even rows */
+        .content-table tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+        .add-to-order-button {
+                background-color: #4caf50;
+                color: white;
+                padding: 8px 12px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+        }
+        .add-to-order-button:hover {
+                background-color: #45a049;
+        }
+        .add-to-order-button[disabled] {
+            background-color: #dddddd; /* Change to your desired color */
+            color: #888888; /* Change to your desired text color */
+            cursor: not-allowed;
+        }
+        /* Style for the search bar container */
+.search-bar-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+}
+
+/* Style for the search input */
+#searchInput {
+    padding: 8px;
+    font-size: 14px;
+}
+
+/* Style for the search button */
+#searchButton {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+}
+
+/* Style for the search button on hover */
+#searchButton:hover {
+    background-color: #45a049;
+}

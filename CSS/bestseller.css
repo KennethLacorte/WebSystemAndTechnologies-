@@ -1,0 +1,111 @@
+
+.card{
+    box-shadow: 0px 0px 5px black;
+    cursor: pointer;
+    transition: transform 0.5s ease;
+    margin: auto;
+}
+.best-card .card:hover{
+    transform: translateY(-15px);
+}
+.best-card h1{
+    font-weight: bold;
+    color: white;/* Your existing styles */
+
+.card {
+    box-shadow: 0px 0px 5px black;
+    cursor: pointer;
+    transition: box-shadow 0.5s ease;
+    margin: auto;
+}
+
+.best-card .card:hover {
+    box-shadow: 0px 0px 15px black;
+}
+
+.best-card h1,
+.best-card p {
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 1px 5px black;
+}
+
+.container {
+    margin-top: 100px;
+}
+
+.card-content h1,
+.card-content h3,
+.card-content h5,
+.card-content p {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+/* Reset the anchor tag styling */
+.card-link {
+    display: block;
+}
+
+.card-link:hover {
+    text-decoration: none;
+}
+
+/* Additional styles for .card-link */
+.card-link {
+    color: inherit;
+}
+
+.card-link:hover {
+    color: inherit;
+}
+
+/* Media query for landscape layout */
+@media only screen and (min-width: 768px) {
+    .best-card .row {
+        display: flex;
+    }
+
+    .best-card .col-md-4 {
+        flex: 1;
+        margin: 0;
+    }
+}
+
+    text-shadow:  2px 1px 5px black;
+}
+.best-card p{
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 1px 5px black;
+}
+
+
+
+.container{
+    margin-top: 100px;
+}
+.card-content h1{
+    font-size: 30px;
+    font-weight: bold;
+}
+.card-content h3{
+    font-size: 30px;
+    font-weight: bold;
+}
+.card-content h5{
+    font-size: 30px;
+    font-weight: bold;
+}
+.card-content p{
+    font-weight: bold;
+}
+
+  /* Add this style to reset the anchor tag styling */
+  .card-link {
+    display: block;
+}
+
+.card-link:hover {
+    text-decoration: none;
+}

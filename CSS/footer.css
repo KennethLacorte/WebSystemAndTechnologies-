@@ -1,0 +1,21 @@
+
+#footer{
+    background-color: black;
+    padding: 30px 0;
+    font-size: 14px;
+    margin-top: 50px;
+}
+#footer .footer-links a{
+    color: white;
+    font-weight: bold;
+    padding-left: 15px;
+}
+#footer .footer-links a:first-child{
+    padding-left: 0;
+}
+#footer .footer-links a:hover{
+    color: rgba(255,166,0);
+}
+.copyright{
+    color: white;
+}

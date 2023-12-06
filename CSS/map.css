@@ -1,0 +1,14 @@
+/* styles.css */
+
+#map {
+    height: 300px;
+    width: 30%;
+    margin: 20px; /* Add margin as needed */
+    position: relative;
+}
+
+#map iframe {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #ccc;
+}

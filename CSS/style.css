@@ -1,0 +1,425 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Kanit', sans-serif;
+    scroll-behavior: smooth;
+}
+
+html {
+    font-size: 80.5%;
+    overflow-x: hidden;
+}
+
+body {
+   padding-top: 60px; /* Adjusted padding based on your navbar height */
+}
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: 0.3s ease-in-out;
+}
+
+#logo-color i img {
+    width: 50px;
+}
+
+.navbar-brand {
+    margin-left: 50px;
+    color: rgba(255, 166, 0);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#menu-color {
+    background-color: rgba(255, 166, 0);
+}
+
+.navbar-brand:hover {
+    color: rgba(255, 166, 0);
+}
+
+.navbar-nav {
+    margin-left: 50px;
+}
+
+.nav-item {
+    margin-left: 10px;
+}
+
+#first {
+    border-bottom: 2px solid rgba(255, 166, 0);
+}
+
+.nav-link {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: 0.3s ease;
+    text-transform: capitalize;
+}
+
+.nav-link:hover {
+    background-color: rgba(255, 166, 0);
+    box-shadow: 0 0 5px rgba(255, 166, 0),
+        0 0 20px rgba(255, 166, 0),
+        0 0 60px rgba(255, 166, 0),
+        0 0 150px rgba(255, 166, 0);
+    color: black;
+}
+
+section {
+    min-height: 100vh;
+    padding: 10rem 9% 2rem; /* Adjusted padding top to 4rem (60px) */
+    display: flex;
+    justify-content: center; /* Use justify-content instead of justify-self */
+    align-items: center;
+}
+
+.all-heading {
+    margin-top: auto; /* Align at the bottom of the container */
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    font-size: 60px;
+    color: #ef6e12;
+}
+
+.ABOUT, .ADDORDER{
+    background: black;
+}
+
+
+
+
+
+.main-content{
+    width: 100%;
+    height: 90vh;
+    background-image: url(../images/backgrounds.png);
+    background-size: cover;
+    background-position: 73%;
+}
+
+.home-content{
+    padding-top: 160px;
+    margin-right: 1100px;
+    color: white;
+}
+.home-content h1{
+    font-size: 70px;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+.home-content h2{
+    font-size: 70px;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+#btn1 button{
+    width: 200px;
+    height: 35px;
+    margin-top: 20px;
+    letter-spacing: 3px;
+    font-weight: bold;
+    background-color: rgba(255,166,0);
+    border: none;
+    transition: 0.3s ease;
+    cursor: pointer;
+
+}#btn1 button:hover{
+    background-color: rgba(255,166,0);
+    box-shadow: 0 0 5px rgba(255,166,0),
+                 0 0 20px rgba(255,166,0),
+                 0 0 60px rgba(255,166,0),
+                 0 0 150px rgba(255,166,0);
+}
+
+/* ABOUT */
+.ABOUT {
+    color: white;
+}
+
+.ABOUT h1,
+.ABOUT h2,
+.ABOUT p {
+    color: white;
+}
+
+.ABOUT .card {
+    background-color: transparent; /* Optional: Set the card background to transparent */
+}
+
+.ABOUT img {
+    width: 90%; /* Optional: Make the image responsive within the card */
+}
+
+
+  
+
+
+/* Hero */
+section#hero {
+    height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+}
+
+#hero {
+    background-color: #f0f0f0;
+    padding: 20px;
+    text-align: center;
+}
+
+section {
+    padding: 20px;
+    text-align: center;
+    display: none;
+}
+
+#home-content {
+    display: block;
+
+}
+
+/* Dropdown menu */
+/* Your existing styles */
+.dropdown {
+    position: relative;
+
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    display: inline-block;
+
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: rgb(255, 255, 255);
+    z-index: 1;
+    cursor: pointer;
+}
+
+.dropdown-menu li {
+    padding: 10px;
+    border-bottom: 2px solid #1e1d1d;
+    display:  block;
+    text-decoration: none;
+}
+
+.dropdown-menu li:last-child {
+    border-bottom: none;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+/*ADD ORDER*/
+
+.menu-content {
+    display: none;
+    background-color: yellow;
+    padding: 20px;
+    /* Adjusted padding */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+
+}
+
+
+#hamburgers-content {
+    text-align: center;
+}
+
+.hamburger-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.hamburger-item {
+    text-align: center;
+    margin: 10px;
+}
+
+.hamburger-details {
+    border-radius: 8px;
+    border: 2px solid black;
+    padding: 10px;
+}
+
+
+#hotdogs-content {
+    text-align: center;
+}
+
+.hotdogs-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.hotdogs-item {
+    text-align: center;
+    margin: 10px;
+}
+
+.hotdogs-details {
+    border-radius: 8px;
+    border: 2px solid black;
+    padding: 10px;
+}
+
+
+#hamsandwiches-content {
+    text-align: center;
+}
+
+.hams-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.hams-item {
+    text-align: center;
+    margin: 10px;
+}
+
+.hams-details {
+    border-radius: 8px;
+    border: 2px solid black;
+    padding: 10px;
+}
+
+/* Styling for Bacon Sandwiches section */
+
+#baconsandwiches-content {
+    text-align: center;
+}
+
+.bacon-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.bacon-item {
+    text-align: center;
+    margin: 10px;
+}
+
+.bacon-details {
+    border-radius: 8px;
+    border: 2px solid black;
+    padding: 10px;
+}
+
+.additional-items-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    border: 2px solid black;
+    /* Border styling */
+    border-radius: 8px;
+    /* Optional: Rounded corners */
+    padding: 10px;
+    /* Optional: Padding inside the container */
+}
+
+.additional-item {
+    text-align: center;
+    margin: 10px;
+}
+
+.additional-details {
+    border-radius: 8px;
+    border: 2px solid black;
+    /* Border styling for individual items */
+    padding: 10px;
+    /* Optional: Padding inside each item */
+}
+
+/* Styling for Add Ons section */
+
+#drinks-content {
+    text-align: center;
+}
+
+.drinks-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    /* Center items vertically */
+    margin-top: 20px;
+}
+
+.drinks-item {
+    text-align: center;
+    margin: 10px;
+}
+
+.drinks-details {
+    border-radius: 8px;
+    border: 2px solid black;
+    padding: 10px;
+}
+
+
+
+
+
+
+/* Responsive design */
+@media (max-width: 1200px) {
+
+    .navbar .action_btn {
+        display: none;
+    }
+
+    .navbar .toggle_btn {
+        display: block;
+    }
+
+    .dropdown-menu {
+        display: block;
+        position: relative;
+        /* Adjusted position */
+        top: 0;
+        /* Adjusted position */
+    }
+
+    .dropdown-menu li {
+        text-align: center;
+        /* Centering the dropdown items */
+    }
+
+    .menu-content {
+        padding: 20px;
+        /* Adjusted padding */
+    }
+
+    .search-bar input {
+        width: 100%;
+        margin-left: 0;
+        /* Adjusted margin */
+    }
+
+
+}
