@@ -69,26 +69,27 @@ $result = $conn->query($sql);
             </button>
 
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
-                <ul class="navbar-nav"> <!-- Added opening <ul> tag -->
+                <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="#Main-content" style="color: white;" id="first">Home</a>
+                        <a class="nav-link" href="#" onclick="onNavButtonClick('Main-content')" style="color: white;" id="first">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#bestSeller-content" style="color: white;">Best Seller</a>
+                        <a class="nav-link" href="#" onclick="onNavButtonClick('bestSeller-content')" style="color: white;">Best Seller</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#addorder-content" style="color: white;">Add Order</a>
+                        <a class="nav-link" href="#" onclick="onNavButtonClick('addorder-content')" style="color: white;">Add Order</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#order-content" style="color: white;">Orders</a>
-                    </li>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#about" style="color: white;">About Us</a>
+                        <a class="nav-link" href="#" onclick="onNavButtonClick('order-content')" style="color: white;">Orders</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#contactus" style="color: white;">Contact Us</a>
+                        <a class="nav-link" href="#" onclick="onNavButtonClick('vieworder-content')" style="color: white;">View Order</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="onNavButtonClick('about')" style="color: white;">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="onNavButtonClick('contactus')" style="color: white;">Contact Us</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="https://www.facebook.com/angelsburgerph/" target="_blank"><i class="fab fa-facebook-square" style="color: white;"></i></a>
@@ -102,7 +103,9 @@ $result = $conn->query($sql);
                 </ul>
             </div>
         </nav>
-        <section class="main-content" id="Main-content">
+
+        <script src ="../JS/buttonclicked.js"></script>
+        <section class="main-content content-section" id="Main-content">
             <div class="home-content">
                 <h1>BEST DEAL</h1>
                 <h2>BURGER</h2>
@@ -119,7 +122,7 @@ $result = $conn->query($sql);
 
 
 
-    <section class="BestSeller" id="bestSeller-content">
+    <section class="BestSeller content-section" id="bestSeller-content">
         <div class="container">
             <div class="best-card">
                 <div class="row" style="margin-top: 100px;">
@@ -171,7 +174,7 @@ $result = $conn->query($sql);
 
 
 
-    <section class="ADDORDER" id="addorder-content">
+    <section class="ADDORDER content-section" id="addorder-content">
         <?php
         $category_query = "SELECT category_id, category_name FROM tbl_category";
         $category_result = $conn->query($category_query);
@@ -245,7 +248,7 @@ $result = $conn->query($sql);
 
 
 
-    <section class="ORDERS" id="order-content">
+    <section class="ORDERS content-section" id="order-content">
         <p>This is the content for the ORDER page...</p>
         <h2 class="all-heading" style="color: black;">Order</h2>
 
@@ -288,7 +291,12 @@ $result = $conn->query($sql);
 
 
 
-    <section class="ABOUT" id="about">
+    <section class="ViewOrder content-section" id="vieworder-content">
+        <div class="container">
+        </div>
+    </section>
+
+    <section class="ABOUT content-section" id="about">
         <br>
         <br>
         <h2 class="all-heading"> About<span>Section</span></h2>
@@ -312,7 +320,7 @@ $result = $conn->query($sql);
 
 
 
-    <section class="Contact-Us" id="contactus">
+    <section class="Contact-Us content-section" id="contactus">
         <br>
         <br>
         <br>
