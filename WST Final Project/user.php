@@ -172,13 +172,13 @@ $result = $conn->query($sql);
 
 
     <section class="ADDORDER" id="addorder-content">
-    <?php
+        <?php
         $category_query = "SELECT category_id, category_name FROM tbl_category";
         $category_result = $conn->query($category_query);
         ?>
-<br>
-<br>
-<br>
+        <br>
+        <br>
+        <br>
         <!-- Form to add items to the order -->
         <form id="add-order-form" action="process_add_order.php" method="post">
             <div class="search-bar">
@@ -200,7 +200,7 @@ $result = $conn->query($sql);
                     <thead>
                         <tr>
                             <!-- Set the table title dynamically -->
-                            <th colspan="5" class="table-title">
+                            <th colspan="6" class="table-title">
                                 <?php echo $category_name; ?>
                             </th>
                         </tr>
@@ -209,6 +209,7 @@ $result = $conn->query($sql);
                             <th>Product Name</th>
                             <th>Product Image</th>
                             <th>Price</th>
+                            <th>Quantity</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -223,10 +224,12 @@ $result = $conn->query($sql);
                             echo "<td>{$row['item_name']}</td>";
                             echo "<td><img src='data:image/jpeg;base64," . base64_encode($row['item_img']) . "' alt='{$row['item_name']}' style='width: 50px; height: 50px;'></td>";
                             echo "<td>{$row['item_price']}</td>";
-                            echo "<td><button class='add-to-order-button' data-product-id='{$row['item_id']}' data-product-name='{$row['item_name']}' data-product-img='" . base64_encode($row['item_img']) . "' data-product-price='{$row['item_price']}'>Add to Order</button></td>";
+                            echo "<td><input type='number' id='quantity-{$row['item_id']}' value='1' min='1' class='quantity'></td>";
+                            echo "<td><button class='add-to-order-button' data-product-id='{$row['item_id']}' data-product-name='{$row['item_name']}' data-product-img='" . base64_encode($row['item_img']) . "' data-product-price='{$row['item_price']}' data-item-id='{$row['item_id']}'>Add to Order</button></td>";
                             echo "</tr>";
                         }
                         ?>
+
                     </tbody>
                 </table>
 
@@ -255,24 +258,24 @@ $result = $conn->query($sql);
             <input type="text" id="order-number" name="orderNumber" readonly>
 
             <table class="content-table">
-                    <thead>
-                        <tr>
-                            <th class="product-name-heading">Product Name</th>
-                            <th class="price-heading">Price</th>
-                            <th class="quantity-heading" >Quantity </th>
-                            <th class="action-heading">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-center" id="order-items">
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="2  ">Total Price: <span id="overall-total" colspan="0">0.00</span></td>
-                            
-                            <td></td>
-                        </tr>
-                    </tfoot>
-                </table>
+                <thead>
+                    <tr>
+                        <th class="product-name-heading">Product Name</th>
+                        <th class="price-heading">Price</th>
+                        <th class="quantity-heading">Quantity </th>
+                        <th class="action-heading">Action</th>
+                    </tr>
+                </thead>
+                <tbody class="text-center" id="order-items">
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="2  ">Total Price: <span id="overall-total" colspan="0">0.00</span></td>
+
+                        <td></td>
+                    </tr>
+                </tfoot>
+            </table>
             <br><br>
             <button type="button" id="submit-btn" onclick="confirmOrder()">Confirm Order</button>
         </form>
@@ -310,29 +313,29 @@ $result = $conn->query($sql);
 
 
     <section class="Contact-Us" id="contactus">
-    <br>
-    <br>
-    <br>
-    <div class="container">
-        <h1 class="text-center" style="font-weight: bold; margin-top:50px">System Developers:</h1>
-        <div class="border-container">
-            <img src="../images/od.jpeg" alt="Your Image" class="content-image">
-            <h3>Hi I'm Odlanyer</h3>
-            <p>Contact Me here</p>
-            <a href="https://www.facebook.com/Imodlanyer" target="_blank"><i class="fab fa-facebook-square icon"></i></a>
-            <a href="https://www.instagram.com/imodlanyer/" target="_blank"><i class="fab fa-instagram-square icon"></i></a>
-            <a href="mailto:odparker14@gmail.com?subject=Subject%20Here" target="_blank"><i class="fas fa-envelope icon"></i></a>
+        <br>
+        <br>
+        <br>
+        <div class="container">
+            <h1 class="text-center" style="font-weight: bold; margin-top:50px">System Developers:</h1>
+            <div class="border-container">
+                <img src="../images/od.jpeg" alt="Your Image" class="content-image">
+                <h3>Hi I'm Odlanyer</h3>
+                <p>Contact Me here</p>
+                <a href="https://www.facebook.com/Imodlanyer" target="_blank"><i class="fab fa-facebook-square icon"></i></a>
+                <a href="https://www.instagram.com/imodlanyer/" target="_blank"><i class="fab fa-instagram-square icon"></i></a>
+                <a href="mailto:odparker14@gmail.com?subject=Subject%20Here" target="_blank"><i class="fas fa-envelope icon"></i></a>
+            </div>
+            <div class="border-container">
+                <img src="../images/kanuto.jpeg" alt="Your Image" class="content-image">
+                <h3>Hi I'm Kenneth</h3>
+                <p>Contact Me here</p>
+                <a href="https://www.facebook.com/lacortekennet" target="_blank"><i class="fab fa-facebook-square icon"></i></a>
+                <a href="https://www.instagram.com/lacortejohnkanuto/" target="_blank"><i class="fab fa-instagram-square icon"></i></a>
+                <a href="mailto:kenneth@example.com" target="_blank"><i class="fas fa-envelope icon"></i></a>
+            </div>
         </div>
-        <div class="border-container">
-            <img src="../images/kanuto.jpeg" alt="Your Image" class="content-image">
-            <h3>Hi I'm Kenneth</h3>
-            <p>Contact Me here</p>
-            <a href="https://www.facebook.com/lacortekennet" target="_blank"><i class="fab fa-facebook-square icon"></i></a>
-            <a href="https://www.instagram.com/lacortejohnkanuto/" target="_blank"><i class="fab fa-instagram-square icon"></i></a>
-            <a href="mailto:kenneth@example.com" target="_blank"><i class="fas fa-envelope icon"></i></a>
-        </div>
-    </div>
-</section>
+    </section>
 
 
 
