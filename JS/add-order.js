@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const row = document.createElement('tr');
         const originalPrice = productPrice;
 
-        row.innerHTML = `<td>${productName}</td><td>${originalPrice.toFixed(2)}</td><td><label for="quantity-${itemId}">Quantity:</label><input type="text" id="quantity-${itemId}" name="quantity[]" value="${quantity}" min="1" class="quantity"></td><td><button class="remove-item-button" data-item-id="${itemId}">Remove</button></td>`;
+        row.innerHTML = `<td>${productName}</td><td>${originalPrice.toFixed(2)}</td><td><input type="text" id="quantity-${itemId}" name="quantity[]" value="${quantity}" min="1" class="quantity"></td><td><button class="remove-item-button" data-item-id="${itemId}">Remove</button></td>`;
         row.dataset.productId = productId; // Add product ID to the dataset
         row.dataset.itemId = itemId; // Add item ID to the dataset
         row.dataset.itemPrice = originalPrice.toFixed(2);
@@ -82,6 +82,10 @@ document.addEventListener('DOMContentLoaded', function () {
             // Enable the quantity input
             quantityInput.disabled = false;
         });
+
+        // Update overall total when adding a new item
+        overallTotal += parseFloat(row.dataset.itemTotal);
+        overallTotalElement.textContent = overallTotal.toFixed(2);
     }
 
     function updateItemTotal(row, originalPrice) {

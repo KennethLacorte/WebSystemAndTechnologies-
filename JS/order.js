@@ -55,12 +55,24 @@ class OrderConfirmation {
             if (response.ok) {
                 const data = await response.json();
                 console.log('Server response:', data);
+
+                // Reset and hide elements in the order-page
+                this.resetOrderPage();
             } else {
                 console.error('Error confirming order on the server');
             }
         }
     }
 
+    resetOrderPage() {
+        const orderItems = document.getElementById('order-items');
+        const customerInfoForm = document.getElementById('confirm-order-form');
+        const overallTotalElement = document.getElementById('overall-total');
+
+        orderItems.innerHTML = ''; // Clear order items
+        customerInfoForm.style.display = 'none'; // Hide customer info form
+        overallTotalElement.textContent = '0.00'; // Reset overall total
+    }
 
     generateOrderNumber() {
         return Math.floor(Math.random() * 1000000) + 1;

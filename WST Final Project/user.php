@@ -270,8 +270,8 @@ $result = $conn->query($sql);
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="2  ">Total Price: <span id="overall-total" colspan="0">0.00</span></td>
-
+                        <td colspan="2">Total: </td>
+                        <td id="overall-total" colspan="1"> 0.00</td>
                         <td></td>
                     </tr>
                 </tfoot>
