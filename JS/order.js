@@ -68,11 +68,22 @@ class OrderConfirmation {
         const orderItems = document.getElementById('order-items');
         const customerInfoForm = document.getElementById('confirm-order-form');
         const overallTotalElement = document.getElementById('overall-total');
-
+    
         orderItems.innerHTML = ''; // Clear order items
         customerInfoForm.style.display = 'none'; // Hide customer info form
         overallTotalElement.textContent = '0.00'; // Reset overall total
+    
+        // Reset quantity and enable "Add to Order" buttons
+        const addToOrderButtons = document.querySelectorAll('.add-to-order-button');
+        addToOrderButtons.forEach(button => {
+            button.disabled = false;
+            const itemId = button.dataset.itemId;
+            const quantityInput = document.querySelector(`#quantity-${itemId}`);
+            quantityInput.value = 1; // Reset quantity to default (1)
+            quantityInput.disabled = false; // Enable the quantity input
+        });
     }
+    
 
     generateOrderNumber() {
         return Math.floor(Math.random() * 1000000) + 1;
