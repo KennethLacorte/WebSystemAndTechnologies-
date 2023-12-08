@@ -107,11 +107,13 @@
 }
 
 .quantity-input {
-    width: 50px;
+    width: 30px;
     text-align: center;
 }
 
 .add-to-order-button {
+    height: 50px;
+    width : 100px;
     padding: 5px 10px;
     cursor: pointer;
     background-color: #4CAF50;
@@ -150,4 +152,29 @@
   }
   
   /* table width*/
+  /* Style for the "Not Available" quantity input */
+.quantity[readonly] {
+    background-color: rgb(237, 237, 182); /* Light gray background */
+    color: #555; /* Dark gray text color */
+    text-align: center;
+}
+
+/* Style for the "Not Available" button */
+.not-available-button {
+    height: 50px;
+    width: 100px;
+    background-color: #ff6666; /* Red background */
+    color: #fff; /* White text color */
+    padding: 5px 10px; /* Same padding as the "Add to Order" button */
+    border: none;
+    border-radius: 3px;
+    cursor: not-allowed; /* Display disabled cursor */
+}
+
+/* Optional: Add a hover effect for better user experience */
+.not-available-button:hover {
+    background-color: #ff4d4d; /* Darker red on hover */
+}
+
+
   
