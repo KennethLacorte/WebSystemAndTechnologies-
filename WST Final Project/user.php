@@ -51,7 +51,6 @@ $result = $conn->query($sql);
     <link rel="stylesheet" type="text/css" href="path/to/slick/slick.css" />
     <link rel="stylesheet" type="text/css" href="path/to/slick/slick-theme.css" />
     <script type="text/javascript" src="path/to/slick/slick.min.js"></script>
-    <script type="text/javascript" src="../JS/reset.js"></script>
 
 
 
@@ -115,7 +114,7 @@ $result = $conn->query($sql);
                 <h1>BEST DEAL</h1>
                 <h2>BURGER</h2>
                 <div id="btn1">
-                <a href="#addorder-content" class="card-link" onclick="onNavButtonClick('addorder-content')">
+                    <a href="#addorder-content" class="card-link" onclick="showAddOrderContent()">
                         <button>Order Now</button>
                     </a>
                 </div>
@@ -163,60 +162,60 @@ $result = $conn->query($sql);
 
 
     <section class="BestSeller content-section" id="bestSeller-content">
-        <div class="container">
-            <div class="best-card">
-                <div class="row" style="margin-top: 20px;">
-                    <!-- First Column -->
-                    <div class="col-md-4 py-3 py-md-0">
-                        <a href="#addorder-content" class="card-link" onclick="onNavButtonClick('addorder-content')">
-                            <div class="card">
-                                <img class="card-image-top" src="../images/CheesyBurger.jpg" alt="">
-                                <div class="card-img-overlay">
-                                    <h1 class="card-title">Cheesy Burger Sandwich</h1>
-                                    <p class="card-text">BUY 1 TAKE 1</p>
-                                </div>
+    <div class="container">
+        <div class="best-card">
+            <div class="row" style="margin-top: 20px;">
+                <!-- First Column -->
+                <div class="col-md-4 py-3 py-md-0">
+                    <a href="#addorder-content" class="card-link" onclick="showAddOrderContent()">
+                        <div class="card">
+                            <img class="card-image-top" src="../images/CheesyBurger.jpg" alt="">
+                            <div class="card-img-overlay">
+                                <h1 class="card-title">Cheesy Burger Sandwich</h1>
+                                <p class="card-text">BUY 1 TAKE 1</p>
                             </div>
-                        </a>
-                    </div>
+                        </div>
+                    </a>
+                </div>
 
-                    <!-- Second Column -->
-                    <div class="col-md-4 py-3 py-md-0">
-                        <a href="#addorder-content" class="card-link" onclick="onNavButtonClick('addorder-content')">
-                            <div class="card">
-                                <video class="card-image-top" autoplay loop muted>
-                                    <source src="../images/angelsvideo.mp4" type="video/mp4">
-                                </video>
-                                <div class="card-img-overlay">
-                                    <h1 class="card-title">BURGER NG BAYAN</h1>
-                                    <!-- Add appropriate content for video -->
-                                </div>
+                <!-- Second Column -->
+                <div class="col-md-4 py-3 py-md-0">
+                    <a href="#addorder-content" class="card-link" onclick="showAddOrderContent()">
+                        <div class="card">
+                            <video class="card-image-top" autoplay loop muted>
+                                <source src="../images/angelsvideo.mp4" type="video/mp4">
+                            </video>
+                            <div class="card-img-overlay">
+                                <h1 class="card-title">BURGER NG BAYAN</h1>
+                                <!-- Add appropriate content for video -->
                             </div>
-                        </a>
-                    </div>
+                        </div>
+                    </a>
+                </div>
 
-                    <!-- Third Column -->
-                    <div class="col-md-4 py-3 py-md-0">
-                        <a href="#addorder-content" class="card-link" onclick="onNavButtonClick('addorder-content')">
-                            <div class="card">
-                                <img class="card-image-top" src="../images/Footlong.jpg" alt="">
-                                <div class="card-img-overlay">
-                                    <h1 class="card-title">Jumbo Cheese Footlong Sandwich</h1>
-                                    <p class="card-text">Wow na Wow!</p>
-                                </div>
+                <!-- Third Column -->
+                <div class="col-md-4 py-3 py-md-0">
+                    <a href="#addorder-content" class="card-link" onclick="showAddOrderContent()">
+                        <div class="card">
+                            <img class="card-image-top" src="../images/Footlong.jpg" alt="">
+                            <div class="card-img-overlay">
+                                <h1 class="card-title">Jumbo Cheese Footlong Sandwich</h1>
+                                <p class="card-text">Wow na Wow!</p>
                             </div>
-                        </a>
-                    </div>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
-        <div class="container text-center">
-            <div class="banner">
-                <h1>Angels Burger <span class="change-content"></span></h1>
-                <h2>BUY 1 TAKE 1</h2>
-                <div id="btn2"><button>Order Now</button></div>
-            </div>
+    </div>
+    <div class="container text-center">
+        <div class="banner">
+            <h1>Angels Burger <span class="change-content"></span></h1>
+            <h2>BUY 1 TAKE 1</h2>
+            <div id="btn2"><button>Order Now</button></div>
         </div>
-    </section>
+    </div>
+</section>
     <script>
         function showAddOrderContent() {
             // Toggle the display property of the addorder-content
@@ -248,58 +247,45 @@ $result = $conn->query($sql);
                 $category_name = $category_row['category_name'];
 
                 // Fetch products for the current category
-                $product_query = "SELECT item_id, item_name, item_img, item_price, availability FROM tbl_items WHERE category_id = $category_id";
+                $product_query = "SELECT item_id, item_name, item_img, item_price FROM tbl_items WHERE category_id = $category_id";
                 $product_result = $conn->query($product_query);
-
             ?>
                 <div class="table-responsive">
-                    <table class="table table-striped table-bordered table-dark table-hover">
-                        <thead class="table-dark">
-                            <tr>
+                <table class="table table-striped table-bordered table-dark table-hover">
+                <thead class="table-dark">
+                      <tr>
 
-                                <td colspan="6" class="table-title">
-                                    <?php echo $category_name; ?>
-                                    </th>
-                            </tr>
-                            <tr>
-                                <th class="align-middle">Product ID</th>
-                                <th class="align-middle">Product Name</th>
-                                <th class="align-middle">Product Image</th>
-                                <th class="align-middle">Price</th>
-                                <th class="align-middle">Quantity</th>
-                                <th class="align-middle">Action</th>
-                            </tr>
-                        </thead>
-                </div>
-                <!-- Display product information in the table body -->
-                <tbody class="text-center">
-                    <?php
-                    // Inside the while loop where you display products
-                    while ($row = $product_result->fetch_assoc()) {
-                        echo "<tr>";
-                        echo "<td>{$row['item_id']}</td>"; // Add the Product ID column
-                        echo "<td>{$row['item_name']}</td>";
-                        echo "<td><img src='data:image/jpeg;base64," . base64_encode($row['item_img']) . "' alt='{$row['item_name']}' style='width: 50px; height: 50px;'></td>";
-                        echo "<td>{$row['item_price']}</td>";
-
-                        if (array_key_exists('availability', $row)) {
-                            if ($row['availability'] == 1) {
-                                echo "<td><input type='number' id='quantity-{$row['item_id']}' value='1' min='1' class='quantity' style='width: 100px; height: 50px; text-align: center;'></td>";
-                                echo "<td><button class='action-button add-to-order-button' data-product-id='{$row['item_id']}' data-product-name='{$row['item_name']}' data-product-img='" . base64_encode($row['item_img']) . "' data-product-price='{$row['item_price']}' data-item-id='{$row['item_id']}'>Add to Order</button></td>";
-                            } else {
-                                echo "<td><input type='text' value='Not Available' readonly class='not-available-input' style='width: 100px; height: 50px; text-align: center;'></td>";
-                                echo "<td><button class='action-button not-available-button' disabled>Not Available</button></td>";
-                            }
-                        } else {
-                            // Handle the case where 'availability' key is not present in the $row array
-                            echo "<td colspan='2'>Availability information not found</td>";
+                            <td colspan="6" class="table-title">
+                                <?php echo $category_name; ?>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th class="align-middle">Product ID</th>
+                            <th class="align-middle">Product Name</th>
+                            <th class="align-middle">Product Image</th>
+                            <th class="align-middle">Price</th>
+                            <th class="align-middle">Quantity</th>
+                            <th class="align-middle">Action</th>
+                        </tr>
+                    </thead>
+                    </div>
+                    <!-- Display product information in the table body -->
+                    <tbody class="text-center">
+                        <?php
+                        // Fetch and display products from the database
+                        while ($row = $product_result->fetch_assoc()) {
+                            echo "<tr>";
+                            echo "<td>{$row['item_id']}</td>"; // Add the Product ID column
+                            echo "<td>{$row['item_name']}</td>";
+                            echo "<td><img src='data:image/jpeg;base64," . base64_encode($row['item_img']) . "' alt='{$row['item_name']}' style='width: 50px; height: 50px;'></td>";
+                            echo "<td>{$row['item_price']}</td>";
+                            echo "<td><input type='number' id='quantity-{$row['item_id']}' value='1' min='1' class='quantity'></td>";
+                            echo "<td><button class='add-to-order-button' data-product-id='{$row['item_id']}' data-product-name='{$row['item_name']}' data-product-img='" . base64_encode($row['item_img']) . "' data-product-price='{$row['item_price']}' data-item-id='{$row['item_id']}'>Add to Order</button></td>";
+                            echo "</tr>";
                         }
-                
-                        echo "</tr>";
-                    }
-                    ?>
+                        ?>
 
-                </tbody>
+                    </tbody>
                 </table>
 
             <?php
@@ -323,11 +309,11 @@ $result = $conn->query($sql);
             <input type="text" id="customer-name" name="customerName" required>
             <label for="order-date">Order Date:</label>
             <input type="date" id="order-date" name="orderDate" required>
-
-            <br>
-            <br>
+           
+<br>    
+<br>
             <table class="table table-striped table-bordered table-dark table-hover">
-                <thead class="table-dark">
+            <thead class="table-dark">
                     <tr>
                         <th class="product-name-heading">Product Name</th>
                         <th class="price-heading">Price</th>
@@ -358,13 +344,10 @@ $result = $conn->query($sql);
 
 
 
-    <section class="VIEWORDER content-section" id="vieworder-content">
+    <section class="ViewOrder content-section" id="vieworder-content">
         <div class="container">
-
-
         </div>
     </section>
-
 
     <section class="ABOUT content-section" id="about">
         <br>
@@ -409,8 +392,8 @@ $result = $conn->query($sql);
                 <h3>Hi I'm Kenneth</h3>
                 <p>Contact Me here</p>
                 <a href="https://www.facebook.com/lacortekennet" target="_blank"><i class="fab fa-facebook-square icon"></i></a>
-                <a href="https://www.instagram.com/lacortejohnkanuto?subject=Subject%20Here/" target="_blank"><i class="fab fa-instagram-square icon"></i></a>
-                <a href="mailto:johnkennethlacorte@gmail.com" target="_blank"><i class="fas fa-envelope icon"></i></a>
+                <a href="https://www.instagram.com/lacortejohnkanuto/" target="_blank"><i class="fab fa-instagram-square icon"></i></a>
+                <a href="mailto:kenneth@example.com" target="_blank"><i class="fas fa-envelope icon"></i></a>
             </div>
         </div>
     </section>
@@ -438,14 +421,16 @@ $result = $conn->query($sql);
                         <a href="#" class="scrollto">Best Seller</a>
                         <a href="#" class="scrollto">Add Order</a>
                         <a href="#" class="scrollto">Order<a>
-                                <a href="#" class="scrollto">View Order<a>
-                                        <a href="#" class="scrollto">About Us</a>
-                                        <a href="#" class="scrollto">Contact Us</a>
+                        <a href="#" class="scrollto">View Order<a>
+                        <a href="#" class="scrollto">About Us</a>
+                        <a href="#" class="scrollto">Contact Us</a>
                     </nav>
                 </div>
             </div>
         </div>
-
+        <div id="map" style="height: 300px; width: 30%;">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3872.2106946604517!2d121.1619312!3d13.9460568!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd6c9867b59525%3A0x9ac1b5e6cd9cfd2f!2sAngel&#39;s%20BURGER!5e0!3m2!1sen!2sph!4v1701786025066!5m2!1sen!2sph" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
     </footer>
 
 
