@@ -121,57 +121,57 @@ $result = $conn->query($sql);
     </div>
 
 
-
     <section class="BestSeller content-section" id="bestSeller-content">
-        <div class="container">
-            <div class="best-card">
-                <div class="row" style="margin-top: 100px;">
-                    <div class="col-md-4 py-3 py-md-0">
-                        <a href="#addorder-content" class="card-link">
-                            <div class="card">
-                                <img class="card-image-top" src="../images/CheesyBurger.jpg" alt="">
-                                <div class="card-img-overlay">
-                                    <h1 class="card-titel">Cheesy Burger Sandwich</h1>
-                                    <p class="card-text">BUY 1 TAKE 1</p>
-                                </div>
+    <div class="container">
+        <div class="best-card">
+            <div class="row" style="margin-top: 100px;">
+                <!-- First Column -->
+                <div class="col-md-4 py-3 py-md-0">
+                    <a href="#addorder-content" class="card-link">
+                        <div class="card">
+                            <img class="card-image-top" src="../images/CheesyBurger.jpg" alt="">
+                            <div class="card-img-overlay">
+                                <h1 class="card-titel">Cheesy Burger Sandwich</h1>
+                                <p class="card-text">BUY 1 TAKE 1</p>
                             </div>
-                        </a>
-                    </div>
-                    <div class="col-md-4 py-3 py-md-0">
-                        <a href="#addorder-content" class="card-link">
-                            <div class="card">
-                                <img class="card-image-top" src="../images/paper.jpg" alt="">
-                                <div class="card-img-overlay">
-                                    <h1 class="card-titel">BUY NOW </h1>
-                                    <p class="card-text">BUY 1 TAKE 1</p>
-                                </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Second Column -->
+                <div class="col-md-4 py-3 py-md-0">
+                    <a href="#addorder-content" class="card-link">
+                        <div class="card">
+                            <video class="card-image-top" autoplay loop muted>
+                                <source src="../images/angelsvideo.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Third Column -->
+                <div class="col-md-4 py-3 py-md-0">
+                    <a href="#addorder-content" class="card-link">
+                        <div class="card">
+                            <img class="card-image-top" src="../images/Footlong.jpg" alt="">
+                            <div class="card-img-overlay">
+                                <h1 class="card-titel">Jumbo Cheese Footlong Sandwich</h1>
+                                <p class="card-text">Wow na Wow!</p>
                             </div>
-                        </a>
-                    </div>
-                    <div class="col-md-4 py-3 py-md-0">
-                        <a href="#addorder-content" class="card-link">
-                            <div class="card">
-                                <img class="card-image-top" src="../images/Footlong.jpg" alt="" height="230px">
-                                <div class="card-img-overlay">
-                                    <h1 class="card-titel">Jumbo Cheese Footlong Sandwich</h1>
-                                    <p class="card-text">BUY 1 TAKE 1</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
-        <div class="container">
-            <div class="banner">
-                <h1>Angels Burger <span class="change-content"></span></h1>
-                <h2>BUY 1 TAKE 1</h2>
-                <div id="btn2"><button>Order Now</button></div>
-            </div>
+    </div>
+    <div class="container">
+        <div class="banner">
+            <h1>Angels Burger <span class="change-content"></span></h1>
+            <h2>BUY 1 TAKE 1</h2>
+            <div id="btn2"><button>Order Now</button></div>
         </div>
-    </section>
-
-
+    </div>
+</section>
 
 
     <section class="ADDORDER content-section" id="addorder-content">
