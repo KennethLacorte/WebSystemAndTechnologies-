@@ -24,8 +24,8 @@ function showContent(contentId) {
     content.style.display = "none";
   });
 
-  // Show the specified content
-  var selectedContent = document.getElementById(contentId);
+  // Show the specified content or default to main-content
+  var selectedContent = document.getElementById(contentId) || document.getElementById("main-content");
   if (selectedContent) {
     selectedContent.style.display = "block";
   }

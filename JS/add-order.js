@@ -44,14 +44,14 @@ document.addEventListener('DOMContentLoaded', function () {
         const row = document.createElement('tr');
         const originalPrice = productPrice;
 
-        row.innerHTML = `<td>${productName}</td><td>${originalPrice.toFixed(2)}</td><td><input type="text" id="quantity-${itemId}" name="quantity[]" value="${quantity}" min="1" class="quantity"></td><td><button class="remove-item-button" data-item-id="${itemId}">Remove</button></td>`;
+        row.innerHTML = `<td>${productName}</td><td>${originalPrice.toFixed(2)}</td><td><input type="readonly" id="quantity-${itemId}" name="quantity[]" value="${quantity}" min="1" class="quantity" readonly></td><td><button class="remove-item-button" data-item-id="${itemId}">Remove</button></td>`;
         row.dataset.productId = productId; // Add product ID to the dataset
         row.dataset.itemId = itemId; // Add item ID to the dataset
         row.dataset.itemPrice = originalPrice.toFixed(2);
         row.dataset.itemTotal = (originalPrice * quantity).toFixed(2); // Initialize item total
         orderItemsContainer.appendChild(row);
 
-        const quantityInput = row.querySelector('input[name="quantity[]"]');
+        const quantityInput = row.querySelector(`#quantity-${itemId}`);
         quantityInput.addEventListener('input', function () {
             // Update the quantity in the productQuantities object
             productQuantities[productId] = parseInt(quantityInput.value, 10);
@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function updateItemTotal(row, originalPrice) {
-        const quantityInput = row.querySelector('input[name="quantity[]"]');
+        const quantityInput = row.querySelector(`#quantity-${row.dataset.itemId}`);
         const quantity = parseInt(quantityInput.value, 10);
         const itemTotal = originalPrice * quantity;
 

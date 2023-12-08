@@ -36,8 +36,11 @@ $result = $conn->query($sql);
     <link rel="stylesheet" type="text/css" href="../CSS/banner.css">
     <link rel="stylesheet" type="text/css" href="../CSS/map.css">
     <link rel="stylesheet" type="text/css" href="../CSS/contactus.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/login.css">
     <link rel="stylesheet" type="text/css" href="../CSS/footer.css">
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
     <link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
@@ -45,7 +48,6 @@ $result = $conn->query($sql);
     <script src="https://smtpjs.com/v3/smtp.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <!-- Add these links in the <head> section of your HTML -->
     <link rel="stylesheet" type="text/css" href="path/to/slick/slick.css" />
     <link rel="stylesheet" type="text/css" href="path/to/slick/slick-theme.css" />
     <script type="text/javascript" src="path/to/slick/slick.min.js"></script>
@@ -71,25 +73,25 @@ $result = $conn->query($sql);
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="onNavButtonClick('Main-content')" style="color: white;" id="first">Home</a>
+                        <a class="nav-link" href="#Main-content" onclick="onNavButtonClick('Main-content')" style="color: white;">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="onNavButtonClick('bestSeller-content')" style="color: white;">Best Seller</a>
+                        <a class="nav-link" href="#bestSeller-content" onclick="onNavButtonClick('bestSeller-content')" style="color: white;">Best Seller</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="onNavButtonClick('addorder-content')" style="color: white;">Add Order</a>
+                        <a class="nav-link" href="#addorder-content" onclick="onNavButtonClick('addorder-content')" style="color: white;">Add Order</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="onNavButtonClick('order-content')" style="color: white;">Orders</a>
+                        <a class="nav-link" href="#order-content" onclick="onNavButtonClick('order-content')" style="color: white;">Orders</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="onNavButtonClick('vieworder-content')" style="color: white;">View Order</a>
+                        <a class="nav-link" href="#vieworder-content" onclick="onNavButtonClick('vieworder-content')" style="color: white;">View Order</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="onNavButtonClick('about')" style="color: white;">About Us</a>
+                        <a class="nav-link" href="#about" onclick="onNavButtonClick('about')" style="color: white;">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="onNavButtonClick('contactus')" style="color: white;">Contact Us</a>
+                        <a class="nav-link" href="#contactus" onclick="onNavButtonClick('contactus')" style="color: white;">Contact Us</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="https://www.facebook.com/angelsburgerph/" target="_blank"><i class="fab fa-facebook-square" style="color: white;"></i></a>
@@ -100,19 +102,57 @@ $result = $conn->query($sql);
                     <li class="nav-item">
                         <a class="nav-link" href="https://www.instagram.com/angelsburgerph/" target="_blank"><i class="fab fa-instagram" style="color: white;"></i></a>
                     </li>
+                    <button type="submit" class="btnLogin-popup">Login</button>
+
                 </ul>
             </div>
         </nav>
 
-        <script src ="../JS/buttonclicked.js"></script>
+        <script src="../JS/buttonclicked.js"></script>
         <section class="main-content content-section" id="Main-content">
             <div class="home-content">
                 <h1>BEST DEAL</h1>
                 <h2>BURGER</h2>
                 <div id="btn1">
-                    <a href="#addorder-content">
+                    <a href="#addorder-content" class="card-link" onclick="showAddOrderContent()">
                         <button>Order Now</button>
                     </a>
+                </div>
+                <div class="wrapper">
+                    <span class="icon-close"><ion-icon name="close-sharp"></ion-icon></span>
+                    <div class="form-box login">
+                        <h2>Login</h2>
+                        <form action="#" id="loginForm">
+                            <!-- Email Form -->
+                            <div class="input-box">
+                                <span class="icon"><ion-icon name="mail-sharp"></ion-icon></span>
+                                <input type="email" required>
+                                <label>Email</label>
+                            </div>
+
+                            <!-- Password Form -->
+                            <div class="input-box">
+                                <span class="icon"><ion-icon name="lock-closed-sharp"></ion-icon></span>
+                                <input type="password" required>
+                                <label>Password</label>
+                            </div>
+
+                            <!-- Remember-me Form -->
+                            <div class="remembers">
+                                <label>
+                                    <input type="checkbox">
+                                    <span>Remember</span>
+                                    <span>me</span>
+
+                                </label>
+                            </div>
+
+
+                            <!-- Login Button -->
+                            <button type="submit" class="btnLogin">Login</button>
+                        </form>
+
+                    </div>
                 </div>
             </div>
         </section>
@@ -124,14 +164,14 @@ $result = $conn->query($sql);
     <section class="BestSeller content-section" id="bestSeller-content">
     <div class="container">
         <div class="best-card">
-            <div class="row" style="margin-top: 100px;">
+            <div class="row" style="margin-top: 20px;">
                 <!-- First Column -->
                 <div class="col-md-4 py-3 py-md-0">
-                    <a href="#addorder-content" class="card-link">
+                    <a href="#addorder-content" class="card-link" onclick="showAddOrderContent()">
                         <div class="card">
                             <img class="card-image-top" src="../images/CheesyBurger.jpg" alt="">
                             <div class="card-img-overlay">
-                                <h1 class="card-titel">Cheesy Burger Sandwich</h1>
+                                <h1 class="card-title">Cheesy Burger Sandwich</h1>
                                 <p class="card-text">BUY 1 TAKE 1</p>
                             </div>
                         </div>
@@ -140,22 +180,26 @@ $result = $conn->query($sql);
 
                 <!-- Second Column -->
                 <div class="col-md-4 py-3 py-md-0">
-                    <a href="#addorder-content" class="card-link">
+                    <a href="#addorder-content" class="card-link" onclick="showAddOrderContent()">
                         <div class="card">
                             <video class="card-image-top" autoplay loop muted>
                                 <source src="../images/angelsvideo.mp4" type="video/mp4">
                             </video>
+                            <div class="card-img-overlay">
+                                <h1 class="card-title">BURGER NG BAYAN</h1>
+                                <!-- Add appropriate content for video -->
+                            </div>
                         </div>
                     </a>
                 </div>
 
                 <!-- Third Column -->
                 <div class="col-md-4 py-3 py-md-0">
-                    <a href="#addorder-content" class="card-link">
+                    <a href="#addorder-content" class="card-link" onclick="showAddOrderContent()">
                         <div class="card">
                             <img class="card-image-top" src="../images/Footlong.jpg" alt="">
                             <div class="card-img-overlay">
-                                <h1 class="card-titel">Jumbo Cheese Footlong Sandwich</h1>
+                                <h1 class="card-title">Jumbo Cheese Footlong Sandwich</h1>
                                 <p class="card-text">Wow na Wow!</p>
                             </div>
                         </div>
@@ -164,7 +208,7 @@ $result = $conn->query($sql);
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="container text-center">
         <div class="banner">
             <h1>Angels Burger <span class="change-content"></span></h1>
             <h2>BUY 1 TAKE 1</h2>
@@ -172,16 +216,24 @@ $result = $conn->query($sql);
         </div>
     </div>
 </section>
+    <script>
+        function showAddOrderContent() {
+            // Toggle the display property of the addorder-content
+            var addOrderContent = document.getElementById("addorder-content");
+            addOrderContent.style.display = (addOrderContent.style.display === "none" || addOrderContent.style.display === "") ? "block" : "none";
+        }
+    </script>
+
+
 
 
     <section class="ADDORDER content-section" id="addorder-content">
+
         <?php
         $category_query = "SELECT category_id, category_name FROM tbl_category";
         $category_result = $conn->query($category_query);
         ?>
-        <br>
-        <br>
-        <br>
+
         <!-- Form to add items to the order -->
         <form id="add-order-form" action="process_add_order.php" method="post">
             <div class="search-bar">
@@ -198,25 +250,25 @@ $result = $conn->query($sql);
                 $product_query = "SELECT item_id, item_name, item_img, item_price FROM tbl_items WHERE category_id = $category_id";
                 $product_result = $conn->query($product_query);
             ?>
+                <div class="table-responsive">
+                <table class="table table-striped table-bordered table-dark table-hover">
+                <thead class="table-dark">
+                      <tr>
 
-                <table class="content-table">
-                    <thead>
-                        <tr>
-                            <!-- Set the table title dynamically -->
-                            <th colspan="6" class="table-title">
+                            <td colspan="6" class="table-title">
                                 <?php echo $category_name; ?>
                             </th>
                         </tr>
                         <tr>
-                            <th>Product ID</th>
-                            <th>Product Name</th>
-                            <th>Product Image</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                            <th>Action</th>
+                            <th class="align-middle">Product ID</th>
+                            <th class="align-middle">Product Name</th>
+                            <th class="align-middle">Product Image</th>
+                            <th class="align-middle">Price</th>
+                            <th class="align-middle">Quantity</th>
+                            <th class="align-middle">Action</th>
                         </tr>
                     </thead>
-
+                    </div>
                     <!-- Display product information in the table body -->
                     <tbody class="text-center">
                         <?php
@@ -257,11 +309,11 @@ $result = $conn->query($sql);
             <input type="text" id="customer-name" name="customerName" required>
             <label for="order-date">Order Date:</label>
             <input type="date" id="order-date" name="orderDate" required>
-            <label for="order-number">Order Number:</label>
-            <input type="text" id="order-number" name="orderNumber" readonly>
-
-            <table class="content-table">
-                <thead>
+           
+<br>    
+<br>
+            <table class="table table-striped table-bordered table-dark table-hover">
+            <thead class="table-dark">
                     <tr>
                         <th class="product-name-heading">Product Name</th>
                         <th class="price-heading">Price</th>
@@ -270,7 +322,6 @@ $result = $conn->query($sql);
                     </tr>
                 </thead>
                 <tbody class="text-center" id="order-items">
-                </tbody>
                 <tfoot>
                     <tr>
                         <td colspan="2">Total: </td>
@@ -278,6 +329,8 @@ $result = $conn->query($sql);
                         <td></td>
                     </tr>
                 </tfoot>
+                </tbody>
+
             </table>
             <br><br>
             <button type="button" id="submit-btn" onclick="confirmOrder()">Confirm Order</button>
@@ -365,8 +418,10 @@ $result = $conn->query($sql);
                 <div class="col-lg-6">
                     <nav class="footer-links text-lg-right text-center pt-2 pt-lg-0">
                         <a href="#" class="scrollto">Home</a>
-                        <a href="#" class="scrollto">Burger</a>
-                        <a href="#" class="scrollto">Chicken Burger</a>
+                        <a href="#" class="scrollto">Best Seller</a>
+                        <a href="#" class="scrollto">Add Order</a>
+                        <a href="#" class="scrollto">Order<a>
+                        <a href="#" class="scrollto">View Order<a>
                         <a href="#" class="scrollto">About Us</a>
                         <a href="#" class="scrollto">Contact Us</a>
                     </nav>
@@ -391,6 +446,7 @@ $result = $conn->query($sql);
     <script defer src="../JS/navbar.js"></script>
     <script defer src="../JS/location.js"></script>
     <script defer src="../JS/contactus.js"></script>
+    <script defer src="../JS/login.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>

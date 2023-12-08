@@ -1,78 +1,153 @@
-/* Common style for content-table */
-.content-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-}
+       /* Common style for content-table */
+        .content-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
 
-/* Common style for table header */
-/* Common style for table header */
-.content-table th {
-  background-color: #f2f2f2;
-  text-align: center;
-  padding: 8px;
-  border: 1px solid #dddddd;
-  width: 20%; /* Set your desired percentage */
-}
+        /* Common style for table header */
+        .content-table th {
+            background-color: #f2f2f2;
+            text-align: center;
+            padding: 8px;
+            border: 1px solid #dddddd;
+            width: 25%; /* Equal width for each column */
+        }
 
-/* Common style for table cells */
-.content-table td {
-  text-align: center;
-  padding: 8px;
-  border: 1px solid #dddddd;
-  width: 20%; /* Set the same desired percentage as th */
-}
+        /* Common style for table cells */
+        .content-table td {
+            text-align: center;
+            padding: 8px;
+            border: 1px solid #dddddd;
+            width: 25%; /* Equal width for each column */
+        }
 
-/* Style for odd rows */
-.content-table tr:nth-child(odd) {
-  background-color: #f9f9f9;
-}
+        /* Style for odd rows */
+        .content-table tr:nth-child(odd) {
+            background-color: #f9f9f9;
+        }
 
-/* Style for even rows */
-.content-table tr:nth-child(even) {
-  background-color: #ffffff;
-}
-.add-to-order-button {
-  background-color: #4caf50;
-  color: white;
-  padding: 8px 12px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-.add-to-order-button:hover {
-  background-color: #45a049;
-}
-.add-to-order-button[disabled] {
-  background-color: #dddddd; /* Change to your desired color */
-  color: #888888; /* Change to your desired text color */
-  cursor: not-allowed;
-}
-/* Style for the search bar container */
+        /* Style for even rows */
+        .content-table tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+        .add-to-order-button {
+                background-color: #4caf50;
+                color: white;
+                padding: 8px 12px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+        }
+        .add-to-order-button:hover {
+                background-color: #45a049;
+        }
+        .add-to-order-button[disabled] {
+            background-color: #dddddd; /* Change to your desired color */
+            color: #888888; /* Change to your desired text color */
+            cursor: not-allowed;
+        }
+        /* Style for the search bar container */
 .search-bar-container {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  display: flex;
-  align-items: center;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
 }
 
 /* Style for the search input */
 #searchInput {
-  padding: 8px;
-  font-size: 14px;
+    padding: 8px;
+    font-size: 14px;
 }
 
 /* Style for the search button */
 #searchButton {
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  padding: 8px;
-  cursor: pointer;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
 }
 
 /* Style for the search button on hover */
 #searchButton:hover {
-  background-color: #45a049;
+    background-color: #45a049;
 }
+
+
+
+.content-table {
+    width: 100%; /* Set the width of the table to 100% */
+    border-collapse: collapse; /* Collapse the borders for a cleaner look */
+    margin-top: 20px; /* Add some top margin for spacing */
+    
+}
+
+.content-table th,
+.content-table td {
+    padding: 10px; /* Add padding to the table cells for spacing */
+    text-align: center; /* Center align text in cells */
+}
+
+.quantity-column {
+    width: 15%; /* Adjust the width of the quantity column as needed */
+}
+
+.quantity-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quantity-btn {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.quantity-input {
+    width: 50px;
+    text-align: center;
+}
+
+.add-to-order-button {
+    padding: 5px 10px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 3px;
+}
+
+.search-bar {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    margin: 20px; /* Adjust margin as needed */
+}
+
+#searchInput {
+    padding: 20px; /* Adjust padding as needed */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 300px; /* Adjust width as needed */
+    outline: none;
+}
+
+#searchInput::placeholder {
+    color: #aaa; /* Adjust placeholder color as needed */
+}
+
+/* Additional styles for better alignment */
+.content-section {
+    margin-top: 20px; /* Adjust margin as needed */
+  }
+  
+  /* Styles for selected button */
+  .nav-link.selected {
+    background-color: #ddd; /* Adjust background color as needed */
+  }
+  
+  /* table width*/
+  
