@@ -52,8 +52,9 @@ $result = $conn->query($sql);
     <link rel="stylesheet" type="text/css" href="path/to/slick/slick-theme.css" />
     <script type="text/javascript" src="path/to/slick/slick.min.js"></script>
     <script type="text/javascript" src="../JS/reset.js"></script>
-
-
+    <script type="text/javascript" src="../JS/receipt.js"></script>
+    <script src="https://cdn.jsdelivr.net/md5/2.9.0/md5.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../CSS/receipt.css" />
 
     <style>
 
@@ -86,10 +87,10 @@ $result = $conn->query($sql);
                         <a class="nav-link" href="#order-content" onclick="onNavButtonClick('order-content')" style="color: white;">Orders</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#vieworder-content" onclick="onNavButtonClick('vieworder-content')" style="color: white;">View Order</a>
+                        <a class="nav-link" href="#vieworder-content" onclick="onNavButtonClick('vieworder-content')" style="color: white;">Order Details</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#about" onclick="onNavButtonClick('about')" style="color: white;">About Us</a>
+                        <a class="nav-link" href="#about" onclick="onNavButtonClick('about')" style="color: white;">Visit Us</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#contactus" onclick="onNavButtonClick('contactus')" style="color: white;">Contact Us</a>
@@ -115,7 +116,7 @@ $result = $conn->query($sql);
                 <h1>BEST DEAL</h1>
                 <h2>BURGER</h2>
                 <div id="btn1">
-                <a href="#addorder-content" class="card-link" onclick="onNavButtonClick('addorder-content')">
+                    <a href="#addorder-content" class="card-link" onclick="onNavButtonClick('addorder-content')">
                         <button>Order Now</button>
                     </a>
                 </div>
@@ -294,7 +295,7 @@ $result = $conn->query($sql);
                             // Handle the case where 'availability' key is not present in the $row array
                             echo "<td colspan='2'>Availability information not found</td>";
                         }
-                
+
                         echo "</tr>";
                     }
                     ?>
@@ -318,7 +319,7 @@ $result = $conn->query($sql);
         <p>This is the content for the ORDER page...</p>
         <h2 class="all-heading" style="color: black;">Order</h2>
 
-        <form id="confirm-order-form" action="" method="post">
+        <form id="confirm-order-form" action="" method="post" onsubmit="confirmOrder(); return false;">
             <label for="customer-name">Customer Name:</label>
             <input type="text" id="customer-name" name="customerName" required>
             <label for="order-date">Order Date:</label>
@@ -357,35 +358,32 @@ $result = $conn->query($sql);
 
 
 
-
     <section class="VIEWORDER content-section" id="vieworder-content">
-        <div class="container">
-
-
-        </div>
-    </section>
+    <div id="order-details" class="card-body">
+        <!-- Display order details here -->
+    </div>
+</section>
 
 
     <section class="ABOUT content-section" id="about">
         <br>
         <br>
-        <h2 class="all-heading"> About<span>Section</span></h2>
-        <h1 class="text-center" style="font-weight: bold; margin-top:50px">About Us</h1>
         <div class="about-us">
             <div class="row">
-                <div class="col-md-5">
-                    <div class="card">
+                <div class="col-md-6">
+                    <div class="card" style="height: 450px; margin-top:80px;">
                         <!-- Replace the existing image with the Google Maps iframe -->
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3872.2099245593495!2d121.15926877493645!3d13.946102686466377!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd6c9867b59525%3A0x9ac1b5e6cd9cfd2f!2sAngel&#39;s%20BURGER!5e0!3m2!1sen!2sph!4v1701802514069!5m2!1sen!2sph" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3872.2099245593495!2d121.15926877493645!3d13.946102686466377!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd6c9867b59525%3A0x9ac1b5e6cd9cfd2f!2sAngel&#39;s%20BURGER!5e0!3m2!1sen!2sph!4v1701802514069!5m2!1sen!2sph" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
-                <div class="col-md-7">
-                    <p>Angel’s Burger is a popular fast food chain in the Philippines that serves affordable burgers. The company was founded by Vicky and Joseph Mojica, who were former bank and fast food employees. They started Angel’s Burger in 1997 with an initial capital of P20,000, making their own buns and patties at home. The first branch of the burger shop was established in Sikatuna, Quezon City. The name “Angel’s Burger” was inspired by the birth of Vicky’s child, Angel. The burger chain became popular with the famous “Buy 1, Take 1 burger promo” all year round, and now has more than a thousand locations in the Philippines. It is aptly called “Burger ng Bayan”</p>
+                <div class="col-md-6">
+                    <div class="card" style="height: 450px;margin-top:80px;">
+                        <img src="../images/store.jpg" style="width: 100%; height: 100%;" alt="Store Image">
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-
 
 
 
@@ -439,7 +437,7 @@ $result = $conn->query($sql);
                         <a href="#" class="scrollto">Add Order</a>
                         <a href="#" class="scrollto">Order<a>
                                 <a href="#" class="scrollto">View Order<a>
-                                        <a href="#" class="scrollto">About Us</a>
+                                        <a href="#" class="scrollto">Visit Us</a>
                                         <a href="#" class="scrollto">Contact Us</a>
                     </nav>
                 </div>

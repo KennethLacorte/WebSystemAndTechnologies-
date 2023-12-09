@@ -10,68 +10,85 @@ class OrderConfirmation {
         document.getElementById('order-date').value = currentDate;
     }
 
-    async confirmOrder() {
-        var customerName = document.getElementById('customer-name').value;
+    displayOrderReceipt(orderNumber, customerName, orderDate, totalPrice) {
+        const viewOrderContent = document.getElementById('vieworder-content');
     
-        if (customerName.trim() === '') {
-            this.showValidationError('Please enter customer name.');
-            return;
-        }
-    
-        var orderNumber = this.generateOrderNumber();
-        var totalPrice = this.calculateTotalPrice();
-    
-        const result = await Swal.fire({
-            title: 'Order Confirmation',
-            html: `
-                <p><strong>Customer Name:</strong> ${customerName}</p>
-                <p><strong>Order Date:</strong> ${this.orderDate}</p>
-                <p><strong>Order Number:</strong> ${orderNumber}</p>
-                <p><strong>Total Price:</strong> ₱ ${totalPrice}</p>
-                <p>Order confirmed! Thank you for your purchase.</p>
-            `,
-            icon: 'success',
-            confirmButtonText: 'OK'
+        const receiptHTML = `<br><br><br>
+        <div style="border: 1px solid #ccc; padding: 15px; margin: 10px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);" class="order-card">
+            <h2 style="color: #333;">Order Details</h2>
+            <p><strong>Order Number:</strong> ${orderNumber}</p>
+            <p><strong>Customer Name:</strong> ${customerName}</p>
+            <p><strong>Order Date:</strong> ${orderDate}</p>
+            <p><strong>Total Price:</strong> ₱ ${totalPrice}</p>
+        </div>
+    `;
+
+    viewOrderContent.innerHTML = receiptHTML;
+}
+
+   async confirmOrder() {
+    var customerName = document.getElementById('customer-name').value;
+
+    if (customerName.trim() === '') {
+        this.showValidationError('Please enter customer name.');
+        return;
+    }
+
+    var orderNumber = this.generateOrderNumber();
+    var totalPrice = this.calculateTotalPrice();
+
+    // Display a confirmation modal using SweetAlert2
+    const result = await Swal.fire({
+        title: 'Order Placed Successfully',
+        html: `
+            <p>Your order has been placed! Thank you for your purchase.</p>
+        `,
+        icon: 'success',
+        confirmButtonText: 'OK'
+    });
+
+    if (result.isConfirmed) {
+        // Send the order details to the server for processing
+        const response = await fetch('confirm_order.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                customerName,
+                orderDate: this.orderDate,
+                orderNumber,
+                totalPrice,
+                orderItems: this.getOrderItemsData(), // Include order items data
+                productQuantities: this.productQuantities, // Include product quantities data
+            }),
         });
-    
-        if (result.isConfirmed) {
-            document.getElementById('confirm-order-form').reset();
-    
-            const response = await fetch('confirm_order.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    customerName,
-                    orderDate: this.orderDate,
-                    orderNumber,
-                    totalPrice,
-                    orderItems: this.getOrderItemsData(), // Add order items data
-                    productQuantities: this.productQuantities, // Add product quantities data
-                }),
-            });
-            if (response.ok) {
-                const data = await response.json();
-                console.log('Server response:', data);
-        
-                // Reset and hide elements in the order-page
-                this.resetOrderPage();
-        
-                // Add a delay before initiating a new order
-                await new Promise(resolve => setTimeout(resolve, 1000)); // Adjust the delay as needed
-        
-                // Reset add order content
-                const addOrderForm = document.getElementById('add-order-form');
-                addOrderForm.reset();
-                const searchInput = document.getElementById('searchInput');
-                searchInput.value = '';
-            } else {
-                console.error('Error confirming order on the server');
-            }
+
+        if (response.ok) {
+            const data = await response.json();
+            console.log('Server response:', data);
+
+            // Reset and hide elements in the order-page
+            this.resetOrderPage();
+
+            // Add a delay before initiating a new order
+            await new Promise(resolve => setTimeout(resolve, 1000)); // Adjust the delay as needed
+
+            // Reset add order content
+            const addOrderForm = document.getElementById('add-order-form');
+            addOrderForm.reset();
+            const searchInput = document.getElementById('searchInput');
+            searchInput.value = '';
+
+            // Display order receipt
+            const orderItemsData = this.getOrderItemsData();
+            this.displayOrderReceipt(orderNumber, customerName, this.orderDate, totalPrice, orderItemsData);
+        } else {
+            console.error('Error confirming order on the server');
         }
     }
-    
+}
+
     resetOrderPage() {
         const orderItems = document.getElementById('order-items');
         const customerInfoForm = document.getElementById('confirm-order-form');

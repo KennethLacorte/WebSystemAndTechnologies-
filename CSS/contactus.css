@@ -31,5 +31,8 @@
     cursor: pointer;
 }
 
+.about-section {
+    background-color: #ff9310;
+}
 /* Include Font Awesome for the icons */
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
