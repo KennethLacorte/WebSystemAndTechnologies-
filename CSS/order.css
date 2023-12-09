@@ -18,5 +18,11 @@
     width: 150px; /* Adjust the width as needed */
     margin-right: 10px; /* Adjust the margin as needed */
 }
+#order-details {
+    padding: 20px;
+    background-color: #f8f9fa;
+    margin-top: 20px;
+}
+
 
 
