@@ -58,8 +58,8 @@
             </nav>
 
             <?php
-            include '../db/connection.php';
-            include '../db/count.php';
+            include '../ADMIN/connection.php';
+            include '../ADMIN/count.php';
 
             $database = new Database();
             $conn = $database->conn;
