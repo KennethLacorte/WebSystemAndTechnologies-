@@ -15,22 +15,32 @@
     <div class="d-flex" id="wrapper">
         <!-- Sidebar -->
         <div class="bg-white" id="sidebar-wrapper">
-            <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom"><i class="fas fa-user-secret me-2"></i>Admin</div>
-            <div class="list-group list-group-flush my-3">
-                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text active"><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
-                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-project-diagram me-2"></i>Add/Update/Delete Products</a>
-                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-chart-line me-2"></i>View Order History</a>
-                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-paperclip me-2"></i>View Account</a>
-                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-gift me-2"></i>Products</a>
-                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-comment-dots me-2"></i>Chat</a>
-                <a href="#" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i class="fas fa-power-off me-2"></i>Logout</a>
-            </div>
-        </div>
+    <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom">
+        <i class="fas fa-user-secret me-2"></i>Admin
+    </div>
+    <div class="list-group list-group-flush my-3">
+        <a href="#dashboard-content" class="list-group-item list-group-item-action bg-transparent second-text active" onclick="navigateTo('dashboard')">
+            <i class="fas fa-tachometer-alt me-2"></i>Dashboard
+        </a>
+        <a href="#add-products-content" class="list-group-item list-group-item-action bg-transparent second-text fw-bold" onclick="navigateTo('add-products')">
+            <i class="fas fa-project-diagram me-2"></i>Add/Update/Delete Products
+        </a>
+        <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold" onclick="navigateTo('order-history')">
+            <i class="fas fa-chart-line me-2"></i>View Order History
+        </a>
+        <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold" onclick="navigateTo('view-account')">
+            <i class="fas fa-paperclip me-2"></i>View Account
+        </a>
+        <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold" onclick="navigateTo('products')">
+            <i class="fas fa-gift me-2"></i>Products
+        </a>
+        <a href="#" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold" onclick="navigateTo('logout')">
+            <i class="fas fa-power-off me-2"></i>Logout
+        </a>
+    </div>
+</div>
 
-        <!-- /#sidebar-wrapper -->
-
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
+        <div class="content-container" id="page-content-wrapper" id="dashboard-content" >
             <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
                 <div class="d-flex align-items-center">
                     <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
@@ -175,10 +185,14 @@
         </table>
     </div>
 </div>
+</div>
 
 
-
-
+<div class="content-container" id="page-content-wrapper" id="add-products-content" style="display: none;">
+        <!-- Add/Update/Delete Products content goes here -->
+        <h1>Add/Update/Delete Products Content</h1>
+        
+    </div>
 
 
 
@@ -193,14 +207,8 @@
 
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
-        <script>
-            var el = document.getElementById("wrapper");
-            var toggleButton = document.getElementById("menu-toggle");
-
-            toggleButton.onclick = function() {
-                el.classList.toggle("toggled");
-            };
-        </script>
+       <script defer src="../JS/sidebar-admin.js" ></script>
+       <script defer src="../JS/navigate-admin.js" ></script>
 
 
 </body>
