@@ -15,34 +15,26 @@ document.addEventListener('DOMContentLoaded', function () {
                 const productName = button.dataset.productName;
                 const productPrice = parseFloat(button.dataset.productPrice);
                 const itemId = button.dataset.itemId; // Add item_id to the dataset
-                const isAvailable = button.classList.contains('add-to-order-button'); // Check if it's the "Add to Order" button
 
-                if (isAvailable) {
-                    // Rest of the existing logic for adding to order
+                // Get the corresponding quantity input
+                const quantityInput = document.querySelector(`#quantity-${itemId}`);
+                const quantity = parseInt(quantityInput.value, 10);
 
-                    // Get the corresponding quantity input
-                    const quantityInput = document.querySelector(`#quantity-${itemId}`);
-                    const quantity = parseInt(quantityInput.value, 10);
+                // Check if the quantity is a valid integer and non-negative
+                if (Number.isInteger(quantity) && quantity >= 0) {
+                    addToOrder(productName, productPrice, productId, itemId, quantity);
 
-                    // Check if the quantity is a valid integer and non-negative
-                    if (Number.isInteger(quantity) && quantity >= 0) {
-                        addToOrder(productName, productPrice, productId, itemId, quantity);
+                    button.disabled = true;
+                    showCustomerInfoForm();
 
-                        button.disabled = true;
-                        showCustomerInfoForm();
+                    // Store the quantity in the productQuantities object
+                    productQuantities[productId] = quantity;
 
-                        // Store the quantity in the productQuantities object
-                        productQuantities[productId] = quantity;
-
-                        // Disable the quantity input
-                        quantityInput.disabled = true;
-                    } else {
-                        alert('Please enter a valid quantity (a non-negative integer).');
-                        quantityInput.focus();
-                    }
+                    // Disable the quantity input
+                    quantityInput.disabled = true;
                 } else {
-                    // Handle "Not Available" button click (optional)
-                    alert('This product is not available for ordering.');
+                    alert('Please enter a valid quantity (a non-negative integer).');
+                    quantityInput.focus();
                 }
             }
         });
