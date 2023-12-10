@@ -24,5 +24,11 @@
     margin-top: 20px;
 }
 
-
-
+#order-content {
+    max-width: 1000px;
+    margin: auto;
+    padding: 30px;
+    background-color: #ffc107;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}

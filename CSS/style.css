@@ -12,8 +12,11 @@ html {
 
 body {
    padding-top: 60px; /* Adjusted padding based on your navbar height */
+   background: url('../images/bgcolor.png') center center fixed; 
+   background-size: cover; 
   
 }
+
 
 .navbar {
     position: sticky;
@@ -308,5 +311,24 @@ body {
                 0 0 150px rgba(255, 166, 0, 0.7);
 }
 
-/* Login*/
-
+.ABOUT .ADDORDER {
+    background: url('../images/bgcolor.png') center center fixed; 
+    background-size: cover; 
+}
+#add-order-form {
+    background: url('../images/bgcolor.png') center center fixed; 
+    background-size: cover; 
+}
+#order-content{
+    background: url('../images/bgcolor.png') center center fixed; 
+    background-size: cover; 
+}
+#addorder-content{
+    background: url('../images/bgcolor.png') center center fixed; 
+    background-size: cover; 
+}
+#about{
+    background: url('../images/bgcolor.png') center center fixed; 
+    background-size: cover; 
+}
+ 
