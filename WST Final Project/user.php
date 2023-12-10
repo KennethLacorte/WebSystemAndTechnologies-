@@ -51,14 +51,17 @@ $result = $conn->query($sql);
     <link rel="stylesheet" type="text/css" href="path/to/slick/slick.css" />
     <link rel="stylesheet" type="text/css" href="path/to/slick/slick-theme.css" />
     <script type="text/javascript" src="path/to/slick/slick.min.js"></script>
-
-
+    <script type="text/javascript" src="../JS/reset.js"></script>
+    <script type="text/javascript" src="../JS/receipt.js"></script>
+    <script src="https://cdn.jsdelivr.net/md5/2.9.0/md5.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../CSS/receipt.css" />
 
     <style>
 
     </style>
     <title>Angel's Burger</title>
 </head>
+
 <body>
     <div id="container-background">
         <nav class="navbar navbar-expand-md navbar-dark bg-danger fixed-top">
@@ -84,7 +87,7 @@ $result = $conn->query($sql);
                         <a class="nav-link" href="#order-content" onclick="onNavButtonClick('order-content')" style="color: white;">Orders</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#vieworder-content" onclick="onNavButtonClick('vieworder-content')" style="color: white;">View Order</a>
+                        <a class="nav-link" href="#vieworder-content" onclick="onNavButtonClick('vieworder-content')" style="color: white;">Order Details</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#about" onclick="onNavButtonClick('about')" style="color: white;">Visit Us</a>
@@ -113,7 +116,7 @@ $result = $conn->query($sql);
                 <h1>BEST DEAL</h1>
                 <h2>BURGER</h2>
                 <div id="btn1">
-                <a href="#addorder-content" class="card-link" onclick="onNavButtonClick('addorder-content')">
+                    <a href="#addorder-content" class="card-link" onclick="onNavButtonClick('addorder-content')">
                         <button>Order Now</button>
                     </a>
                 </div>
@@ -226,7 +229,6 @@ $result = $conn->query($sql);
 
 
 
-
 <section class="ADDORDER content-section" id="addorder-content">
 
 <?php
@@ -312,11 +314,12 @@ $category_result = $conn->query($category_query);
 
 
 
+
     <section class="ORDERS content-section" id="order-content">
         <p>This is the content for the ORDER page...</p>
         <h2 class="all-heading" style="color: black;">Order</h2>
 
-        <form id="confirm-order-form" action="" method="post">
+        <form id="confirm-order-form" action="" method="post" onsubmit="confirmOrder(); return false;">
             <label for="customer-name">Customer Name:</label>
             <input type="text" id="customer-name" name="customerName" required>
             <label for="order-date">Order Date:</label>
@@ -355,16 +358,13 @@ $category_result = $conn->query($category_query);
 
 
 
-
     <section class="VIEWORDER content-section" id="vieworder-content">
-        <div class="container">
-
-
+        <div id="order-details" class="card-body">
+            <!-- Display order details here -->
         </div>
     </section>
 
 
-   
     <section class="ABOUT content-section" id="about">
         <br>
         <br>
@@ -384,7 +384,6 @@ $category_result = $conn->query($category_query);
             </div>
         </div>
     </section>
-
 
 
 
@@ -437,15 +436,17 @@ $category_result = $conn->query($category_query);
                         <a href="#" class="scrollto">Best Seller</a>
                         <a href="#" class="scrollto">Add Order</a>
                         <a href="#" class="scrollto">Order<a>
-                                <a href="#" class="scrollto">View Order<a>
-                                        <a href="#" class="scrollto">Visit Us</a>
-                                        <a href="#" class="scrollto">Contact Us</a>
+                        <a href="#" class="scrollto">View Order<a>
+                        <a href="#" class="scrollto">Visit Us</a>
+                        <a href="#" class="scrollto">Contact Us</a>
                     </nav>
                 </div>
             </div>
         </div>
 
     </footer>
+
+
 
 
 
