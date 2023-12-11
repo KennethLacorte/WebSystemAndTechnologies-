@@ -229,88 +229,87 @@ $result = $conn->query($sql);
 
 
 
-<section class="ADDORDER content-section" id="addorder-content">
+    <section class="ADDORDER content-section" id="addorder-content">
 
-<?php
-$category_query = "SELECT category_id, category_name FROM tbl_category";
-$category_result = $conn->query($category_query);
-?>
+        <?php
+        $category_query = "SELECT category_id, category_name FROM tbl_category";
+        $category_result = $conn->query($category_query);
+        ?>
 
-<!-- Form to add items to the order -->
-<form id="add-order-form" action="process_add_order.php" method="post">
-    <div class="search-bar">
-        <input type="text" id="searchInput" placeholder="Search...">
-    </div>
+        <!-- Form to add items to the order -->
+        <form id="add-order-form" action="process_add_order.php" method="post">
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search...">
+            </div>
 
-    <?php
-    // Loop through categories
-    while ($category_row = $category_result->fetch_assoc()) {
-        $category_id = $category_row['category_id'];
-        $category_name = $category_row['category_name'];
-
-        // Fetch products for the current category
-        $product_query = "SELECT item_id, item_name, item_img, item_price, availability FROM tbl_items WHERE category_id = $category_id";
-        $product_result = $conn->query($product_query);
-
-    ?>
-        <div class="table-responsive">
-            <table class="table table-striped table-bordered table-dark table-hover">
-                <thead class="table-dark">
-                    <tr>
-
-                        <td colspan="6" class="table-title">
-                            <?php echo $category_name; ?>
-                            </th>
-                    </tr>
-                    <tr>
-                        <th class="align-middle">Product ID</th>
-                        <th class="align-middle">Product Name</th>
-                        <th class="align-middle">Product Image</th>
-                        <th class="align-middle">Price</th>
-                        <th class="align-middle">Quantity</th>
-                        <th class="align-middle">Action</th>
-                    </tr>
-                </thead>
-        </div>
-        <!-- Display product information in the table body -->
-        <tbody class="text-center">
             <?php
-            // Inside the while loop where you display products
-            while ($row = $product_result->fetch_assoc()) {
-                echo "<tr>";
-                echo "<td>{$row['item_id']}</td>"; // Add the Product ID column
-                echo "<td>{$row['item_name']}</td>";
-                echo "<td><img src='data:image/jpeg;base64," . base64_encode($row['item_img']) . "' alt='{$row['item_name']}' style='width: 50px; height: 50px;'></td>";
-                echo "<td>{$row['item_price']}</td>";
+            // Loop through categories
+            while ($category_row = $category_result->fetch_assoc()) {
+                $category_id = $category_row['category_id'];
+                $category_name = $category_row['category_name'];
 
-                if (array_key_exists('availability', $row)) {
-                    if ($row['availability'] == 1) {
-                        echo "<td><input type='number' id='quantity-{$row['item_id']}' value='1' min='1' class='quantity' style='width: 100px; height: 50px; text-align: center;'></td>";
-                        echo "<td><button class='action-button add-to-order-button' data-product-id='{$row['item_id']}' data-product-name='{$row['item_name']}' data-product-img='" . base64_encode($row['item_img']) . "' data-product-price='{$row['item_price']}' data-item-id='{$row['item_id']}'>Add to Order</button></td>";
-                    } else {
-                        echo "<td><input type='text' value='Not Available' readonly class='not-available-input' style='width: 100px; height: 50px; text-align: center;'></td>";
-                        echo "<td><button class='action-button not-available-button' disabled>Not Available</button></td>";
+                // Fetch products for the current category
+                $product_query = "SELECT item_id, item_name, item_img, item_price, availability FROM tbl_items WHERE category_id = $category_id";
+                $product_result = $conn->query($product_query);
+
+            ?>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-dark table-hover">
+                        <thead class="table-dark">
+                            <tr>
+
+                                <td colspan="6" class="table-title">
+                                    <?php echo $category_name; ?>
+                                    </th>
+                            </tr>
+                            <tr>
+                                <th class="align-middle">Product ID</th>
+                                <th class="align-middle">Product Name</th>
+                                <th class="align-middle">Product Image</th>
+                                <th class="align-middle">Price</th>
+                                <th class="align-middle">Quantity</th>
+                                <th class="align-middle">Action</th>
+                            </tr>
+                        </thead>
+                </div>
+                <!-- Display product information in the table body -->
+                <tbody class="text-center">
+                    <?php
+                    // Inside the while loop where you display products
+                    while ($row = $product_result->fetch_assoc()) {
+                        echo "<tr>";
+                        echo "<td>{$row['item_id']}</td>"; // Add the Product ID column
+                        echo "<td>{$row['item_name']}</td>";
+                        echo "<td><img src='data:image/jpeg;base64," . base64_encode($row['item_img']) . "' alt='{$row['item_name']}' style='width: 50px; height: 50px;'></td>";
+                        echo "<td>{$row['item_price']}</td>";
+
+                        // Check availability using enum values
+                        $availability = $row['availability'];
+                        if ($availability == 'Available') {
+                            echo "<td><input type='number' id='quantity-{$row['item_id']}' value='1' min='1' class='quantity' style='width: 100px; height: 50px; text-align: center;'></td>";
+                            echo "<td><button class='action-button add-to-order-button' data-product-id='{$row['item_id']}' data-product-name='{$row['item_name']}' data-product-img='" . base64_encode($row['item_img']) . "' data-product-price='{$row['item_price']}' data-item-id='{$row['item_id']}'>Add to Order</button></td>";
+                        } elseif ($availability == 'Not Available') {
+                            echo "<td><input type='text' value='Not Available' readonly class='not-available-input' style='width: 100px; height: 50px; text-align: center;'></td>";
+                            echo "<td><button class='action-button not-available-button' disabled>Not Available</button></td>";
+                        } else {
+                            // Handle other availability cases if needed
+                            echo "<td colspan='2'>Unknown Availability</td>";
+                        }
+
+                        echo "</tr>";
                     }
-                } else {
-                    // Handle the case where 'availability' key is not present in the $row array
-                    echo "<td colspan='2'>Availability information not found</td>";
-                }
-        
-                echo "</tr>";
+                    ?>
+                </tbody>
+                </table>
+
+            <?php
             }
             ?>
+        </form>
 
-        </tbody>
-        </table>
-
-    <?php
-    }
-    ?>
-</form>
-
-<script defer src="../JS/add-order.js"></script>
-<script defer src="../JS/search.js"></script>
-</section>
+        <script defer src="../JS/add-order.js"></script>
+        <script defer src="../JS/search.js"></script>
+    </section>
 
 
 
@@ -365,7 +364,7 @@ $category_result = $conn->query($category_query);
     </section>
 
 
-   
+
     <section class="ABOUT content-section" id="about">
         <br>
         <br>
