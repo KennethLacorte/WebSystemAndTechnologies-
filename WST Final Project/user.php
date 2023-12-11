@@ -365,6 +365,7 @@ $category_result = $conn->query($category_query);
     </section>
 
 
+   
     <section class="ABOUT content-section" id="about">
         <br>
         <br>
@@ -436,9 +437,9 @@ $category_result = $conn->query($category_query);
                         <a href="#" class="scrollto">Best Seller</a>
                         <a href="#" class="scrollto">Add Order</a>
                         <a href="#" class="scrollto">Order<a>
-                        <a href="#" class="scrollto">View Order<a>
-                        <a href="#" class="scrollto">Visit Us</a>
-                        <a href="#" class="scrollto">Contact Us</a>
+                                <a href="#" class="scrollto">View Order<a>
+                                        <a href="#" class="scrollto">Visit Us</a>
+                                        <a href="#" class="scrollto">Contact Us</a>
                     </nav>
                 </div>
             </div>
