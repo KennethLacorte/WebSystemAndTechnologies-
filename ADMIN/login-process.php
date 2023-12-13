@@ -20,8 +20,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // TODO: Implement proper validation and security measures
-
     // Query to fetch user from the admin table
     $sql = "SELECT * FROM admin WHERE email = '$email' AND password = '$password'";
     $result = $conn->query($sql);
@@ -37,11 +35,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: admin.php");
         exit();
     }
-
-    $conn->close();
-} else {
-    // Redirect to login page if not submitted through a form
-    header("Location: login.php");
-    exit();
 }
+
+// Close the connection outside the conditional blocks
+$conn->close();
 ?>
