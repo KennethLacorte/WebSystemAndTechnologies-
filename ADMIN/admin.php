@@ -189,8 +189,7 @@
             </div>
         </div>
 
-
-        <div id="edit-product-content" class="products container-lg" style="display: none">
+        <div id="edit-product-content" class="products container-lg" style="display:none">
             <div class="row my-5">
                 <h3 class="fs-4 mb-3">Add/Delete</h3>
                 <div class="col">
@@ -217,7 +216,7 @@
 
                             // Display data in the table
                             while ($row = mysqli_fetch_assoc($result)) {
-                                echo "<tr>";
+                                echo "<tr id='row{$row['item_id']}'>";
                                 echo "<td>{$row['item_id']}</td>";
                                 echo "<td>{$row['item_name']}</td>";
 
@@ -230,11 +229,12 @@
                                 echo "<td>{$row['category_id']}</td>";
                                 echo "<td>{$row['availability']}</td>";
                                 echo "<td>";
-                                echo "<button class='btn btn-primary' onclick='updateItem({$row['item_id']})'>Update</button>";
+                                echo "<button class='btn btn-primary' onclick='showUpdateForm({$row['item_id']})'>Update</button>";
                                 echo "<button class='btn btn-danger' onclick='deleteItem({$row['item_id']})'>Delete</button>";
                                 echo "</td>";
                                 echo "</tr>";
                             }
+
                             // Close the database connection
                             mysqli_close($conn);
                             ?>
@@ -243,6 +243,7 @@
                 </div>
             </div>
         </div>
+
 
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
         <div id="add-product-content" class="products container-lg" style="display: none">
@@ -311,7 +312,7 @@
                                     <option value="Available">Available</option>
                                     <option value="Not Available">Not Available</option>
                                 </select>
-                            </div>  
+                            </div>
                         </div>
                         <div class="mb-3 row">
                             <div class="col-sm-5 offset-sm-2">
@@ -380,6 +381,7 @@
 
 
     </div>
+    <script defer src="../JS/update.js"></script>
     <script defer src="../JS/add-update-delete.js"></script>
     <script defer src="../JS/sidebar-toggle.js"></script>
     <script defer src="../JS/sidebarfunction.js"></script>

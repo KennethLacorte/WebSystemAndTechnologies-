@@ -36,7 +36,6 @@ $result = $conn->query($sql);
     <link rel="stylesheet" type="text/css" href="../CSS/banner.css">
     <link rel="stylesheet" type="text/css" href="../CSS/map.css">
     <link rel="stylesheet" type="text/css" href="../CSS/contactus.css">
-    <link rel="stylesheet" type="text/css" href="../CSS/login.css">
     <link rel="stylesheet" type="text/css" href="../CSS/footer.css">
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -104,8 +103,13 @@ $result = $conn->query($sql);
                     <li class="nav-item">
                         <a class="nav-link" href="https://www.instagram.com/angelsburgerph/" target="_blank"><i class="fab fa-instagram" style="color: white;"></i></a>
                     </li>
-                    <button type="submit" class="btnLogin-popup">Login</button>
-
+                    <button type="submit" class="btnLogin-popup" onclick="redirectToNextPage()">Login</button>
+                    <script>
+                        function redirectToNextPage() {
+                            // Use window.location.href to navigate to the next page
+                            window.location.href = '../ADMIN/login.php'; // Replace 'next_page.php' with the actual URL
+                        }
+                    </script>
                 </ul>
             </div>
         </nav>
@@ -120,44 +124,9 @@ $result = $conn->query($sql);
                         <button>Order Now</button>
                     </a>
                 </div>
-                <div class="wrapper">
-                    <span class="icon-close"><ion-icon name="close-sharp"></ion-icon></span>
-                    <div class="form-box login">
-                        <h2>Login</h2>
-                        <form action="#" id="loginForm">
-                            <!-- Email Form -->
-                            <div class="input-box">
-                                <span class="icon"><ion-icon name="mail-sharp"></ion-icon></span>
-                                <input type="email" required>
-                                <label>Email</label>
-                            </div>
-
-                            <!-- Password Form -->
-                            <div class="input-box">
-                                <span class="icon"><ion-icon name="lock-closed-sharp"></ion-icon></span>
-                                <input type="password" required>
-                                <label>Password</label>
-                            </div>
-
-                            <!-- Remember-me Form -->
-                            <div class="remembers">
-                                <label>
-                                    <input type="checkbox">
-                                    <span>Remember</span>
-                                    <span>me</span>
-
-                                </label>
-                            </div>
-
-
-                            <!-- Login Button -->
-                            <button type="submit" class="btnLogin">Login</button>
-                        </form>
-
-                    </div>
-                </div>
             </div>
         </section>
+
 
 
     </div>
