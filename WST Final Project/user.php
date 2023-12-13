@@ -140,9 +140,9 @@ $result = $conn->query($sql);
                     <div class="col-md-4 py-3 py-md-0">
                         <a href="#addorder-content" class="card-link" onclick="onNavButtonClick('addorder-content')">
                             <div class="card">
-                                <img class="card-image-top" src="../images/CheesyBurger.jpg" alt="">
+                                <img class="card-image-top" src="../images/burger1.jpg" alt="">
                                 <div class="card-img-overlay">
-                                    <h1 class="card-title">Cheesy Burger Sandwich</h1>
+                                    <h1 class="card-title">Beef Burger</h1>
                                     <p class="card-text">BUY 1 TAKE 1</p>
                                 </div>
                             </div>
@@ -153,11 +153,9 @@ $result = $conn->query($sql);
                     <div class="col-md-4 py-3 py-md-0">
                         <a href="#addorder-content" class="card-link" onclick="onNavButtonClick('addorder-content')">
                             <div class="card">
-                                <video class="card-image-top" autoplay loop muted>
-                                    <source src="../images/angelsvideo.mp4" type="video/mp4">
-                                </video>
+                            <img class="card-image-top" src="../images/overload.jpg" alt="">
                                 <div class="card-img-overlay">
-                                    <h1 class="card-title">BURGER NG BAYAN</h1>
+                                    <h1 class="card-title">Overload sa Sarap!</h1>
                                     <!-- Add appropriate content for video -->
                                 </div>
                             </div>
@@ -168,10 +166,10 @@ $result = $conn->query($sql);
                     <div class="col-md-4 py-3 py-md-0">
                         <a href="#addorder-content" class="card-link" onclick="onNavButtonClick('addorder-content')">
                             <div class="card">
-                                <img class="card-image-top" src="../images/Footlong.jpg" alt="">
+                                <img class="card-image-top" src="../images/fl.jpg" alt="">
                                 <div class="card-img-overlay">
-                                    <h1 class="card-title">Jumbo Cheese Footlong Sandwich</h1>
-                                    <p class="card-text">Wow na Wow!</p>
+                                    <h1 class="card-title">Footlong</h1>
+                                    <p class="card-text">Bili na!</p>
                                 </div>
                             </div>
                         </a>
@@ -179,13 +177,7 @@ $result = $conn->query($sql);
                 </div>
             </div>
         </div>
-        <div class="container text-center">
-            <div class="banner">
-                <h1>Angels Burger <span class="change-content"></span></h1>
-                <h2>BUY 1 TAKE 1</h2>
-                <div id="btn2"><button>Order Now</button></div>
-            </div>
-        </div>
+        
     </section>
     <script>
         function showAddOrderContent() {
