@@ -2,8 +2,8 @@
 // Include your database connection file
 include '../ADMIN/connection-product.php';
 
-// Create an associative array to store the response
-$response = array();
+// Initialize response array
+$response = array('success' => false, 'message' => '');
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -25,28 +25,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         // Get the file name and move the uploaded file to the target directory
-        $itemImage = $_FILES['itemImage']['name'];
-        $targetFile = $targetDir . basename($itemImage);
-        move_uploaded_file($_FILES['itemImage']['tmp_name'], $targetFile);
+        $itemImage = file_get_contents($_FILES['itemImage']['tmp_name']);
+
+        // Insert data into the database with BLOB data
+        $query = "INSERT INTO tbl_items (item_id, item_name, item_img, item_price, category_id, availability) VALUES ('$itemId', '$itemName', ?, '$itemPrice', '$categoryId', '$availability')";
+        $stmt = mysqli_prepare($conn, $query);
+
+        // Bind the BLOB data
+        mysqli_stmt_bind_param($stmt, "s", $itemImage);
+
+        // Execute the statement
+        $result = mysqli_stmt_execute($stmt);
+
+        // Check the result
+        if ($result) {
+            $response['success'] = true;
+            $response['message'] = "Product added successfully!";
+        } else {
+            $response['success'] = false;
+            $response['message'] = "Error: " . mysqli_error($conn);
+        }
+
+        // Close the statement
+        mysqli_stmt_close($stmt);
     } else {
         // Handle the file upload error
         $response['success'] = false;
         $response['message'] = "File upload error: " . $_FILES['itemImage']['error'];
-        echo json_encode($response);
-        exit();
-    }
-
-    // Insert data into the database
-    $query = "INSERT INTO tbl_items (item_id, item_name, item_img, item_price, category_id, availability) VALUES ('$itemId', '$itemName', '$itemImage', '$itemPrice', '$categoryId', '$availability')";
-    $result = mysqli_query($conn, $query);
-
-    // Check the result
-    if ($result) {
-        $response['success'] = true;
-        $response['message'] = "Product added successfully!";
-    } else {
-        $response['success'] = false;
-        $response['message'] = "Error: " . $query . "<br>" . mysqli_error($conn);
     }
 
     // Close the database connection

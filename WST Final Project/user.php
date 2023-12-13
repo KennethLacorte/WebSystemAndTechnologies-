@@ -59,7 +59,7 @@ $result = $conn->query($sql);
     <style>
 
     </style>
-    <title>Angel's Burger</title>
+    <title>Michelle's Burger</title>
 </head>
 
 <body>
@@ -373,12 +373,12 @@ $result = $conn->query($sql);
                 <div class="col-md-6">
                     <div class="card" style="height: 450px; margin-top:80px;">
                         <!-- Replace the existing image with the Google Maps iframe -->
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3872.2099245593495!2d121.15926877493645!3d13.946102686466377!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd6c9867b59525%3A0x9ac1b5e6cd9cfd2f!2sAngel&#39;s%20BURGER!5e0!3m2!1sen!2sph!4v1701802514069!5m2!1sen!2sph" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <iframe src="https://www.google.com/maps/embed?pb=!3m2!1sen!2sph!4v1702392400831!5m2!1sen!2sph!6m8!1m7!1s-tm3iBfJDv2hld--elAJ6A!2m2!1d13.92966285934027!2d121.1893492700615!3f73.14729409802008!4f3.6113415464581635!5f0.7820865974627469"height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="card" style="height: 450px;margin-top:80px;">
-                        <img src="../images/store.jpg" style="width: 100%; height: 100%;" alt="Store Image">
+                        <img src="../images/burgers.jpg" style="width: 100%; height: 100%;" alt="Store Image">
                     </div>
                 </div>
             </div>
