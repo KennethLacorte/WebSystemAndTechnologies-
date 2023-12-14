@@ -157,10 +157,10 @@
                                     while ($row = $result->fetch_assoc()) {
                                         echo "
                                 <tr>
-                                    <th scope='row'>{$row['order_id']}</th> <!-- Updated line -->
+                                    <th scope='row'>{$row['order_id']}</th>
                                     <td>{$row['customer_name']}</td>
                                     <td>{$row['order_date']}</td>
-                                    <td>{$row['order_id']}</td> <!-- Updated line -->
+                                    <td>{$row['order_id']}</td>
                                     <td>{$row['quantity']}</td>
                                     <td>{$row['totals']}</td>
                                 </tr>
@@ -239,8 +239,6 @@
     </div>
 </div>
 
-        
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
         <div id="add-product-content" class="products container-lg" style="display: none">
             <div class="container-sm mt-5">
                 <div class="container-fluid bg-dark w-50 text-light">

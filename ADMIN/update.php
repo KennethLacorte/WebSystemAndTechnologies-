@@ -35,37 +35,49 @@ if (isset($_POST['submit'])) {
         $itemName = $_POST['item_name'];
         $itemPrice = $_POST['item_price'];
         $categoryId = $_POST['category_id'];
+
+        // Check if the submitted availability value is one of the ENUM values
+        $allowedAvailabilities = ['Available', 'Not Available'];
         $availability = $_POST['availability'];
-
-        // Perform the update using a prepared statement
-        $updateQuery = "UPDATE tbl_items SET 
-                        item_name = ?, 
-                        item_img = ?, 
-                        item_price = ?, 
-                        category_id = ?, 
-                        availability = ? 
-                        WHERE item_id = ?";
-
-        $stmt = mysqli_prepare($conn, $updateQuery);
-
-        // Bind the parameters
-        mysqli_stmt_bind_param($stmt, "ssdiii", $itemName, $imageTmp, $itemPrice, $categoryId, $availability, $itemId);
-
-        // Execute the statement
-        $updateResult = mysqli_stmt_execute($stmt);
-
-        if ($updateResult) {
-            // Close the statement
-            mysqli_stmt_close($stmt);
-
-            // Close the database connection
-            mysqli_close($conn);
-
-            // Redirect immediately after the update
-            header("Location: ../ADMIN/admin.php");
+        if (!in_array($availability, $allowedAvailabilities)) {
+            echo "Invalid availability value.";
             exit();
+        }
+
+        // Check if any required fields are empty
+        if (empty($itemName) || empty($itemPrice) || empty($categoryId) || empty($availability)) {
+            echo "All fields are required.";
         } else {
-            echo "Error updating item: " . mysqli_error($conn);
+            // Perform the update using a prepared statement
+            $updateQuery = "UPDATE tbl_items SET 
+                            item_name = ?, 
+                            item_img = ?, 
+                            item_price = ?, 
+                            category_id = ?, 
+                            availability = ? 
+                            WHERE item_id = ?";
+
+            $stmt = mysqli_prepare($conn, $updateQuery);
+
+            // Bind the parameters
+            mysqli_stmt_bind_param($stmt, "ssdiss", $itemName, $imageTmp, $itemPrice, $categoryId, $availability, $itemId);
+
+            // Execute the statement
+            $updateResult = mysqli_stmt_execute($stmt);
+
+            if ($updateResult) {
+                // Close the statement
+                mysqli_stmt_close($stmt);
+
+                // Close the database connection
+                mysqli_close($conn);
+
+                // Redirect immediately after the update
+                header("Location: ../ADMIN/admin.php");
+                exit();
+            } else {
+                echo "Error updating item: " . mysqli_error($conn);
+            }
         }
     } else {
         // Redirect to the main page if 'item_id' is not set
