@@ -11,7 +11,7 @@ html {
 }
 
 body {
-   padding-top: 60px; /* Adjusted padding based on your navbar height */
+   padding-top: 60px; 
    background: url('../images/bgcolor.png') center center fixed; 
    background-size: cover; 
   
@@ -104,14 +104,14 @@ body {
 
 section {
     min-height: 100vh;
-    padding: 10rem 9% 2rem; /* Adjusted padding top to 4rem (60px) */
+    padding: 10rem 9% 2rem; 
     display: flex;
-    justify-content: center; /* Use justify-content instead of justify-self */
+    justify-content: center; 
     align-items: center;
 }
 
 .all-heading {
-    margin-top: auto; /* Align at the bottom of the container */
+    margin-top: auto; 
     justify-content: center;
     align-items: center;
     display: flex;
@@ -181,18 +181,13 @@ section {
 }
 
 .ABOUT .card {
-    background-color: transparent; /* Optional: Set the card background to transparent */
+    background-color: transparent; /
 }
 
 .ABOUT img {
-    width: 90%; /* Optional: Make the image responsive within the card */
+    width: 90%; 
 }
 
-
-  
-
-
-/* Hero */
 section#hero {
     height: calc(100vh - 60px);
     display: flex;
@@ -221,7 +216,6 @@ section {
 }
 
 /* Dropdown menu */
-/* Your existing styles */
 .dropdown {
     position: relative;
 
@@ -270,37 +264,37 @@ body {
 }
 
 .product-name-heading {
-    /* Add your styles for Product Name heading */
-    color: blue; /* For example */
+    
+    color: blue; 
 }
 
 .price-heading {
-    /* Add your styles for Price heading */
-    color: green; /* For example */
+    
+    color: green; 
 }
 
 .quantity-heading {
-    /* Add your styles for Quantity heading */
-    color: red; /* For example */
+    
+    color: red; 
 }
 
 .action-heading {
-    /* Add your styles for Action heading */
-    color: orange; /* For example */
+    
+    color: orange; 
 }
 
 .btnLogin-popup {
-    /* Add your desired styles here */
-    padding: 10px 20px; /* Adjust padding as needed */
-    background-color: rgba(52, 152, 219, 0); /* Set fully transparent background color */
-    color: #fff; /* Set text color */
+    
+    padding: 10px 20px; 
+    background-color: rgba(52, 152, 219, 0); 
+    color: #fff; 
     border: none;
     border-radius: 5px;
     cursor: pointer;
     position: absolute;
-    right: 10px; /* Adjust the right position as needed */
-    top: 10px; /* Adjust the top position as needed */
-    transition: background-color 0.3s; /* Add transition for a smooth effect */
+    right: 10px; 
+    top: 10px; 
+    transition: background-color 0.3s; 
 }
 
 .btnLogin-popup:hover {

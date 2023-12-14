@@ -5,20 +5,20 @@
 
 .back {
     text-align: right;
-    bottom: 200px; /* Adjust the margin as needed */
+    bottom: 200px; 
 }
 
 .back-button {
     text-decoration: none;
     padding: 10px 15px;
-    color: black; /* Set your desired text color */
+    color: black; 
     border-radius: 5px;
     display: inline-block;
     transition: background-color 0.3s ease-in-out;
 }
 
 .back-button:hover {
-    background-color: orange; /* Set your desired hover background color */
+    background-color: orange; 
 }
 
 

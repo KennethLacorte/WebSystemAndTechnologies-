@@ -1,7 +1,5 @@
 <?php
-// delete-item.php
 
-// Include your database connection file
 include '../ADMIN/connection-product.php';
 
 // Check if the request is a POST request

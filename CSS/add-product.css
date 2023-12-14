@@ -9,7 +9,7 @@
 }
 
 .carousel-item {
-    min-width: 100%; /* Ensure each item takes up the full width */
+    min-width: 100%; 
     box-sizing: border-box;
 }
 

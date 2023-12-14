@@ -16,5 +16,5 @@ btnLogin.addEventListener('click', () => {
 
 iconClose.addEventListener('click', () => {
     wrapper.classList.remove('active-popup');
-    btnLogin.style.display = 'block'; // Show the button again when closing
+    btnLogin.style.display = 'block'; 
 });

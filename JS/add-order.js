@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const orderItemsContainer = document.getElementById('order-items');
     const customerInfoForm = document.getElementById('confirm-order-form');
     const overallTotalElement = document.getElementById('overall-total');
-    const productQuantities = {}; // Store quantities for each product
+    const productQuantities = {}; 
 
     customerInfoForm.style.display = 'none';
     let overallTotal = 0.00;
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const productId = button.dataset.productId;
                 const productName = button.dataset.productName;
                 const productPrice = parseFloat(button.dataset.productPrice);
-                const itemId = button.dataset.itemId; // Add item_id to the dataset
+                const itemId = button.dataset.itemId; 
 
                 // Get the corresponding quantity input
                 const quantityInput = document.querySelector(`#quantity-${itemId}`);
@@ -45,15 +45,15 @@ document.addEventListener('DOMContentLoaded', function () {
         const originalPrice = productPrice;
 
         row.innerHTML = `<td>${productName}</td><td>${originalPrice.toFixed(2)}</td><td><input type="readonly" id="quantity-${itemId}" name="quantity[]" value="${quantity}" min="1" class="quantity" readonly></td><td><button class="remove-item-button" data-item-id="${itemId}">Remove</button></td>`;
-        row.dataset.productId = productId; // Add product ID to the dataset
-        row.dataset.itemId = itemId; // Add item ID to the dataset
+        row.dataset.productId = productId; 
+        row.dataset.itemId = itemId; 
         row.dataset.itemPrice = originalPrice.toFixed(2);
-        row.dataset.itemTotal = (originalPrice * quantity).toFixed(2); // Initialize item total
+        row.dataset.itemTotal = (originalPrice * quantity).toFixed(2); 
         orderItemsContainer.appendChild(row);
 
         const quantityInput = row.querySelector(`#quantity-${itemId}`);
         quantityInput.addEventListener('input', function () {
-            // Update the quantity in the productQuantities object
+            
             productQuantities[productId] = parseInt(quantityInput.value, 10);
 
             // Update the item total when quantity changes

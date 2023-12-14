@@ -44,12 +44,11 @@ p {
 .slider img {
     flex: 1 0 100%;
     scroll-snap-align: start;
-    object-fit: cover; /* Set object-fit to cover */
+    object-fit: cover;
     width: 100%;
     height: auto;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    /* Remove padding: 0 10px; */
 }
 
 

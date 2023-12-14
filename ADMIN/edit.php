@@ -1,20 +1,18 @@
 <?php
-// Include your database connection file
+
 include '../ADMIN/connection-product.php';
 
 // Check if the item ID is provided
 if (isset($_GET['id'])) {
     $itemId = $_GET['id'];
 
-    // Fetch data for the selected item
     $query = "SELECT * FROM tbl_items WHERE item_id = $itemId";
     $result = mysqli_query($conn, $query);
     $row = mysqli_fetch_assoc($result);
 
-    // Close the database connection
     mysqli_close($conn);
 } else {
-    // Redirect to the main page if no item ID is provided
+    
     header("Location: admin.php");
     exit();
 }
@@ -48,7 +46,7 @@ if (isset($_GET['id'])) {
 
         <div id="edit-product-content" class="container d-flex justify-content-center">
             <table class="table bg-white rounded shadow-sm table-hover">
-                <!-- Display the items table here -->
+                
             </table>
         </div>
 
@@ -62,7 +60,7 @@ if (isset($_GET['id'])) {
                         <input type="text" class="form-control" name="item_name" value="<?php echo $row['item_name']; ?>">
                     </div>
 
-                    <!-- Add other input fields for item_image, item_price, category_id, availability -->
+                    
                     <div class="col">
                         <label class="form-label">Item Image:</label>
                         <input type="file" class="form-control" name="new_item_image">

@@ -8,7 +8,6 @@ function removeActiveClass() {
     });
 }
 
-// Check if the page is reloaded (not from a hash change or back/forward navigation)
 if (performance.navigation.type === 1) {
     // Page is reloaded, scroll to the top
     window.scrollTo({

@@ -1,6 +1,4 @@
-// receipt.js
 
-// Import OrderConfirmation class from order.js
 import { OrderConfirmation } from './order.js';
 
 function confirmOrder() {
@@ -65,9 +63,6 @@ function confirmOrder() {
             </div>
     `;
 
-    // Optionally, you can clear the form or perform other actions here
-
-    // Scroll to the "View Order" section
     document.getElementById("vieworder-content").scrollIntoView();
 }
 
@@ -85,4 +80,3 @@ function calculateOverallTotal(productDetails) {
     return overallTotal.toFixed(2);
 }
 
-// ... (ibang kodigo)

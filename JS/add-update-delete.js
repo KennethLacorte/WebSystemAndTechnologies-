@@ -1,14 +1,14 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Fetch data from the server
+    
     fetchItems();
 });
 
 function fetchItems() {
-    // Replace 'your_api_endpoint' with the actual API endpoint
+   
     fetch('your_api_endpoint')
         .then(response => response.json())
         .then(data => {
-            // Process the fetched data and update the table
+            
             updateTable(data);
         })
         .catch(error => console.error('Error fetching data:', error));

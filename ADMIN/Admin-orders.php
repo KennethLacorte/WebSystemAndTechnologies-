@@ -4,7 +4,6 @@ include '../db/connect.php';
 class Orders {
     public $conn;
 
-    // Declare constants for table column names
     const ORDER_ID = 'o.order_id';
     const CUSTOMER_NAME = 'c.customer_name';
     const ORDER_DATE = 'o.order_date';

@@ -4,7 +4,6 @@ document.getElementById('submit-btn').addEventListener('click', function () {
 });
 
 function showFloatingForm() {
-    // Customize the appearance and behavior of the SweetAlert2 modal
     Swal.fire({
         title: "Order Confirmation",
         html: `
@@ -23,10 +22,8 @@ function showFloatingForm() {
         confirmButtonText: "Yes, confirm!",
     }).then(function (result) {
         if (result.isConfirmed) {
-            // If the user clicks "Yes, confirm!", you can proceed with further actions
             console.log('Order confirmed!');
         } else {
-            // If the user clicks "Cancel" or closes the SweetAlert, you can handle it here
             console.log('Order not confirmed.');
         }
     });

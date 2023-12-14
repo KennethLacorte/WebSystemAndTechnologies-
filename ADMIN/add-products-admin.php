@@ -1,5 +1,5 @@
 <?php
-// Include your database connection file
+
 include '../ADMIN/connection-product.php';
 
 // Initialize response array

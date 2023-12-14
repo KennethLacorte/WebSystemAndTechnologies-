@@ -109,7 +109,7 @@ $result = $conn->query($sql);
                     <script>
                         function redirectToNextPage() {
                             // Use window.location.href to navigate to the next page
-                            window.location.href = '../ADMIN/login.php'; // Replace 'next_page.php' with the actual URL
+                            window.location.href = '../ADMIN/login.php'; 
                         }
                     </script>
                 </ul>
@@ -138,7 +138,7 @@ $result = $conn->query($sql);
         <div class="container">
             <div class="best-card">
                 <div class="row" style="margin-top: 20px;">
-                    <!-- First Column -->
+                   
                     <div class="col-md-4 py-3 py-md-0">
                         <a href="#addorder-content" class="card-link" onclick="onNavButtonClick('addorder-content')">
                             <div class="card">
@@ -151,20 +151,17 @@ $result = $conn->query($sql);
                         </a>
                     </div>
 
-                    <!-- Second Column -->
                     <div class="col-md-4 py-3 py-md-0">
                         <a href="#addorder-content" class="card-link" onclick="onNavButtonClick('addorder-content')">
                             <div class="card">
                             <img class="card-image-top" src="../images/overload.jpg" alt="">
                                 <div class="card-img-overlay">
                                     <h1 class="card-title">Overload sa Sarap!</h1>
-                                    <!-- Add appropriate content for video -->
                                 </div>
                             </div>
                         </a>
                     </div>
 
-                    <!-- Third Column -->
                     <div class="col-md-4 py-3 py-md-0">
                         <a href="#addorder-content" class="card-link" onclick="onNavButtonClick('addorder-content')">
                             <div class="card">
@@ -199,7 +196,6 @@ $result = $conn->query($sql);
         $category_result = $conn->query($category_query);
         ?>
 
-        <!-- Form to add items to the order -->
         <form id="add-order-form" action="process_add_order.php" method="post">
             <div class="search-bar">
                 <input type="text" id="searchInput" placeholder="Search...">
@@ -235,13 +231,13 @@ $result = $conn->query($sql);
                             </tr>
                         </thead>
                 </div>
-                <!-- Display product information in the table body -->
+             
                 <tbody class="text-center">
                     <?php
                     // Inside the while loop where you display products
                     while ($row = $product_result->fetch_assoc()) {
                         echo "<tr>";
-                        echo "<td>{$row['item_id']}</td>"; // Add the Product ID column
+                        echo "<td>{$row['item_id']}</td>"; 
                         echo "<td>{$row['item_name']}</td>";
                         echo "<td><img src='data:image/jpeg;base64," . base64_encode($row['item_img']) . "' alt='{$row['item_name']}' style='width: 50px; height: 50px;'></td>";
                         echo "<td>{$row['item_price']}</td>";
@@ -334,7 +330,6 @@ $result = $conn->query($sql);
         <div class="row">
             <div class="col-md-6">
                 <div class="card" style="height: 450px; margin-top:80px;">
-                    <!-- Replace the existing image with the Google Maps iframe -->
                     <iframe src="https://www.google.com/maps/embed?pb=!3m2!1sen!2sph!4v1702392400831!5m2!1sen!2sph!6m8!1m7!1s-tm3iBfJDv2hld--elAJ6A!2m2!1d13.92966285934027!2d121.1893492700615!3f73.14729409802008!4f3.6113415464581635!5f0.7820865974627469" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
@@ -380,14 +375,7 @@ $result = $conn->query($sql);
         </div>
     </section>
 
-
-
-
-
-
     </section>
-
-
 
     <footer id="footer">
         <div class="container">
@@ -412,15 +400,6 @@ $result = $conn->query($sql);
         </div>
 
     </footer>
-
-
-
-
-
-
-
-
-
 
 
     <script defer src="../JS/navbar.js"></script>

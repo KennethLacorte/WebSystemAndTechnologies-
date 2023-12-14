@@ -5,8 +5,7 @@ function updateItem(itemId) {
     var categoryId = document.getElementById(`category_id_${itemId}`).innerText;
     var availability = document.getElementById(`availability_${itemId}`).innerText;
 
-    // You can now use AJAX to send these values to the server for updating the database
-    // Example using fetch API:
+    
     fetch('update-item.php', {
         method: 'POST',
         headers: {

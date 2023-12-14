@@ -26,7 +26,7 @@
                 <div class="col-md-6 right">
                 <form action="login-process.php" method="post">
                     <div class="back">
-                    <a href="../WST Final Project/user.php" class="back-button">&#8592; Back</a> <!-- &#8592; is the HTML entity for a left arrow -->
+                    <a href="../WST Final Project/user.php" class="back-button">&#8592; Back</a> 
                     </div>
                     <div class="input-box">
                     <header>LOGIN AS ADMIN</header>

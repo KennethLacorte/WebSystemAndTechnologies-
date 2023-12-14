@@ -10,7 +10,7 @@
 }
 .best-card h1{
     font-weight: bold;
-    color: white;/* Your existing styles */
+    color: white;
 
 .card {
     box-shadow: 0px 0px 5px black;
@@ -42,7 +42,6 @@
     font-weight: bold;
 }
 
-/* Reset the anchor tag styling */
 .card-link {
     display: block;
 }
@@ -51,7 +50,6 @@
     text-decoration: none;
 }
 
-/* Additional styles for .card-link */
 .card-link {
     color: inherit;
 }
@@ -60,7 +58,6 @@
     color: inherit;
 }
 
-/* Media query for landscape layout */
 @media only screen and (min-width: 768px) {
     .best-card .row {
         display: flex;
@@ -79,9 +76,6 @@
     color: white;
     text-shadow: 2px 1px 5px black;
 }
-
-
-
 .container{
     margin-top: 100px;
 }
@@ -100,8 +94,6 @@
 .card-content p{
     font-weight: bold;
 }
-
-  /* Add this style to reset the anchor tag styling */
   .card-link {
     display: block;
 }

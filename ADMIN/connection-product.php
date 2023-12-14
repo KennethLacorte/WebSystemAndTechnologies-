@@ -1,10 +1,9 @@
 <?php
-    $host = 'localhost';   // Replace with your actual database host
-    $username = 'root';   // Replace with your actual database username
-    $password = '';   // Replace with your actual database password
-    $database = 'db_burgers';   // Replace with your actual database name
+    $host = 'localhost';   
+    $username = 'root';   
+    $password = '';   
+    $database = 'db_burgers';   
 
-    // Create connection
     $conn = mysqli_connect($host, $username, $password, $database);
 
     // Check connection
