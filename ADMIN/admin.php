@@ -29,11 +29,19 @@
                     <i class="fas fa-chart-line me-2"></i>Add Products
                 </a>
 
-                <a href="#logout-content" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold" onclick="showContent('logout')">
+                <a href="#logout-content" id="logout-link" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold" onclick="logout()">
                     <i class="fas fa-power-off me-2"></i>Logout
                 </a>
+
             </div>
         </div>
+        <script>
+            function logout() {
+                // You can perform any additional logout actions here, such as destroying sessions or clearing cookies.
+                // For now, let's simply redirect to login.php
+                window.location.href = 'login.php';
+            }
+        </script>
 
 
         <div id="dashboard-content" class="dashboard container-lg">
@@ -181,63 +189,63 @@
                     </table>
                 </div>
             </div>
-        </div>  
+        </div>
 
         <div id="edit-product-content" class="products container-lg" style="display:none">
-    <div class="row my-5">
-        <h3 class="fs-4 mb-3">Update/Delete</h3>
-        <div class="col">
-            <table class="table bg-white rounded shadow-sm table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col" width="100">Item ID</th>
-                        <th scope="col">Item Name</th>
-                        <th scope="col">Item Image</th>
-                        <th scope="col">Item Price</th>
-                        <th scope="col">Category ID</th>
-                        <th scope="col">Availability</th>
-                        <th scope="col">Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="itemsTableBody">
-                    <?php
-                    // Include your database connection file
-                    include '../ADMIN/connection-product.php';
+            <div class="row my-5">
+                <h3 class="fs-4 mb-3">Update/Delete</h3>
+                <div class="col">
+                    <table class="table bg-white rounded shadow-sm table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col" width="100">Item ID</th>
+                                <th scope="col">Item Name</th>
+                                <th scope="col">Item Image</th>
+                                <th scope="col">Item Price</th>
+                                <th scope="col">Category ID</th>
+                                <th scope="col">Availability</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="itemsTableBody">
+                            <?php
+                            // Include your database connection file
+                            include '../ADMIN/connection-product.php';
 
-                    // Fetch all data from the database
-                    $query = "SELECT * FROM tbl_items";
-                    $result = mysqli_query($conn, $query);
+                            // Fetch all data from the database
+                            $query = "SELECT * FROM tbl_items";
+                            $result = mysqli_query($conn, $query);
 
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        echo "<tr id='row{$row['item_id']}'>";
-                        echo "<td>{$row['item_id']}</td>";
-                        echo "<td>{$row['item_name']}</td>";
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                echo "<tr id='row{$row['item_id']}'>";
+                                echo "<td>{$row['item_id']}</td>";
+                                echo "<td>{$row['item_name']}</td>";
 
-                        // Check if the key 'item_img' exists before accessing it
-                        $itemImage = isset($row['item_img']) ? $row['item_img'] : '';
-                        $imageData = base64_encode($itemImage);
-                        echo "<td><img src='data:image/jpeg;base64,{$imageData}' alt='Product Image' width='50'></td>";
+                                // Check if the key 'item_img' exists before accessing it
+                                $itemImage = isset($row['item_img']) ? $row['item_img'] : '';
+                                $imageData = base64_encode($itemImage);
+                                echo "<td><img src='data:image/jpeg;base64,{$imageData}' alt='Product Image' width='50'></td>";
 
-                        echo "<td>{$row['item_price']}</td>";
-                        echo "<td>{$row['category_id']}</td>";
-                        echo "<td>{$row['availability']}</td>";
-                        echo "<td>";
-                        echo "<a href='edit.php?id={$row["item_id"]}' class='btn btn-primary'>Edit</a>";
-                        echo "<button class='btn btn-danger' onclick='deleteItem({$row['item_id']})'>Delete</button>";
-                        echo "</td>";
-                        echo "<td>";
-                        echo "</td>";
-                        echo "</tr>";
-                    }
+                                echo "<td>{$row['item_price']}</td>";
+                                echo "<td>{$row['category_id']}</td>";
+                                echo "<td>{$row['availability']}</td>";
+                                echo "<td>";
+                                echo "<a href='edit.php?id={$row["item_id"]}' class='btn btn-primary'>Edit</a>";
+                                echo "<button class='btn btn-danger' onclick='deleteItem({$row['item_id']})'>Delete</button>";
+                                echo "</td>";
+                                echo "<td>";
+                                echo "</td>";
+                                echo "</tr>";
+                            }
 
-                    // Close the database connection
-                    mysqli_close($conn);
-                    ?>
-                </tbody>
-            </table>
+                            // Close the database connection
+                            mysqli_close($conn);
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
         <div id="add-product-content" class="products container-lg" style="display: none">
             <div class="container-sm mt-5">

@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
 
     // Query to fetch user from the admin table
-    $sql = "SELECT * FROM admin WHERE email = '$email' AND password = '$password'";
+    $sql = "SELECT * FROM tbl_admin WHERE email = '$email' AND password = '$password'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
