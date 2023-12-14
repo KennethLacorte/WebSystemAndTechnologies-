@@ -97,13 +97,13 @@ $result = $conn->query($sql);
                         <a class="nav-link" href="#contactus" onclick="onNavButtonClick('contactus')" style="color: white;">Contact Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="https://www.facebook.com/angelsburgerph/" target="_blank"><i class="fab fa-facebook-square" style="color: white;"></i></a>
+                        <a class="nav-link" href="https://www.facebook.com/chelzhian13" target="_blank"><i class="fab fa-facebook-square" style="color: white;"></i></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="https://www.tiktok.com/@angelsburgerph/" target="_blank"><i class="fab fa-tiktok" style="color: white;"></i></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="https://www.instagram.com/angelsburgerph/" target="_blank"><i class="fab fa-instagram" style="color: white;"></i></a>
+                        <a class="nav-link" href="https://www.instagram.com/michelle._.aparicio/" target="_blank"><i class="fab fa-instagram" style="color: white;"></i></a>
                     </li>
                     <button type="submit" class="btnLogin-popup" onclick="redirectToNextPage()">Login</button>
                     <script>
@@ -327,26 +327,30 @@ $result = $conn->query($sql);
     </section>
 
 
-
     <section class="ABOUT content-section" id="about">
-        <br>
-        <br>
-        <div class="about-us">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="card" style="height: 450px; margin-top:80px;">
-                        <!-- Replace the existing image with the Google Maps iframe -->
-                        <iframe src="https://www.google.com/maps/embed?pb=!3m2!1sen!2sph!4v1702392400831!5m2!1sen!2sph!6m8!1m7!1s-tm3iBfJDv2hld--elAJ6A!2m2!1d13.92966285934027!2d121.1893492700615!3f73.14729409802008!4f3.6113415464581635!5f0.7820865974627469"height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </div>
+    <br>
+    <br>
+    <div class="about-us">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card" style="height: 450px; margin-top:80px;">
+                    <!-- Replace the existing image with the Google Maps iframe -->
+                    <iframe src="https://www.google.com/maps/embed?pb=!3m2!1sen!2sph!4v1702392400831!5m2!1sen!2sph!6m8!1m7!1s-tm3iBfJDv2hld--elAJ6A!2m2!1d13.92966285934027!2d121.1893492700615!3f73.14729409802008!4f3.6113415464581635!5f0.7820865974627469" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
-                <div class="col-md-6">
-                    <div class="card" style="height: 450px;margin-top:80px;">
-                        <img src="../images/burgers.jpg" style="width: 100%; height: 100%;" alt="Store Image">
+            </div>
+            <div class="col-md-6">
+                <div class="card" style="height: 450px;margin-top:80px;">
+                    <img src="../images/burgers.jpg" style="width: 100%; height: 100%;" alt="Store Image">
+                    <div class="location-label">
+                        <p><strong>Location:</strong> Purok 6-B San Jose, Lipa City, Batangas</p>
+                        <p><strong>Call Us at:</strong> 09873452234</p>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
 
 
 

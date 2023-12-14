@@ -9,20 +9,26 @@ if (isset($_POST['submit'])) {
         $itemId = $_POST['item_id'];
 
         // Fetch data for the selected item
-        $query = "SELECT * FROM tbl_items WHERE item_id = $itemId";
-        $result = mysqli_query($conn, $query);
+        $query = "SELECT * FROM tbl_items WHERE item_id = ?";
+        $stmt = mysqli_prepare($conn, $query);
+
+        // Bind the parameter
+        mysqli_stmt_bind_param($stmt, "i", $itemId);
+
+        // Execute the statement
+        mysqli_stmt_execute($stmt);
+
+        // Get the result
+        $result = mysqli_stmt_get_result($stmt);
         $row = mysqli_fetch_assoc($result);
 
         // Check if a new image file is uploaded
         if (isset($_FILES['new_item_image']) && $_FILES['new_item_image']['error'] === UPLOAD_ERR_OK) {
             // Read the image file
             $imageTmp = file_get_contents($_FILES['new_item_image']['tmp_name']);
-
-            // Convert the image to base64 encoding
-            $newItemImage = base64_encode($imageTmp);
         } else {
             // If no new image is uploaded, use the existing image data
-            $newItemImage = $row['item_img'];
+            $imageTmp = $row['item_img'];
         }
 
         // Get other form data
@@ -31,18 +37,27 @@ if (isset($_POST['submit'])) {
         $categoryId = $_POST['category_id'];
         $availability = $_POST['availability'];
 
-        // Perform the update
+        // Perform the update using a prepared statement
         $updateQuery = "UPDATE tbl_items SET 
-                        item_name = '$itemName', 
-                        item_img = '$newItemImage', 
-                        item_price = '$itemPrice', 
-                        category_id = '$categoryId', 
-                        availability = '$availability' 
-                        WHERE item_id = $itemId";
+                        item_name = ?, 
+                        item_img = ?, 
+                        item_price = ?, 
+                        category_id = ?, 
+                        availability = ? 
+                        WHERE item_id = ?";
 
-        $updateResult = mysqli_query($conn, $updateQuery);
+        $stmt = mysqli_prepare($conn, $updateQuery);
+
+        // Bind the parameters
+        mysqli_stmt_bind_param($stmt, "ssdiii", $itemName, $imageTmp, $itemPrice, $categoryId, $availability, $itemId);
+
+        // Execute the statement
+        $updateResult = mysqli_stmt_execute($stmt);
 
         if ($updateResult) {
+            // Close the statement
+            mysqli_stmt_close($stmt);
+
             // Close the database connection
             mysqli_close($conn);
 

@@ -185,7 +185,7 @@
 
         <div id="edit-product-content" class="products container-lg" style="display:none">
     <div class="row my-5">
-        <h3 class="fs-4 mb-3">Add/Delete</h3>
+        <h3 class="fs-4 mb-3">Update/Delete</h3>
         <div class="col">
             <table class="table bg-white rounded shadow-sm table-hover">
                 <thead>

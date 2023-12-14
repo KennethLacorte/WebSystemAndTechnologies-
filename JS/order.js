@@ -9,12 +9,11 @@ class OrderConfirmation {
     this.orderDate = currentDate;
     document.getElementById("order-date").value = currentDate;
   }
-
   displayOrderReceipt(orderNumber, customerName, orderDate, totalPrice) {
     const viewOrderContent = document.getElementById("vieworder-content");
-
+  
     const receiptHTML = `<br><br><br>
-        <div style="border: 1px solid #ccc; padding: 15px; margin: 10px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);" class="order-card">
+        <div style="background-color: black; color: white; border: 1px solid #ccc; padding: 15px; margin: 10px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);" class="order-card">
             <h2 style="color: #333;">Order Details</h2>
             <p><strong>Order Number:</strong> ${orderNumber}</p>
             <p><strong>Customer Name:</strong> ${customerName}</p>
@@ -22,10 +21,10 @@ class OrderConfirmation {
             <p><strong>Total Price:</strong> ₱ ${totalPrice}</p>
         </div>
     `;
-
+  
     viewOrderContent.innerHTML = receiptHTML;
   }
-
+  
   async confirmOrder() {
     var customerName = document.getElementById("customer-name").value;
 
